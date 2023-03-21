@@ -28,7 +28,6 @@
 	foreach ($data as $key => $val) {
 		oci_bind_by_name($parse, $key, $data[$key]);
 	}
-	oci_execute($parse);
-	return $parse;
+	oci_execute($parse)
   }
 ?>
