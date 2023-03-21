@@ -24,10 +24,12 @@
   
   //Fungsi view data
   function query_view($con, $sql, $data){
-	$parse = oci_parse($con, $sql);
-	foreach ($data as $key => $val) {
-		oci_bind_by_name($parse, $key, $data[$key]);
-	}
-	oci_execute($parse)
+    $parse = oci_parse($con, $sql);
+    foreach($data as $key => $val){
+      oci_bind_by_name($parse, $key, $data[$key]);
+    }
+    oci_execute($parse);
+    return $parse;
   }
+
 ?>

@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-    /**
+    /** 
      * View Data Barang
      */
 
