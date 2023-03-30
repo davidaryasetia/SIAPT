@@ -29,7 +29,6 @@ if (!$con){
     exit;
 }
 else{
-    print "Connected To Oracle";
 }
 
 $sql = "SELECT NAMA_BARANG, STOK FROM barang ORDER BY nama_barang";
