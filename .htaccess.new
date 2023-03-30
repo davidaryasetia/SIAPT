@@ -1,5 +1,0 @@
-RewriteEngine on
-RewriteCond %{DOCUMENT_ROOT}/mis143/offline.txt -f
-RewriteCond %{REQUEST_URI} !/offline.php?offline=on
-#RewriteCond %{REMOTE_ADDR} !^12\.34\.56\.78$
-RewriteRule  ^(.*)  /index.php?offline=on [L]
