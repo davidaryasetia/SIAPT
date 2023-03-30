@@ -6,7 +6,7 @@
  * @return oci_resource          objek koneksi db
  */
 function konekDb($db_user, $db_pass) {
-    $con=oci_connect($db_user,$db_pass,"10.252.209.213/db.project.mis.pens.ac.id");
+    $con=oci_connect($db_user,$db_pass,"10.252.209.213/orcl.mis.pens.ac.id");
     if(!$con) {
         responseError('ERR-DB');
     }
