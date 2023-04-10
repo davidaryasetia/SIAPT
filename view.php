@@ -1,45 +1,65 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Untitled Document</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
 </head>
 
 <body>
+
     <?php
-/*****************
-example code akses table oracle
-contoh table BARANG dengan kolom sbb :
-NOMOR NUMBER(10)
-NAMA_BARANG VARCHAR2(100)
-STOK NUMBER(2)
-//*****************/
-
-include "includes/func.inc.php";
-
-$db_user = "PA0001";
-$db_pass = "726987";
-$con = konekDb($db_user, $db_pass);
-
-echo "<strong>VIEW DATA BARANG</strong><br><br>";
-if (!$con){
-    $m = oci_error();
-    echo $m['message'], "\n";
-    exit;
-}
-else{
-}
-
-$sql = "SELECT NAMA_BARANG, STOK FROM barang ORDER BY nama_barang";
-$hasil = query_view($con, $sql);
-
-oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
+    include "includes/func.inc.php";
     
-foreach ($rows as $hasil) {
-        echo "Nama Barang : " . $hasil['NAMA_BARANG'] ." - Stok : " . $hasil['STOK'] . "<br>";
+    $db_user = "PA0001";
+    $db_pass = "726987";
+    
+    $con = konekDb($db_user, $db_pass);
+    if (!$con){
+        $m = oci_error();
+        echo $m['message'], "\n";
+        exit;
     }
-?>
+    else{
+        print "connected To Oracle Success" ;
+    }
+   
+    $query= ' SELECT PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM||" " ||JURUSAN.JURUSAN AS "Program Studi",
+     SUM (CASE WHEN MAHASISWA.ANGKATAN=2018 THEN 1 ELSE 0 END) AS "TS-2",
+     SUM (CASE WHEN MAHASISWA.ANGKATAN=2019 THEN 1 ELSE 0 END) AS "TS-1",
+     SUM (CASE WHEN MAHASISWA.ANGKATAN=2020 THEN 1 ELSE 0 END) AS "TS"
+    FROM PROGRAM_STUDI
+    INNER JOIN PROGRAM ON PROGRAM_STUDI.PROGRAM=PROGRAM.NOMOR
+    INNER JOIN JURUSAN ON PROGRAM_STUDI.JURUSAN=JURUSAN.NOMOR
+    INNER JOIN DEPARTEMEN ON PROGRAM_STUDI.DEPARTEMEN=DEPARTEMEN.NOMOR
+    INNER JOIN KELAS ON PROGRAM.NOMOR=KELAS.PROGRAM AND JURUSAN.NOMOR=KELAS.JURUSAN
+    INNER JOIN MAHASISWA ON KELAS.NOMOR=MAHASISWA.KELAS
+    INNER JOIN STATUS ON MAHASISWA.STATUS=STATUS.KODE
+    WHERE STATUS.STATUS="Mahasiswa Luar Negeri" AND
+     STATUS.STATUS NOT IN ("Cuti", "DO", "Mengundurkan Diri", "Meninggal")
+    GROUP BY PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM, JURUSAN.JURUSAN, PROGRAM_STUDI.GELAR
+    ORDER BY PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM';
+    $stmt = oci_parse($con, $query);
+    oci_execute($stmt);
+    
+    while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
+        echo $row['PROGRAM_STUDI.NOMOR'] . " - " . $row[' PROGRAM.PROGRAM||" " ||JURUSAN.JURUSAN AS "Program Studi'] . " - " . $row['SUM (CASE WHEN MAHASISWA.ANGKATAN=2018 THEN 1 ELSE 0 END) AS "TS-2",'] . "<br>";
+    }
+    
+
+    
+ 
+
+
+    ?>
+
+
+
+
+
 </body>
 
 </html>
