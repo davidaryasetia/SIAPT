@@ -13,47 +13,38 @@
 
     <?php
     include "includes/func.inc.php";
-    
-    $db_user = "PA0001";
-    $db_pass = "726987";
-    
     $con = konekDb($db_user, $db_pass);
-    if (!$con){
-        $m = oci_error();
-        echo $m['message'], "\n";
-        exit;
-    }
-    else{
-        print "connected To Oracle Success" ;
-    }
-   
-    $query= ' SELECT PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM||" " ||JURUSAN.JURUSAN AS "Program Studi",
-     SUM (CASE WHEN MAHASISWA.ANGKATAN=2018 THEN 1 ELSE 0 END) AS "TS-2",
-     SUM (CASE WHEN MAHASISWA.ANGKATAN=2019 THEN 1 ELSE 0 END) AS "TS-1",
-     SUM (CASE WHEN MAHASISWA.ANGKATAN=2020 THEN 1 ELSE 0 END) AS "TS"
-    FROM PROGRAM_STUDI
+
+    $query='SELECT PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM|| " " ||JURUSAN.JURUSAN AS "Program Studi",
+           SUM (CASE WHEN MAHASISWA.ANGKATAN=2018 THEN 1 ELSE 0 END) AS "TS-2", 
+           SUM (CASE WHEN MAHASISWA.ANGKATAN=2019 THEN 1 ELSE 0 END) AS "TS-1", 
+           SUM (CASE WHEN MAHASISWA.ANGKATAN=2020 THEN 1 ELSE 0 END) AS "TS"
+    FROM PROGRAM_STUDI 
     INNER JOIN PROGRAM ON PROGRAM_STUDI.PROGRAM=PROGRAM.NOMOR
     INNER JOIN JURUSAN ON PROGRAM_STUDI.JURUSAN=JURUSAN.NOMOR
     INNER JOIN DEPARTEMEN ON PROGRAM_STUDI.DEPARTEMEN=DEPARTEMEN.NOMOR
-    INNER JOIN KELAS ON PROGRAM.NOMOR=KELAS.PROGRAM AND JURUSAN.NOMOR=KELAS.JURUSAN
-    INNER JOIN MAHASISWA ON KELAS.NOMOR=MAHASISWA.KELAS
+    INNER JOIN KELAS ON PROGRAM.NOMOR=KELAS.PROGRAM AND JURUSAN.NOMOR=KELAS.JURUSAN 
+    INNER JOIN MAHASISWA ON KELAS.NOMOR=MAHASISWA.KELAS 
     INNER JOIN STATUS ON MAHASISWA.STATUS=STATUS.KODE
-    WHERE STATUS.STATUS="Mahasiswa Luar Negeri" AND
-     STATUS.STATUS NOT IN ("Cuti", "DO", "Mengundurkan Diri", "Meninggal")
+    WHERE STATUS.STATUS=\'Mahasiswa Luar Negeri\' AND 
+          STATUS.STATUS NOT IN (\'Cuti\')
     GROUP BY PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM, JURUSAN.JURUSAN, PROGRAM_STUDI.GELAR
     ORDER BY PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM';
-    $stmt = oci_parse($con, $query);
-    oci_execute($stmt);
-    
-    while ($row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS)) {
-        echo $row['PROGRAM_STUDI.NOMOR'] . " - " . $row[' PROGRAM.PROGRAM||" " ||JURUSAN.JURUSAN AS "Program Studi'] . " - " . $row['SUM (CASE WHEN MAHASISWA.ANGKATAN=2018 THEN 1 ELSE 0 END) AS "TS-2",'] . "<br>";
+
+
+    $data= oci_parse($con, $query);
+    $r = oci_execute($data);
+
+    // Fetching Data
+    print '<table border="1">';
+    while($row = oci_fetch_array($data, OCI_RETURN_NULLS+OCI_ASSOC)){
+        print '<tr>';
+        foreach($row as $item){
+            print '<td>'.($item !== null ? htmlentities($item, ENT_QUOTES) : '&nbsp'). '</td>';
+        }
+        print '</tr>';
     }
-    
-
-    
- 
-
-
+    print '</table>';
     ?>
 
 
