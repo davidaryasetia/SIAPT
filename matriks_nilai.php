@@ -21,12 +21,6 @@
 </head>
 
 <body>
-    <?php
-
-
-?>
-
-
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -46,7 +40,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="index.op">
                                 <i class="ti-power-off text-primary"></i>
                                 Logout
                             </a>
@@ -80,15 +74,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="visualisasi_data.php">
                             <i class="icon-layout menu-icon"></i>
-                            <span class="menu-title">Analisa Data</span>
+                            <span class="menu-title">Visualisasi Data</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="pengaturan.php">
                             <i class="icon-layout menu-icon"></i>
-                            <span class="menu-title">Pengaturan</span>
+                            <span class="menu-title">Pengaturan Akun</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -98,11 +92,7 @@
                         </a>
                     </li>
                 </ul>
-
-
             </nav>
-
-
 
             <!-- partial -->
             <div class="main-panel">
@@ -121,47 +111,9 @@
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
+
+                                <!-- Tabel Mahasiswa Asing -->
                                 <div class="card-body">
-                                    <p class="card-title">Tabel 3.b Rasio Dosen Terhadap Mahasiswa
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="table-responsive">
-                                                    <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/rasio_dosen_mhs.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($response, true);
-
-                                                echo '<table class="display expandable-table" style="width:100%">';
-                                                        echo '<thead>';
-                                                           echo' <tr>
-                                                                <th>No. </th>
-                                                                <th>Unit Pengelola (Departemen/Jurusan)</th>
-                                                                <th>Jumlah Dosen</th>
-                                                                <th>Jumlah Mahasiswa</th>
-                                                                <th>Jumlah Mahasiswa TA</th>
-                                                            </tr>';
-                                                        echo '</thead>';
-                                                        echo '<tbody>';
-                                                        foreach ($data as $row) {
-                                                            echo '<tr>';
-                                                            echo '<td>' . $row['NOMOR'] . '</td>';
-                                                            echo '<td>' . $row['DEPARTEMEN'] . '</td>';
-                                                            echo '<td>' . $row['COUNT(DISTINCTPEGAWAI.NIP)'] . '</td>';
-                                                            echo '<td>' . $row['COUNT(DISTINCTMAHASISWA.NRP)'] . '</td>';
-                                                            echo '</tr>';
-                                                        }
-                                                       echo '</tbody>';
-                                                    echo '</table>'
-                                                    ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-
-
-                                <!-- Tabel -->
-                                <div class="card-body mt-5">
                                     <p class="card-title">Tabel 2.b Mahasiswa Asing
                                         <div class="row">
                                             <div class="col-12">
@@ -199,6 +151,90 @@
                                             </div>
                                         </div>
                                 </div>
+                                <!-- Tabel Mahasiswa Asing -->
+
+                                <!-- Tabel Rasio Dosen-->
+                                <div class="card-body mt-5">
+                                    <p class="card-title">Tabel 3.b Rasio Dosen Terhadap Mahasiswa
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/rasio_dosen_mhs.php');
+                                                // Decode JSON response into an associative array
+                                                $data = json_decode($response, true);
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>No. </th>
+                                                                <th>Unit Pengelola (Departemen/Jurusan)</th>
+                                                                <th>Jumlah Dosen</th>
+                                                                <th>Jumlah Mahasiswa</th>
+                                                                <th>Jumlah Mahasiswa TA</th>
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['NOMOR'] . '</td>';
+                                                            echo '<td>' . $row['DEPARTEMEN'] . '</td>';
+                                                            echo '<td>' . $row['COUNT(DISTINCTPEGAWAI.NIP)'] . '</td>';
+                                                            echo '<td>' . $row['COUNT(DISTINCTMAHASISWA.NRP)'] . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <!-- END Tabel -->
+
+
+                                <!-- 5.	Tabel 3.a.3 Sertifikasi Dosen (Pendidik Profesional/Profesi/Industri/Kompetensi) -->
+                                <div class="card-body mt-5">
+                                    <p class="card-title">Tabel 3.a.3 Sertifikasi Dosen (Pendidik
+                                        Profesional/Profesi/Industri/Kompetensi)
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/sertifikasi_dosen.php');
+                                                // Decode JSON response into an associative array
+                                                $data = json_decode($response, true);
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>No. </th>
+                                                                <th>Unit Pengelola (Departemen/Jurusan)</th>
+                                                                <th>Jumlah Dosen</th>
+                                                                <th>Jumlah Dosen Bersertifikat</th>
+                                                   
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['NOMOR'] . '</td>';
+                                                            echo '<td>' . $row['DEPARTEMEN'] . '</td>';
+                                                            echo '<td>' . $row['Jumlah Dosen'] . '</td>';
+                                                            echo '<td>' . $row['Jumlah Dosen Bersertifikat'] . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <!-- END Tabel -->
+
+
+
                             </div>
 
 
