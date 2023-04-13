@@ -6,19 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title>Test Data</title>
+
 </head>
 
 <body>
 
     <?php
-    include "includes/func.inc.php";
-    $koneksi=konekDb($db_user, $db_pass);
-
-   ?>
-
-
-
+header("Location: login.php");
+exit;
+?>
 
 
 </body>
