@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit();
 }
 
+// Query tabel 3.a.3 sertifikasi_dosen (Jumlah Rasio Sertifikasi Dosen dengan jumlah Dosen)
 $query = 'SELECT DISTINCT DEPARTEMEN.NOMOR, DEPARTEMEN.DEPARTEMEN, 
 COUNT(DISTINCT PEGAWAI.NIP) AS "Jumlah Dosen", 
 COUNT(DISTINCT CASE WHEN PEGAWAI.SERDOS IN (0, 1, 2, 3) THEN PEGAWAI.NOMOR END) AS "Jumlah Dosen Bersertifikat"

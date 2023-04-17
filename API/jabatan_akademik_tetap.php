@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit();
 }
 
+// Query Tabel 3.a.2 jabatan_akademik_tetap.php (Jabatan Akademik Dosen Tetap)
 $query = 'SELECT
 COUNT(DISTINCT CASE WHEN JABATAN_FUNGSIONAL.JABATAN=\'Guru Besar\' THEN PEGAWAI.NOMOR END) AS "Guru Besar",
 COUNT(DISTINCT CASE WHEN JABATAN_FUNGSIONAL.JABATAN=\'Lektor Kepala\' THEN PEGAWAI.NOMOR END) AS "Lektor Kepala", 

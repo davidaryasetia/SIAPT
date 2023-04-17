@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit();
 }
 
+// Query Tabel 3.b rasio_dosen_mhs.php
 $query = 'SELECT DEPARTEMEN.NOMOR, DEPARTEMEN.DEPARTEMEN, COUNT(DISTINCT PEGAWAI.NIP) AS "Jumlah Dosen", COUNT(DISTINCT MAHASISWA.NRP) AS "Jumlah Mahasiswa 2020", 
             \'\' AS "NULL"
             FROM DEPARTEMEN

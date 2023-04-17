@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit();
 }
 
+// Query Tabel 3.a.1 kecukupan_dosen.php
 $query = 'SELECT DEPARTEMEN.NOMOR, DEPARTEMEN.DEPARTEMEN, 
 \' \' AS "Doktor/Doktor Terapan", 
 \'\' AS "Magister/Magister Terapan",
