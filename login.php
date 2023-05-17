@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <!-- <p style="color: black;">&larr; <a href="index.php" style="color: black; font-weight:bold;">Home</a> -->
-        <form action="dashboard.php" method="" class="login-email">
+        <form action="beranda.php" method="" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Masuk</p>
             <p class="description-text">Masukkan Email dan Kata Sandi Anda.</p>
             <div class="input-group">
