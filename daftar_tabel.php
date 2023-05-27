@@ -401,6 +401,242 @@
                     </div>
                     <!-- Tabel 3.b Rasio Dosen Terhadap Mahasiswa-->
 
+                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen -->
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <p class="card-title">Tabel 3.c.1 Produktivitas Penelitian Dosen
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.c.1_produktivitas_penelitian_dosen.php');
+                                                // Decode JSON response into an associative array
+                                                $data = json_decode($response, true);
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>Nomor</th>
+                                                                <th>Sumber Pembiayaan</th>
+                                                                <th>TS-2(2019)</th>
+                                                                <th>TS-1(2020)</th>
+                                                                <th>TS(2021)</th>    
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Sumber Pembiayaan'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2019)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2020)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2021)'] . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen-->
+
+
+                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen -->
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <p class="card-title">Tabel 3.c.1 Produktivitas Penelitian Dosen
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.c.1_produktivitas_penelitian_dosen.php');
+                                                // Decode JSON response into an associative array
+                                                $data = json_decode($response, true);
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>Nomor</th>
+                                                                <th>Sumber Pembiayaan</th>
+                                                                <th>TS-2(2019)</th>
+                                                                <th>TS-1(2020)</th>
+                                                                <th>TS(2021)</th>    
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Sumber Pembiayaan'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2019)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2020)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2021)'] . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen-->
+
+
+                    <!-- Tabel 3.c.2 Produktivitas Pkm Dosen -->
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <p class="card-title">Tabel 3.c.2 Produktivitas Pkm Dosen
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.c.2_produktivitas_pkm_dosen.php');
+                                                // Decode JSON response into an associative array
+                                                $data = json_decode($response, true);
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>Nomor</th>
+                                                                <th>Sumber Pembiayaan</th>
+                                                                <th>TS-2(2019)</th>
+                                                                <th>TS-1(2020)</th>
+                                                                <th>TS(2021)</th>    
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Sumber Pembiayaan'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2019)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2020)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2021)'] . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabel 3.c.2 Produktivitas Pkm Dosen-->
+
+                    <!-- Tabel 5.b.1 Prestasi Akademik Mahasiswa -->
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card ">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <p class="card-title">Tabel 5.b.1 Prestasi Akademik Mahaiswa
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/5.b.1_prestasi_akademik_mahasiswa.php');
+                                                // Decode JSON response into an associative array
+                                             $data = json_decode($response, true);
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>No.</th>
+                                                                <th>Nama Kegiatan</th>
+                                                                <th>Waktu Penyelenggaraan</th>
+                                                                <th>Tingkat</th>
+                                                                <th>Prestasi Yang Dicapai</th>    
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Nama Kegiatan'] . '</td>';
+                                                            echo '<td>' . $row['Waktu Penyelenggaraan'] . '</td>';
+                                                            echo '<td>' . $row['Tingkat'] . '</td>';
+                                                            echo '<td>' . $row['Prestasi Yang Dicapai'] . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabel 5.b.1 Prestasi Akademik Mahasiswa-->
+
+                    <!-- Tabel 5.b.2 Prestasi Non Akademik Mahasiswa -->
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card ">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <p class="card-title">Tabel 5.b.2 Prestasi Non Akademik Mahasiswa
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/5.b.2_prestasi_non_akademik_mahasiswa.php');
+                                                // Decode JSON response into an associative array
+                                             $data = json_decode($response, true);
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>No.</th>
+                                                                <th>Nama Kegiatan</th>
+                                                                <th>Waktu Penyelenggaraan</th>
+                                                                <th>Tingkat</th>
+                                                                <th>Prestasi Yang Dicapai</th>    
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Nama Kegiatan'] . '</td>';
+                                                            echo '<td>' . $row['Waktu Penyelenggaraan'] . '</td>';
+                                                            echo '<td>' . $row['Tingkat'] . '</td>';
+                                                            echo '<td>' . $row['Prestasi Yang Dicapai'] . '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabel 5.b.2 Prestasi Non Akademik Mahasiswa-->
+
+
+
+
+
 
                 </div>
                 <!-- content-wrapper ends -->
