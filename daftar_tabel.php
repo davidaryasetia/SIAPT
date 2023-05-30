@@ -104,10 +104,10 @@
                         </div>
                     </div>
 
+                    <!-- Tabel 2.b Mahasiswa Asing -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
-                                <!-- Tabel 2.b Mahasiswa Asing -->
                                 <div class="card-body">
                                     <p class="card-title">Tabel 2.b Mahasiswa Asing
                                         <div class="row">
@@ -149,6 +149,61 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Tabel 2.b Mahasiswa Asing -->
+
+                    <!-- Tabel 2.c Kredit Mata Kuliah -->
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <p class="card-title">Tabel 2.c Kredit Mata Kuliah
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                // fetch api response
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.c_kredit_mata_kuliah.php');
+                                                // Decode JSON response into an associative array
+                                                $data = json_decode($response, true);
+
+                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                        echo '<thead>';
+                                                           echo' <tr>
+                                                                <th>No. </th>
+                                                                <th>Program Studi</th>
+                                                                <th>Teori</th>
+                                                                <th>Praktikum</th>
+                                                                <th>Praktik</th>
+                                                                  <th>PKL</th>
+                                                                <th>Total</th>
+                                                            </tr>';
+                                                        echo '</thead>';
+                                                        echo '<tbody>';
+                                                        foreach ($data as $row) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $row['No.'] . '</td>';
+                                                            echo '<td>' . $row['Program Studi'] . '</td>';
+                                                            echo '<td>' . $row['Teori'] . '</td>';
+                                                            echo '<td>' . $row['Praktikum'] . '</td>';
+                                                            echo '<td>' . $row['Praktik'] . '</td>';
+                                                            echo '<td>' . $row['PKL'] . '</td>';
+
+                                                            // Total Query
+                                                            $sum_total= intval($row['Program Studi']) + intval($row['Teori']) + intval($row['Praktikum']) + intval($row['Praktik']) + intval($row['PKL']);
+                                                            echo '<td>' .$sum_total. '</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                       echo '</tbody>';
+                                                    echo '</table>'
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabel 2.c Kredit Mata Kuliah -->
 
                     <!-- Tabel 3.a.1 kecukupan dosen perguruan tinggi -->
                     <div class="row">
