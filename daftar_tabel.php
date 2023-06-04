@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dashboard</title>
+    <title>Daftar Tabel</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
@@ -17,16 +17,29 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" type="text/css" href="themes\styles.css">
+    <!-- Font Awesome Icon -->
+    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <!-- Logo Tab -->
+    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
 
 </head>
 
 <body>
     <div class="container-scroller">
+
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.php"><img src="images/logo.svg" class="mr-2"
-                        alt="SIAPT" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="index.html">
+                    <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html">
+                    <img src="includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -34,15 +47,23 @@
                 </button>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <p>Halo David...</p>
-                            <!-- <i class="icon-arrow-down ml-1 mr-1 pb-1"></i> -->
+                        <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
+                            href="#" data-toggle="dropdown" id="profileDropdown">
+                            <div class="d-flex align-items-center justify-content-center    ">
+                                <img class="p-1" src="includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                                <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                            </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="index.op">
-                                <i class="ti-power-off text-primary"></i>
-                                Logout
+                            <a href="pengaturan.php" class="dropdown-item">
+                                <i class="fa-regular fa-gear text-primary"></i>
+                                Pengaturan
+                            </a>
+                            <a href="login.php" class="dropdown-item">
+                                <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
+                                Keluar
                             </a>
                         </div>
                     </li>
@@ -55,40 +76,37 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="beranda.php">
-                            <i class="icon-grid menu-icon"></i>
+                            <i class="fa-regular fa-house menu-icon"></i>
                             <span class="menu-title">Beranda</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="daftar_tabel.php">
-                            <i class="icon-content-left menu-icon"></i>
+                            <i class="fa-regular fa-table menu-icon"></i>
                             <span class="menu-title">Daftar Tabel</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="pengaturan.php">
-                            <i class="icon-layout menu-icon"></i>
+                            <i class="fa-regular fa-gear menu-icon"></i>
                             <span class="menu-title">Pengaturan</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">
-                            <i class="icon-layout menu-icon"></i>
+                            <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
                     </li>
                 </ul>
             </nav>
-
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -114,12 +132,16 @@
                                             <div class="col-12">
                                                 <div class="table-responsive">
                                                     <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.b_mahasiswa_asing.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($response, true);
 
-                                                echo '<table class="display expandable-table" style="width:100%">';
+                                                // Fetch API response ?query = mahasiswa_asing & mahasiswa_aktif endpoint
+                                                $response_asing = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.b_mahasiswa_asing.php?query=mahasiswa_asing');
+                                                $response_aktif = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.b_mahasiswa_asing.php?query=mahasiswa_aktif');
+
+                                                // Decode JSON response $response_asing & $response_aktif ke asociate array
+                                                $mahasiswa_asing = json_decode($response_asing, true);
+                                                $mahasiswa_aktif = json_decode($response_aktif, true);
+
+                                                echo '<table class="display expandable-table" style="width:100%"; border:1px solid black;>';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
@@ -130,7 +152,7 @@
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($mahasiswa_asing as $row) {
                                                             echo '<tr>';
                                                             echo '<td>' . $row['NOMOR'] . '</td>';
                                                             echo '<td>' . $row['Program Studi'] . '</td>';
@@ -139,8 +161,67 @@
                                                             echo '<td>' . $row['TS(2020)'] . '</td>';
                                                             echo '</tr>';
                                                         }
+
+                                                        // Hitung Total TS-2(2018), TS-1(2019), TS(2020)
+                                                        $sum_ts2 = 0;
+                                                        $sum_ts1 = 0;
+                                                        $sum_ts = 0;
+                                                        foreach ($mahasiswa_asing as $row){
+                                                            $sum_ts2 += $row['TS-2(2018)'];
+                                                            $sum_ts1 += $row['TS-1(2019)'];
+                                                            $sum_ts += $row['TS(2020)'];
+                                                        }
+
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>'. $sum_ts2 .'</td>';
+                                                        echo '<td>'. $sum_ts1 .'</td>';
+                                                        echo '<td>'. $sum_ts .'</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+                                                    
+                                                    // Hitung Total Mahasiswa Asing dalam 3 tahun terakhir
+                                                    $total_mahasiswa_asing=0;
+                                                    foreach($mahasiswa_asing as $row){
+                                                        $total_mahasiswa_asing += $row['TS-2(2018)'] + $row['TS-1(2019)'] + $row['TS(2020)'];
+                                                    }
+
+                                                    // Hitung Total Mahasiswa Aktif dalam 3 tahun terakhir
+                                                    $total_mahasiswa_aktif=0;
+                                                    foreach($mahasiswa_aktif as $row){
+                                                        $total_mahasiswa_aktif += $row['TS-2(2018)'] + $row['TS-1(2019)'] + $row['TS(2020)'];
+                                                    }
+
+                                                    /* Hitung Total Presentase Jumlah Mahasiswa Asing 
+                                                    Rumus :
+                                                    presentase_mahasiswa = (total_mhs_asing/total_mhs_aktif) * 100% [100% = 1]
+                                                    Jika Presentase >= 0,5% skor = 4,
+                                                    Jika presentase < 0,5% skor = 2 + (4 * Presentase_mahasiswa)
+                                                    Jika Presentase = 0% maka skor 1 || 0
+                                                    */ 
+                                                    $presentase_mahasiswa;
+                                                    $skor_mahasiswa_asing;
+                                                    $presentase_mahasiswa = ($total_mahasiswa_asing/$total_mahasiswa_aktif) * 1;
+                                                    $presentase_mahasiswa = number_format($presentase_mahasiswa, 3); // Limit Desimal Output 3 angka
+
+                                                    // Hitung Skoor Tabel 2.b Mahasiswa Asing [notes 0,5% = 0,005]
+                                                    if($presentase_mahasiswa >= 0.005 ){  //[notes 0,5% = 0,005]
+                                                        $skor_mahasiswa_asing = 4;
+                                                    } else if($presentase_mahasiswa < 0.005 && $presentase_mahasiswa > 0){
+                                                        $skor_mahasiswa_asing = 2+(400 * $presentase_mahasiswa);
+                                                    } else {
+                                                        $skor_mahasiswa_asing=  0;/*0;$presentase_mahasiswa == 0 ? 0 : 1; */
+                                                    }
+
+                                                    echo '<div class="skor">';
+                                                    echo '<p> Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
+                                                    echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir: ' . $total_mahasiswa_aktif.'</p>';
+                                                    echo '<p>Presentase Mahasiswa Asing Bilangan Bulat:' .$presentase_mahasiswa .'</p>';
+                                                    echo '<p>Presentase Mahasiswa (%):' .$presentase_mahasiswa * 100 .'%</p>';
+                                                    echo '<p>Skor Tabel :'. $skor_mahasiswa_asing.'</p>';
+                                                    echo '</div>';
                                                     ?>
                                                 </div>
                                             </div>
@@ -194,7 +275,8 @@
                                                             echo '</tr>';
                                                         }
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+                                                   
                                                     ?>
                                                 </div>
                                             </div>
@@ -215,10 +297,14 @@
                                             <div class="col-12">
                                                 <div class="table-responsive">
                                                     <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($response, true);
+                                                    // Fetch API response ?query = dosen_tetap & jumlah_prodi endpoint
+                                                    $response_dosen_tetap = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php?query=dosen_tetap');
+                                                    $response_jumlah_prodi = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php?query=jumlah_prodi');
+
+                                                    // Decode JSON response $response_dosen_tetap & $response_jumlah_prodi
+                                                    $dosen_tetap = json_decode($response_dosen_tetap, true);
+                                                    $jumlah_prodi = json_decode($response_jumlah_prodi, true);
+
                                                 echo '<table class="display expandable-table" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -231,7 +317,7 @@
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($dosen_tetap as $row) {
                                                             echo '<tr>';
                                                             echo '<td>' . $row['NOMOR'] . '</td>';
                                                             echo '<td>' . $row['DEPARTEMEN'] . '</td>';
@@ -241,8 +327,65 @@
                                                             echo '<td>' . $row['Jumlah'] . '</td>';
                                                             echo '</tr>';
                                                         }
+
+                                                        // Hitung Jumlah Doktor, Magister, dan Profesi
+                                                        $doktor = 0;
+                                                        $magister = 0;
+                                                        $profesi = 0;
+                                                        $jumlah = 0;
+                                                        foreach($dosen_tetap as $row){
+                                                            $doktor += $row['Doktor/Doktor Terapan'];
+                                                            $magister += $row['Magister/Magister Terapan'];
+                                                            $profesi += $row['PROFESI'];
+                                                            $jumlah += $row['Jumlah'];
+                                                        }
+
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>'. $doktor .'</td>';
+                                                        echo '<td>'. $magister . '</td>';
+                                                        echo '<td>'. $profesi .'</td>';
+                                                        echo '<td>'. $jumlah . '</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+                                                        
+                                                    // Hitung Total Dosen Tetap
+                                                    $total_dosen_tetap=0;
+                                                    foreach($dosen_tetap as $row){
+                                                        $total_dosen_tetap += $row['Doktor/Doktor Terapan'] + $row['Magister/Magister Terapan'] + $row['PROFESI'];
+                                                    }
+
+                                                    // Hitung Jumlah Program Studi 
+                                                    $total_prodi;
+                                                    $total_prodi = count(array_unique(array_column($jumlah_prodi, 'Nomor')));
+
+                                                    /* Hitung Rasio Jumlah Dosen Tetap 
+                                                        Rumus : 
+                                                        rasio_dosen = (total_dosen_tetap/total_prodi)
+                                                    */
+                                                    $rasio_dosen;
+                                                    $skor_rasio_dosen;
+
+                                                    $rasio_dosen = ($total_dosen_tetap/$total_prodi);
+                                                    $rasio_dosen = number_format($rasio_dosen, 2);
+
+                                                    // Hitung Skoor Tabel 3.a.1 Kecukupan Dosen Perguruan Tinggi
+                                                    if($rasio_dosen >= 10){
+                                                        $skor_rasio_dosen = 4;
+                                                    } else if($rasio_dosen >= 5 && $rasio_dosen < 10){
+                                                        $skor_rasio_dosen = (2 * $rasio_dosen) / 5;
+                                                    } else {
+                                                        $skor_rasio_dosen = 0;
+                                                    }
+
+                                                    echo '<div class="skor">';
+                                                    echo '<p>Jumlah Dosen Tetap: '. $total_dosen_tetap .'</p>';
+                                                    echo '<p>Jumlah Program Studi: '. $total_prodi .'</p>';
+                                                    echo '<p>Rasio Dosen Tetap: '. $rasio_dosen .'</p>';
+                                                    echo '<p>Skor Tabel Rasio Dosen: '. $skor_rasio_dosen .'</p>';
+                                                    echo '</div>';
                                                     ?>
                                                 </div>
                                             </div>

@@ -138,3 +138,9 @@ body {
     width: 300px;
   }
 }
+
+h5.skor {
+  padding-left: 12px;
+  padding-top: 20px;
+  font-weight: bold;
+}

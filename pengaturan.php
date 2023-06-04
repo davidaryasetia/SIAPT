@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dashboard</title>
+    <title>Pengaturan</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
@@ -18,21 +18,31 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
 
+    <!-- Font Awesome Icon -->
+    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <!-- Logo Tab -->
+    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
+
 </head>
 
 <body>
-    <?php
-
-
-?>
-
 
     <div class="container-scroller">
+
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.php"><img src="images/logo.svg" class="mr-2"
-                        alt="SIAPT" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="index.html">
+                    <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html">
+                    <img src="includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -40,15 +50,23 @@
                 </button>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <p>Halo David...</p>
-                            <!-- <i class="icon-arrow-down ml-1 mr-1 pb-1"></i> -->
+                        <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
+                            href="#" data-toggle="dropdown" id="profileDropdown">
+                            <div class="d-flex align-items-center justify-content-center    ">
+                                <img class="p-1" src="includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                                <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                            </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="index.php">
-                                <i class="ti-power-off text-primary"></i>
-                                Logout
+                            <a href="pengaturan.php" class="dropdown-item">
+                                <i class="fa-regular fa-gear text-primary"></i>
+                                Pengaturan
+                            </a>
+                            <a href="login.php" class="dropdown-item">
+                                <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
+                                Keluar
                             </a>
                         </div>
                     </li>
@@ -61,44 +79,37 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="beranda.php">
-                            <i class="icon-grid menu-icon"></i>
+                            <i class="fa-regular fa-house menu-icon"></i>
                             <span class="menu-title">Beranda</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="daftar_tabel.php">
-                            <i class="icon-content-left menu-icon"></i>
+                            <i class="fa-regular fa-table menu-icon"></i>
                             <span class="menu-title">Daftar Tabel</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="pengaturan.php">
-                            <i class="icon-layout menu-icon"></i>
+                            <i class="fa-regular fa-gear menu-icon"></i>
                             <span class="menu-title">Pengaturan</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">
-                            <i class="icon-layout menu-icon"></i>
+                            <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
                     </li>
                 </ul>
-
-
             </nav>
-
-
-
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">

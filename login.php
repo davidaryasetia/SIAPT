@@ -4,7 +4,8 @@
 <head>
     <title>Login SIAPT</title>
     <link rel="stylesheet" type="text/css" href="themes\style.css">
-
+    <!-- Logo Tab -->
+    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
 </head>
 
 <body>

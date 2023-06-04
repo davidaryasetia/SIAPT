@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dashboard</title>
+    <title>Beranda</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
@@ -15,18 +15,30 @@
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
+
+    <!-- Font Awesome Icon -->
+    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+
+
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <!-- Logo Tab -->
+    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
 
 </head>
 
 <body>
     <div class="container-scroller">
+
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.php"><img src="images/SIAPT.svg" class="mr-2"
-                        alt="SIAPT" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="index.html">
+                    <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html">
+                    <img src="includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -34,15 +46,23 @@
                 </button>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <p>Halo David...</p>
-                            <!-- <i class="icon-arrow-down ml-1 mr-1 pb-1"></i> -->
+                        <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
+                            href="#" data-toggle="dropdown" id="profileDropdown">
+                            <div class="d-flex align-items-center justify-content-center    ">
+                                <img class="p-1" src="includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                                <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                            </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="index.php">
-                                <i class="ti-power-off text-primary"></i>
-                                Logout
+                            <a href="pengaturan.php" class="dropdown-item">
+                                <i class="fa-regular fa-gear text-primary"></i>
+                                Pengaturan
+                            </a>
+                            <a href="login.php" class="dropdown-item">
+                                <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
+                                Keluar
                             </a>
                         </div>
                     </li>
@@ -55,105 +75,99 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <nav class="sidebar sidebar-offcanvas fiz" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="beranda.php">
-                            <i class="icon-grid menu-icon"></i>
+                            <i class="fa-regular fa-house menu-icon"></i>
                             <span class="menu-title">Beranda</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="daftar_tabel.php">
-                            <i class="icon-content-left menu-icon"></i>
+                            <i class="fa-regular fa-table menu-icon"></i>
                             <span class="menu-title">Daftar Tabel</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pengaturan.php">
-                            <i class="icon-layout menu-icon"></i>
+                            <i class="fa-regular fa-gear menu-icon"></i>
                             <span class="menu-title">Pengaturan</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">
-                            <i class="icon-layout menu-icon"></i>
+                            <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
                     </li>
                 </ul>
-
-
             </nav>
             <!-- partial -->
+
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
                         <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Welcome, David...</h3>
+                                    <h3 class="font-weight-bold">Welcome, Tita Karlita...</h3>
                                     <h6 class="font-weight-normal mb-0">Selamat datang di Sistem Informasi Manajemen
                                         Akreditasi</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Total Skoor -->
                     <div class="row">
                         <div class="col-md-12 grid-margin transparent">
-                            <div class="row text-center">
-
-                                <div class="col-md stretch-card transparent">
-                                    <div class="card card-tale">
+                            <div class="row">
+                                <div class="col-md-3 mb-4 stretch-card transparent">
+                                    <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <medium class="mb-0"><b>Total Skoor LKPT</b></medium>
+                                            <p class="mb-4">Skoor Laporan Kinerja (LKPT)</p>
+                                            <p class="fs-30 mb-2">4006</p>
 
-                                            <p class="fs-40 mt-3 mb-2">
-                                                <b>251</b><span class="fs-20"></span>
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md stretch-card transparent">
-                                    <div class="card card-tale">
-                                        <div class="card-body">
-                                            <medium class="mb-0"><b>Total Skoor LKPS</b></medium>
 
-                                            <p class="fs-40 mt-3 mb-2">
-                                                <b>-</b><span class="fs-20"></span>
-                                            </p>
+                                <div class="col-md-3 mb-4 stretch-card transparent">
+                                    <div class="card card-dark-blue">
+                                        <div class="card-body">
+                                            <p class="mb-4">Skoor Laporan LED</p>
+                                            <p class="fs-30 mb-2">61344</p>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md stretch-card transparent">
-                                    <div class="card card-tale">
+                                <div class="col-md-3 mb-4 stretch-card transparent">
+                                    <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <medium class="mb-0"><b>Total Nilai</b></medium>
+                                            <p class="mb-4">Total Skor</p>
+                                            <p class="fs-30 mb-2">61344</p>
 
-                                            <p class="fs-40 mt-3 mb-2">
-                                                <b>251</b><span class="fs-20"></span>
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md stretch-card transparent">
-                                    <div class="card card-tale">
+                                <div class="col-md-3 mb-4 stretch-card transparent">
+                                    <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <medium class="mb-0"><b>Peringkat Akreditasi</b></medium>
+                                            <p class="mb-4">Peringkat Akreditasi</p>
+                                            <p class="fs-30 mb-2">Baik</p>
 
-                                            <p class="fs-40 mt-3 mb-2">
-                                                <b>Baik</b><span class="fs-20"></span>
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+                    <!-- Total Skoor -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
@@ -171,12 +185,13 @@ $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/elemen_
 // Decode JSON response into an associative array
 $data = json_decode($response, true);
 
-echo '<table class="display expandable-table" style="width:100%">';
+echo '<table class="display expandable-table" style="width:100%;">';
         echo '<thead>';
            echo' <tr>
                 <th>Nomor</th>
                 <th>Elemen</th>
                 <th>Indikator</th>
+                <th>Skoor Tabel</th>
          
             </tr>';
         echo '</thead>';

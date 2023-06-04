@@ -10,7 +10,7 @@
 body {
   width: 100%;
   min-height: 100vh;
-  background: #05445e;
+  background: #4b49ac;
 
   background-position: center;
   background-size: cover;
@@ -90,7 +90,7 @@ body {
 
 .container .login-email .input-group .btn:hover {
   transform: translateY(-5px);
-  background: #05445e;
+  background: #4b49ac;
 }
 
 .login-register-text {
