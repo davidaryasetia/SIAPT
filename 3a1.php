@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
+
 </head>
 
 <body>
@@ -108,75 +110,111 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
-                    <!-- Tabel LKPT  -->
+                    <!-- Tabel 3.a.1 kecukupan dosen perguruan tinggi -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Daftar Tabel-Laporan Kinerja Perguruan Tinggi
-                                            <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
+                                        <p class="card-title">Tabel 3.a.1 Kecukupan Dosen Perguruan Tinggi
+                                            <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Tambah Data
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                Daftar Tabel
                                             </a>
-
-                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $tabel_lkpt = file_get_contents('https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($tabel_lkpt, true);
+                                                    // Fetch API response ?query = dosen_tetap & jumlah_prodi endpoint
+                                                    $response_dosen_tetap = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php?query=dosen_tetap');
+                                                    $response_jumlah_prodi = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php?query=jumlah_prodi');
+
+                                                    // Decode JSON response $response_dosen_tetap & $response_jumlah_prodi
+                                                    $dosen_tetap = json_decode($response_dosen_tetap, true);
+                                                    $jumlah_prodi = json_decode($response_jumlah_prodi, true);
+
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
-                                                                <th>Judul Tabel</th>
-                                                                <th>Nama Sheet</th>
-                                                                <th>Status Data</th>
-                                                                <th>Sumber Data</th>
-                                                                <th>Edit</th>
-                                                                <th>Hapus</th>
-                                                               
+                                                                <th>Departemen</th>
+                                                                <th>Doktor/Doktor Terapan</th>
+                                                                <th>Magister/ Magister Terapan</th>
+                                                                <th>Profesi</th>
+                                                                <th>Jumlah</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($dosen_tetap as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['NO'] . '</td>';
-                                                            echo '<td>' . $row['JUDUL'] . '</td>';
-                                                            echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
-                                                            echo '<td>' . $row['STATUS'] . '</td>';
-                                                            echo '<td>' . $row['SUMBER'] . '</td>';
-
-                                                            // Edit Data
-                                                            echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
-                                                            echo '<i class="fa-solid fa-pencil"></i>';
-                                                            echo '</a>';
-                                                            echo '</td>';   
-                                                        
-                                                            // End Edit
-                                                           // Hapus Data
-                                                           echo '<td>';
-                                                            echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
-                                                            echo '<input type="hidden" name="_method" value="DELETE">';
-                                                            echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                            echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                            echo '<i class="fa-solid fa-trash"></i>';
-                                                            echo '</button>';
-                                                            echo '</form>';
-                                                            echo '</td>';
-                                                            // Hapus Data
+                                                            echo '<td>' . $row['NOMOR'] . '</td>';
+                                                            echo '<td>' . $row['DEPARTEMEN'] . '</td>';
+                                                            echo '<td>' . $row['Doktor/Doktor Terapan'] . '</td>';
+                                                            echo '<td>' . $row['Magister/Magister Terapan'] . '</td>';
+                                                            echo '<td>' . $row['PROFESI'] . '</td>';
+                                                            // Total Query
+                                                            $sum_jumlah = intval($row['Doktor/Doktor Terapan']) + intval($row['Magister/Magister Terapan']) + intval($row['PROFESI']);
+                                                            echo '<td>' . $sum_jumlah . '</td>';
                                                             echo '</tr>';
                                                         }
+                                                        // Hitung Kolom Jumlah Doktor, Magister, dan Profesi
+                                                        $doktor = 0;
+                                                        $magister = 0;
+                                                        $profesi = 0;
+                                                        $jumlah = 0;
+                                                        foreach($dosen_tetap as $row){  
+                                                            $doktor += $row['Doktor/Doktor Terapan'];
+                                                            $magister += $row['Magister/Magister Terapan'];
+                                                            $profesi += $row['PROFESI'];
+                                                            $jumlah = $doktor + $magister + $profesi;
+                                                        }
+
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>'. $doktor .'</td>';
+                                                        echo '<td>'. $magister . '</td>';
+                                                        echo '<td>'. $profesi .'</td>';
+                                                        echo '<td>'. $jumlah . '</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+                                                        
+                                                    // Hitung Total Dosen Tetap
+                                                    $total_dosen_tetap= $doktor + $magister + $profesi;
+                                                   
+                                                    // Hitung Jumlah Program Studi 
+                                                    $total_prodi;
+                                                    $total_prodi = count(array_unique(array_column($jumlah_prodi, 'Nomor')));
+
+                                                    /* Hitung Rasio Jumlah Dosen Tetap 
+                                                    Tabel 3.a.1 (LKPT Kecukupan Dosen Perguruan Tinggi)
+                                                        Rumus : 
+                                                        rasio_dosen = (total_dosen_tetap/total_prodi)
+                                                    */
+                                                    $rasio_dosen;
+                                                    $skor_rasio_dosen;
+
+                                                    $rasio_dosen = ($total_dosen_tetap/$total_prodi);
+                                                    $rasio_dosen = number_format($rasio_dosen, 2);
+
+                                                    // Hitung Skoor Tabel 3.a.1 (Kecukupan Dosen Perguruan Tinggi)
+                                                    if($rasio_dosen >= 10){
+                                                        $skor_rasio_dosen = 4;
+                                                    } else if($rasio_dosen >= 5 && $rasio_dosen < 10){
+                                                        $skor_rasio_dosen = (2 * $rasio_dosen) / 5;
+                                                    } else {    
+                                                        $skor_rasio_dosen = 0;
+                                                    }
+
+                                                    echo '<div class="skor">';
+                                                    echo '<p>Jumlah Dosen Tetap: '. $total_dosen_tetap .'</p>';
+                                                    echo '<p>Jumlah Program Studi: '. $total_prodi .'</p>';
+                                                    echo '<p>Rasio Dosen Tetap: '. $rasio_dosen .'</p>';
+                                                    echo '<p>Skor Tabel Rasio Dosen: '. $skor_rasio_dosen .'</p>';
+                                                    echo '</div>';
                                                     ?>
                                             </div>
                                         </div>
@@ -186,7 +224,7 @@
                                         <div class="pagination-container">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary active">
+                                                    class="btn btn-outline-primary">
                                                     Daftar Tabel
                                                 </a>
                                                 <a href="1a1.php" type="button" class="btn btn-outline-primary">
@@ -213,7 +251,7 @@
                                                 <a href="2c.php" type="button" class="btn btn-outline-primary">
                                                     2c
                                                 </a>
-                                                <a href="3a1.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3a1.php" type="button" class="btn btn-outline-primary active">
                                                     3a1
                                                 </a>
                                                 <a href="3a2.php" type="button" class="btn btn-outline-primary">
@@ -305,7 +343,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
+                    <!-- Tabel 3.a.1 kecukupan dosen perguruan tinggi -->
+
 
                 </div>
                 <!-- content-wrapper ends -->
@@ -325,29 +364,12 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <script>
-        function confirmAndRedirect(message, redirectUrl) {
-            if (confirm(message)) {
-                window.location.href = redirectUrl;
-                return true;
-            }
-            return false;
-        }
-
-        // Access the redirect URL from the JSON response
-        var response = < ? php echo json_encode(array('Redirect' =>
-            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
-        var redirectUrl = response.Redirect;
-
-        // Perform redirection if the redirect URL is provided
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
-    </script>
-
-    </script>
     <!-- container-scroller -->
     <script src="themes/layout.js"></script>
+
+
+
+
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -369,8 +391,6 @@
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
-
-
 </body>
 
 </html>

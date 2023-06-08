@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
+
 </head>
 
 <body>
@@ -108,75 +110,149 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
-                    <!-- Tabel LKPT  -->
+                    <!-- Tabel 3.a.2 Jabatan Akademik Dosen Tetap -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Daftar Tabel-Laporan Kinerja Perguruan Tinggi
-                                            <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
+                                        <p class="card-title">Tabel 3.a.2 Jabatan Akademik Dosen Tetap
+                                            <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Tambah Data
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                Daftar Tabel
                                             </a>
-
-                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $tabel_lkpt = file_get_contents('https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($tabel_lkpt, true);
+                                                    // Fetch API jabatan akademik dosen tetap
+                                                    $response_jabatan_akademik = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.2_jabatan_akademik_dosen_tetap.php');
+                                                    $response_dosen_tetap = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php?query=dosen_tetap');
+
+                                                    // Decode JSON response $response_jabatan_akademik & response_dosen_tetap
+                                                    $jabatan_akademik = json_decode($response_jabatan_akademik, true);
+                                                    $dosen_tetap = json_decode($response_dosen_tetap, true);
+
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
-                                                                <th>Judul Tabel</th>
-                                                                <th>Nama Sheet</th>
-                                                                <th>Status Data</th>
-                                                                <th>Sumber Data</th>
-                                                                <th>Edit</th>
-                                                                <th>Hapus</th>
-                                                               
+                                                                <th>Pendidikan </th>
+                                                                <th>Guru Besar</th>
+                                                                <th>Lektor Kepala</th>
+                                                                <th>Lektor</th>
+                                                                <th>Asisten Ahli</th>
+                                                                <th>Tenaga Pengajar</th>
+                                                                <th>Total</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($jabatan_akademik as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['NO'] . '</td>';
-                                                            echo '<td>' . $row['JUDUL'] . '</td>';
-                                                            echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
-                                                            echo '<td>' . $row['STATUS'] . '</td>';
-                                                            echo '<td>' . $row['SUMBER'] . '</td>';
-
-                                                            // Edit Data
-                                                            echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
-                                                            echo '<i class="fa-solid fa-pencil"></i>';
-                                                            echo '</a>';
-                                                            echo '</td>';   
-                                                        
-                                                            // End Edit
-                                                           // Hapus Data
-                                                           echo '<td>';
-                                                            echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
-                                                            echo '<input type="hidden" name="_method" value="DELETE">';
-                                                            echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                            echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                            echo '<i class="fa-solid fa-trash"></i>';
-                                                            echo '</button>';
-                                                            echo '</form>';
-                                                            echo '</td>';
-                                                            // Hapus Data
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Pendidikan'] . '</td>';
+                                                            echo '<td>' . $row['Guru Besar'] . '</td>';
+                                                            echo '<td>' . $row['Lektor Kepala'] . '</td>';
+                                                            echo '<td>' . $row['Lektor'] . '</td>';
+                                                            echo '<td>' . $row['Asisten Ahli'] . '</td>';
+                                                            echo '<td>' . $row['Tenaga Pengajar'] . '</td>';
+                                                            // Total Query
+                                                            $sum_jumlah = intval($row['Guru Besar']) + intval($row['Lektor Kepala']) + intval($row['Lektor']) + intval($row['Asisten Ahli'] + intval($row['Tenaga Pengajar']));
+                                                            echo '<td>' . $sum_jumlah . '</td>';
                                                             echo '</tr>';
                                                         }
+
+                                                        // Hitung Kolom Jumlah Jabatan Fungsional Guru Besar, Lektor Kepala, Lektor, Asisten Ahli, Tenaga Pengajar
+                                                        $guru_besar = 0;
+                                                        $lektor_kepala = 0;
+                                                        $lektor = 0;
+                                                        $asisten_ahli = 0;
+                                                        $tenaga_pengajar = 0;
+
+                                                        foreach($jabatan_akademik as $row){
+                                                            $guru_besar += $row['Guru Besar'];
+                                                            $lektor_kepala += $row['Lektor Kepala'];
+                                                            $lektor += $row['Lektor'];
+                                                            $asisten_ahli += $row['Asisten Ahli'];
+                                                            $tenaga_pengajar += $row['Tenaga Pengajar'];
+                                                            $jumlah = $guru_besar + $lektor_kepala + $lektor + $asisten_ahli + $tenaga_pengajar;
+                                                        }
+
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>' .$guru_besar. '</td>';
+                                                        echo '<td>' .$lektor_kepala. '</td>';
+                                                        echo '<td>' .$lektor. '</td>';
+                                                        echo '<td>' .$asisten_ahli. '</td>';
+                                                        echo '<td>' .$tenaga_pengajar. '</td>';
+                                                        echo '<td>' .$jumlah. '</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+
+                                                    // Hitung Total Dosen Tetap yang Memiliki Jabatan Fungsional
+                                                    $total_jabatan_fungsional_dosen = $guru_besar + $lektor_kepala + $lektor + $asisten_ahli + $tenaga_pengajar;
+                                                    
+                                                    // Hitung Kolom Jumlah Doktor, Magister, dan Profesi
+                                                    $doktor = 0;
+                                                    $magister = 0;
+                                                    $profesi = 0;
+                                                    $jumlah = 0;
+                                                    foreach($dosen_tetap as $row){  
+                                                        $doktor += $row['Doktor/Doktor Terapan'];
+                                                        $magister += $row['Magister/Magister Terapan'];
+                                                        $profesi += $row['PROFESI'];
+                                                        $jumlah = $doktor + $magister + $profesi;
+                                                    }
+
+                                                    // Hitung Total Dosen Tetap 
+                                                    $doktor = 0;
+                                                    $magister = 0;
+                                                    $profesi = 0;
+                                                    $jumlah = 0;
+                                                    foreach($dosen_tetap as $row){  
+                                                        $doktor += $row['Doktor/Doktor Terapan'];
+                                                        $magister += $row['Magister/Magister Terapan'];
+                                                        $profesi += $row['PROFESI'];
+                                                        $jumlah = $doktor + $magister + $profesi;
+                                                    }
+                                                    $total_dosen_tetap = $doktor + $magister + $profesi;
+
+                                                    
+
+                                                    /* Hitung Jumlah Presentase Dosen Yang memiliki jabatan fungsional lektor kepala atau guru besar
+                                                    Tabel 3.a.2 (LKPT Jabatan Fungsional Dosen)
+                                                    Rumus : 
+                                                    $presentase_dosen_tetap = ($total_jabatan_fungsional_dosen/$total_dosen_tetap) * 100%
+                                                     */
+                                                    $presentase_dosen_tetap;
+                                                    $skor_tabel_jabatan_fungsional;
+
+                                                    $presentase_dosen_tetap =    ($total_jabatan_fungsional_dosen/$total_dosen_tetap) * 1;
+                                                    $presentase_dosen_tetap = number_format($presentase_dosen_tetap, 2);
+
+                                                    // Hitung Skoor Tabel 3.a.2 (LKPT Jabatan Fungsional Dosen) % = /100 25%= 0.25
+                                                    if($presentase_dosen_tetap >= 0.25){
+                                                        $skor_tabel_jabatan_fungsional = 4;
+                                                    } else if($presentase_dosen_tetap < 0.25){
+                                                        $skor_tabel_jabatan_fungsional = 1 + (12 * $presentase_dosen_tetap);
+                                                    } else if($presentase_dosen_tetap < 0.01){
+                                                        $skor_tabel_jabatan_fungsional = 0;
+                                                    } else {
+                                                        $skor_tabel_jabatan_fungsional = 0;
+                                                    }
+
+                                                    echo '<div class="skor">';
+                                                    echo '<p>Jumlah Dosen Tetap Yang Memiliki Jabatan Fungsional: ' .$total_jabatan_fungsional_dosen. '</p>';
+                                                    echo '<p>Jumlah Dosen Tetap: ' .$total_dosen_tetap. '</p>';
+                                                    echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .$presentase_dosen_tetap. '</p>';
+                                                    echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .($presentase_dosen_tetap*100) . '%</p>';
+                                                    echo '<p>Skoor Tabel Jabatan Fungsional Dosen: ' .$jumlah. '</p>';
+                                                    echo '</div>';
+                                                
                                                     ?>
                                             </div>
                                         </div>
@@ -186,7 +262,7 @@
                                         <div class="pagination-container">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary active">
+                                                    class="btn btn-outline-primary">
                                                     Daftar Tabel
                                                 </a>
                                                 <a href="1a1.php" type="button" class="btn btn-outline-primary">
@@ -216,7 +292,7 @@
                                                 <a href="3a1.php" type="button" class="btn btn-outline-primary">
                                                     3a1
                                                 </a>
-                                                <a href="3a2.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3a2.php" type="button" class="btn btn-outline-primary active">
                                                     3a2
                                                 </a>
                                                 <a href="3a3.php" type="button" class="btn btn-outline-primary">
@@ -305,7 +381,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
+                    <!-- Tabel 3.a.2 Jabatan Akademik Dosen Tetap -->
+
 
                 </div>
                 <!-- content-wrapper ends -->
@@ -325,29 +402,11 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <script>
-        function confirmAndRedirect(message, redirectUrl) {
-            if (confirm(message)) {
-                window.location.href = redirectUrl;
-                return true;
-            }
-            return false;
-        }
-
-        // Access the redirect URL from the JSON response
-        var response = < ? php echo json_encode(array('Redirect' =>
-            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
-        var redirectUrl = response.Redirect;
-
-        // Perform redirection if the redirect URL is provided
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
-    </script>
-
-    </script>
     <!-- container-scroller -->
     <script src="themes/layout.js"></script>
+
+
+
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -369,8 +428,6 @@
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
-
-
 </body>
 
 </html>

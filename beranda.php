@@ -129,8 +129,8 @@
                                 <div class="col-md-3 mb-4 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <p class="mb-4">Skoor Laporan Kinerja (LKPT)</p>
-                                            <p class="fs-30 mb-2">4006</p>
+                                            <p class="mb-4">Skoor Laporan Kinerja</p>
+                                            <p class="fs-30 mb-2">0</p>
 
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Skoor Laporan LED</p>
-                                            <p class="fs-30 mb-2">61344</p>
+                                            <p class="fs-30 mb-2">-</p>
 
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Total Skor</p>
-                                            <p class="fs-30 mb-2">61344</p>
+                                            <p class="fs-30 mb-2">0</p>
 
                                         </div>
                                     </div>

@@ -1,31 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Login SIAPT</title>
-    <link rel="stylesheet" type="text/css" href="themes\style.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Beranda</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/feather/feather.css">
+    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+
+    <!-- Font Awesome Icon -->
+    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
 </head>
 
 <body>
-    <div class="container">
-        <!-- <p style="color: black;">&larr; <a href="index.php" style="color: black; font-weight:bold;">Home</a> -->
-        <form action="beranda.php" method="" class="login-email">
-            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Masuk</p>
-            <p class="description-text">Masukkan Email dan Kata Sandi Anda.</p>
-            <div class="input-group">
-                <input type="email" placeholder="Masukkan Email" name="email" required>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <div class="navbar-brand brand-logo mr-5" href="index.html">
+                                <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" />
+                            </div>
+                            <h4>Halo! Selamat Datang di Web SIAPT</h4>
+                            <h6 class="font-weight-light">Silahkan Login.</h6>
+                            <form action="beranda.php" method="" class="pt-3">
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control form-control-lg"
+                                        id="exampleInputEmail1" placeholder="Username" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control form-control-lg"
+                                        id="exampleInputPassword1" placeholder="Password" />
+                                </div>
+                                <div class="mt-3">
+                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                                        href="beranda.php">login</a>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Belum Mempunyai Akun?
+                                    <a href="register.php" class="text-primary">Register</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="input-group">
-                <input type="password" placeholder="Password" name="password" required>
-            </div>
-            <div class="input-group">
-                <button name="submit" class="btn">Login</button>
-            </div>
-            <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
-        </form>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
     </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
 </body>
 
 </html>

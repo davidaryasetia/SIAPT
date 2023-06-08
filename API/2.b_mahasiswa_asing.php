@@ -4,6 +4,7 @@ include "../includes/func.inc.php";
 
 // Set Header
 header('Access-Control-Allow-Origin: *');
+header('content-type:application/json');
 
 class Mahasiswa{
     public $con;
@@ -108,7 +109,7 @@ function mahasiswa_aktif(){
     INNER JOIN KELAS ON PROGRAM.NOMOR=KELAS.PROGRAM AND KELAS.JURUSAN=JURUSAN.NOMOR
     INNER JOIN MAHASISWA ON KELAS.NOMOR=MAHASISWA.KELAS
     INNER JOIN STATUS ON MAHASISWA.STATUS=STATUS.KODE     
-    WHERE STATUS.KODE=\'A\' /*KODE A = "Mahasiswa Aktif"*/  
+    WHERE STATUS.KODE=\'A\' /*KODE A= "Mah asiswa Aktif"*/  
     GROUP BY PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM, JURUSAN.JURUSAN, PROGRAM_STUDI.GELAR 
     ORDER BY PROGRAM_STUDI.NOMOR, PROGRAM.PROGRAM';
 

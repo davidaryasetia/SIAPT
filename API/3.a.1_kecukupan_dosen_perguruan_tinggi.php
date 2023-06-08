@@ -2,8 +2,9 @@
 // Include Koneksi
 include "../includes/func.inc.php";
 
-// Set headers
+// Set Header
 header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');   
 
 class Kecukupan_Dosen{
     public $con;

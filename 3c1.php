@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
+
 </head>
 
 <body>
@@ -108,71 +110,45 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
-                    <!-- Tabel LKPT  -->
+                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Daftar Tabel-Laporan Kinerja Perguruan Tinggi
-                                            <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
+                                        <p class="card-title">Tabel 3.c.1 Produktivitas Penelitian Dosen
+                                            <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Tambah Data
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                Daftar Tabel
                                             </a>
-
-                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
                                                 // fetch api response
-                                                $tabel_lkpt = file_get_contents('https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php');
+                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.c.1_produktivitas_penelitian_dosen.php');
                                                 // Decode JSON response into an associative array
-                                                $data = json_decode($tabel_lkpt, true);
+                                                $data = json_decode($response, true);
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
-                                                                <th>No. </th>
-                                                                <th>Judul Tabel</th>
-                                                                <th>Nama Sheet</th>
-                                                                <th>Status Data</th>
-                                                                <th>Sumber Data</th>
-                                                                <th>Edit</th>
-                                                                <th>Hapus</th>
-                                                               
+                                                                <th>Nomor</th>
+                                                                <th>Sumber Pembiayaan</th>
+                                                                <th>TS-2(2019)</th>
+                                                                <th>TS-1(2020)</th>
+                                                                <th>TS(2021)</th>    
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
                                                         foreach ($data as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['NO'] . '</td>';
-                                                            echo '<td>' . $row['JUDUL'] . '</td>';
-                                                            echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
-                                                            echo '<td>' . $row['STATUS'] . '</td>';
-                                                            echo '<td>' . $row['SUMBER'] . '</td>';
-
-                                                            // Edit Data
-                                                            echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
-                                                            echo '<i class="fa-solid fa-pencil"></i>';
-                                                            echo '</a>';
-                                                            echo '</td>';   
-                                                        
-                                                            // End Edit
-                                                           // Hapus Data
-                                                           echo '<td>';
-                                                            echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
-                                                            echo '<input type="hidden" name="_method" value="DELETE">';
-                                                            echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                            echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                            echo '<i class="fa-solid fa-trash"></i>';
-                                                            echo '</button>';
-                                                            echo '</form>';
-                                                            echo '</td>';
-                                                            // Hapus Data
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Sumber Pembiayaan'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2019)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2020)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2021)'] . '</td>';
                                                             echo '</tr>';
                                                         }
                                                        echo '</tbody>';
@@ -186,7 +162,7 @@
                                         <div class="pagination-container">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary active">
+                                                    class="btn btn-outline-primary">
                                                     Daftar Tabel
                                                 </a>
                                                 <a href="1a1.php" type="button" class="btn btn-outline-primary">
@@ -228,7 +204,7 @@
                                                 <a href="3b.php" type="button" class="btn btn-outline-primary">
                                                     3b
                                                 </a>
-                                                <a href="3c1.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3c1.php" type="button" class="btn btn-outline-primary active">
                                                     3c1
                                                 </a>
                                                 <a href="3c2.php" type="button" class="btn btn-outline-primary">
@@ -305,8 +281,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
-
+                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen-->
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -325,29 +300,12 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <script>
-        function confirmAndRedirect(message, redirectUrl) {
-            if (confirm(message)) {
-                window.location.href = redirectUrl;
-                return true;
-            }
-            return false;
-        }
-
-        // Access the redirect URL from the JSON response
-        var response = < ? php echo json_encode(array('Redirect' =>
-            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
-        var redirectUrl = response.Redirect;
-
-        // Perform redirection if the redirect URL is provided
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
-    </script>
-
-    </script>
     <!-- container-scroller -->
     <script src="themes/layout.js"></script>
+
+
+
+
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -369,8 +327,6 @@
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
-
-
 </body>
 
 </html>

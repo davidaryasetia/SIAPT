@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
+
 </head>
 
 <body>
@@ -109,74 +111,114 @@
             <div class="main-panel">
                 <div class="content-wrapper">
 
-                    <!-- Tabel LKPT  -->
+                    <!-- Tabel 2.b Mahasiswa Asing -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Daftar Tabel-Laporan Kinerja Perguruan Tinggi
-                                            <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
+                                        <p class="card-title">Tabel 2.b Mahasiswa Asing
+                                            <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Tambah Data
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                Daftar Tabel
                                             </a>
-
-                                        </p>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $tabel_lkpt = file_get_contents('https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($tabel_lkpt, true);
-                                                echo '<table class="display expandable-table table-hover" style="width:100%">';
+
+                                                // Fetch API response ?query = mahasiswa_asing & mahasiswa_aktif endpoint
+                                                $response_asing = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.b_mahasiswa_asing.php?query=mahasiswa_asing');
+                                                $response_aktif = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.b_mahasiswa_asing.php?query=mahasiswa_aktif');
+
+                                                // Decode JSON response $response_asing & $response_aktif ke asociate array
+                                                $mahasiswa_asing = json_decode($response_asing, true);
+                                                $mahasiswa_aktif = json_decode($response_aktif, true);
+
+                                                echo '<table class="display expandable-table table-hover" style="width:100%"; border:1px solid black;>';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
-                                                                <th>Judul Tabel</th>
-                                                                <th>Nama Sheet</th>
-                                                                <th>Status Data</th>
-                                                                <th>Sumber Data</th>
-                                                                <th>Edit</th>
-                                                                <th>Hapus</th>
-                                                               
+                                                                <th>Program Sudi</th>
+                                                                <th>TS-2(2018)</th>
+                                                                <th>TS-1(2019)</th>
+                                                                <th>TS(2020)</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($mahasiswa_asing as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['NO'] . '</td>';
-                                                            echo '<td>' . $row['JUDUL'] . '</td>';
-                                                            echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
-                                                            echo '<td>' . $row['STATUS'] . '</td>';
-                                                            echo '<td>' . $row['SUMBER'] . '</td>';
-
-                                                            // Edit Data
-                                                            echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
-                                                            echo '<i class="fa-solid fa-pencil"></i>';
-                                                            echo '</a>';
-                                                            echo '</td>';   
-                                                        
-                                                            // End Edit
-                                                           // Hapus Data
-                                                           echo '<td>';
-                                                            echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
-                                                            echo '<input type="hidden" name="_method" value="DELETE">';
-                                                            echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                            echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                            echo '<i class="fa-solid fa-trash"></i>';
-                                                            echo '</button>';
-                                                            echo '</form>';
-                                                            echo '</td>';
-                                                            // Hapus Data
+                                                            echo '<td>' . $row['NOMOR'] . '</td>';
+                                                            echo '<td>' . $row['Program Studi'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2018)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2019)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2020)'] . '</td>';
                                                             echo '</tr>';
                                                         }
+
+                                                        // Hitung Total TS-2(2018), TS-1(2019), TS(2020)
+                                                        $sum_ts2 = 0;
+                                                        $sum_ts1 = 0;
+                                                        $sum_ts = 0;
+                                                        foreach ($mahasiswa_asing as $row){
+                                                            $sum_ts2 += $row['TS-2(2018)'];
+                                                            $sum_ts1 += $row['TS-1(2019)'];
+                                                            $sum_ts += $row['TS(2020)'];
+                                                        }
+
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>'. $sum_ts2 .'</td>';
+                                                        echo '<td>'. $sum_ts1 .'</td>';
+                                                        echo '<td>'. $sum_ts .'</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+                                                    
+                                                    // Hitung Total Mahasiswa Asing dalam 3 tahun terakhir
+                                                    $total_mahasiswa_asing=0;
+                                                    foreach($mahasiswa_asing as $row){
+                                                        $total_mahasiswa_asing += $row['TS-2(2018)'] + $row['TS-1(2019)'] + $row['TS(2020)'];
+                                                    }
+
+                                                    // Hitung Total Mahasiswa Aktif dalam 3 tahun terakhir
+                                                    $total_mahasiswa_aktif=0;
+                                                    foreach($mahasiswa_aktif as $row){
+                                                        $total_mahasiswa_aktif += $row['TS-2(2018)'] + $row['TS-1(2019)'] + $row['TS(2020)'];
+                                                    }
+
+                                                    /* Hitung Total Presentase Jumlah Mahasiswa Asing 
+                                                    Rumus :
+                                                    presentase_mahasiswa = (total_mhs_asing/total_mhs_aktif) * 100% [100% = 1]
+                                                    Jika Presentase >= 0,5% skor = 4,
+                                                    Jika presentase < 0,5% skor = 2 + (4 * Presentase_mahasiswa)
+                                                    Jika Presentase = 0% maka skor 1 || 0
+                                                    */ 
+                                                    $presentase_mahasiswa;
+                                                    $skor_mahasiswa_asing;
+                                                    $presentase_mahasiswa = ($total_mahasiswa_asing/$total_mahasiswa_aktif) * 1;
+                                                    $presentase_mahasiswa = number_format($presentase_mahasiswa, 3); // Limit Desimal Output 3 angka
+
+                                                    // Hitung Skoor Tabel 2.b Mahasiswa Asing [notes 0,5% = 0,005]
+                                                    if($presentase_mahasiswa >= 0.005 ){  //[notes 0,5% = 0,005]
+                                                        $skor_mahasiswa_asing = 4;
+                                                    } else if($presentase_mahasiswa < 0.005 && $presentase_mahasiswa > 0){
+                                                        $skor_mahasiswa_asing = 2+(400 * $presentase_mahasiswa);
+                                                    } else {
+                                                        $skor_mahasiswa_asing=  0;/*0;$presentase_mahasiswa == 0 ? 0 : 1; */
+                                                    }
+
+                                                    echo '<div class="skor">';
+                                                    echo '<p> Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
+                                                    echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir: ' . $total_mahasiswa_aktif.'</p>';
+                                                    echo '<p>Presentase Mahasiswa Asing Bilangan Bulat:' .$presentase_mahasiswa .'</p>';
+                                                    echo '<p>Presentase Mahasiswa (%):' .$presentase_mahasiswa * 100 .'%</p>';
+                                                    echo '<p>Skor Tabel :'. $skor_mahasiswa_asing.'</p>';
+                                                    echo '</div>';
                                                     ?>
                                             </div>
                                         </div>
@@ -186,7 +228,7 @@
                                         <div class="pagination-container">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary active">
+                                                    class="btn btn-outline-primary">
                                                     Daftar Tabel
                                                 </a>
                                                 <a href="1a1.php" type="button" class="btn btn-outline-primary">
@@ -207,7 +249,7 @@
                                                 <a href="2a.php" type="button" class="btn btn-outline-primary">
                                                     2a
                                                 </a>
-                                                <a href="2b.php" type="button" class="btn btn-outline-primary">
+                                                <a href="2b.php" type="button" class="btn btn-outline-primary active">
                                                     2b
                                                 </a>
                                                 <a href="2c.php" type="button" class="btn btn-outline-primary">
@@ -305,7 +347,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
+                    <!-- Tabel 2.b Mahasiswa Asing -->
+
 
                 </div>
                 <!-- content-wrapper ends -->
@@ -325,29 +368,10 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <script>
-        function confirmAndRedirect(message, redirectUrl) {
-            if (confirm(message)) {
-                window.location.href = redirectUrl;
-                return true;
-            }
-            return false;
-        }
-
-        // Access the redirect URL from the JSON response
-        var response = < ? php echo json_encode(array('Redirect' =>
-            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
-        var redirectUrl = response.Redirect;
-
-        // Perform redirection if the redirect URL is provided
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
-    </script>
-
-    </script>
     <!-- container-scroller -->
     <script src="themes/layout.js"></script>
+
+
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -360,6 +384,7 @@
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="js/off-canvas.js"></script>
+
     <script src="js/hoverable-collapse.js"></script>
     <script src="js/template.js"></script>
     <script src="js/settings.js"></script>
