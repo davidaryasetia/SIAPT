@@ -195,24 +195,28 @@
                                                             <input type="text" class="form-control" id="sheet"
                                                                 name="sheet" placeholder="Nama Sheet" />
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="status">Status Data</label>
-                                                            <select class="form-control" id="status" name="status">
-                                                                <option value="">Pilih Kategori Data</option>
-                                                                <option value="Data Lengkap">Data Lengkap</option>
-                                                                <option value="Data Tidak Lengkap">Data Tidak Lengkap
-                                                                </option>
-                                                                <option value="Data Tidak Tersedia">Data Tidak Tersedia
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="sumber">Sumber Data</label>
-                                                            <select class="form-control" id="sumber" name="sumber">
-                                                                <option value="">Pilih Sumber Data</option>
-                                                                <option value="Data DB MIS">Data DB MIS</option>
-                                                                <option value="Data Dummy">Data Dummy</option>
-                                                            </select>
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="status">Status Data</label>
+                                                                <select class="form-control" id="status" name="status">
+                                                                    <option value="">Pilih Kategori Data</option>
+                                                                    <option value="Data Lengkap">Data Lengkap</option>
+                                                                    <option value="Data Tidak Lengkap">Data Tidak
+                                                                        Lengkap
+                                                                    </option>
+                                                                    <option value="Data Tidak Tersedia">Data Tidak
+                                                                        Tersedia
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="sumber">Sumber Data</label>
+                                                                <select class="form-control" id="sumber" name="sumber">
+                                                                    <option value="">Pilih Sumber Data</option>
+                                                                    <option value="Data DB MIS">Data DB MIS</option>
+                                                                    <option value="Data Dummy">Data Dummy</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
 
                                                         <button type="submit" class="btn btn-primary mr-2">

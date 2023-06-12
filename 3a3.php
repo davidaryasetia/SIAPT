@@ -1,3 +1,7 @@
+<?php
+include 'Controller/nilai_3a3.php';
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -122,17 +126,52 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<p>Jumlah Dosen Tetap bersertifikasi '.$total_dosen_bersertifikasi.'</p>';
+                                                            echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
+                                                            echo '<p>Presentase Dosen Yang Memiliki Sertifikat Bilangan Bulat :'.$presentase_dosen_bersertifikat.'</p>';
+                                                            echo '<p>Presentase Dosen Tetap Yang Memiliki Sertifikat (%) :' .$presentase_dosen_bersertifikat *100 . '%</p>';
+                                                            echo '<p>Skor Tabel :'.$skor_dosen_bersertifikat.'</p>';
+                                                            echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $response_dosen_bersertifikasi = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.3_sertifikasi_dosen.php');
-                                                $response_dosen_tetap = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php?query=dosen_tetap');
-                                                // Decode JSON response into an associative array
-                                                $dosen_bersertifikasi = json_decode($response_dosen_bersertifikasi, true);
-                                                $dosen_tetap = json_decode($response_dosen_tetap, true);
+                                               
 
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
@@ -141,6 +180,7 @@
                                                                 <th>Departemen/Jurusan</th>
                                                                 <th>Jumlah Dosen</th>
                                                                 <th>Jumlah Dosen Bersertifikat</th>
+                                                                <th>Total</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
@@ -150,10 +190,26 @@
                                                             echo '<td>' . $row['Departemen/Jurusan'] . '</td>';
                                                             echo '<td>' . $row['Jumlah Dosen'] . '</td>';
                                                             echo '<td>' . $row['Jumlah Dosen Bersertifikat'] . '</td>';
+                                                            // Total Query 
+                                                            $total =  intval($row['Jumlah Dosen']) + intval($row['Jumlah Dosen Bersertifikat']);
+                                                            echo '<td>' .$total. '</td>';
                                                             echo '</tr>';
                                                         }
+
+                                                      
+                                                           // Tambah Row Data
+                                                           echo '<tr class="table-row">'; 
+                                                           echo '<td colspan="2"><p class="total">Total</p>';
+                                                           echo '<td>' .$total_dosen. '</td>';
+                                                           echo '<td>' .$total_dosen_bersertifikasi. '</td>';
+                                                           echo '<td>' .$total_baris. '</td>';
+                                                           echo '</td>';
+                                                           echo '<tr>'; 
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+
+                                                  
+                                                   
                                                     ?>
                                             </div>
                                         </div>

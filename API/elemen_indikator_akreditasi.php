@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 
 
 // Query Tabel elemen_indikator_akreditasi.php (elemen dan indikator dari akreditasi)
-$query = 'SELECT * FROM ELEMEN_INDIKATOR_AKREDITASI';
+$query = 'SELECT * FROM BAB_KRITERIA_ELEMEN';
 
 $stid = oci_parse($con, $query);
 oci_execute($stid);

@@ -1,5 +1,5 @@
 <?php
-include 'Controller/nilai_3b.php';
+include 'Controller/nilai_3d.php';
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +30,6 @@ include 'Controller/nilai_3b.php';
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
-
-
 </head>
 
 <body>
@@ -114,18 +112,65 @@ include 'Controller/nilai_3b.php';
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <!-- Tabel 3.b Rasio Dosen Terhadap Mahasiswa -->
+
+                    <!-- Tabel LKPT  -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Tabel 3.b Rasio Dosen Terhadap Mahasiswa
+                                        <p class="card-title">Tabel 3.d Rekognisi Dosen
                                             <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="Function_Data\Tambah_Data\3d_rekognisi.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Tambah Data
+                                            </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close btn-dark"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                           
+                                                            echo '<div class="skor">';
+                                                            echo '<p>Jumlah Pengakuan / Prestasi Atas Kinerja Dosen: ' .$total_rekognisi_dosen. '</p>';
+                                                            echo '<p>Jumlah Dosen Tetap: ' .$total_dosen_tetap. '</p>';
+                                                            echo '<p>Rata-Rata Jumlah Pengakuan prestasi/kinerja dosen terhadap dosen tetap: ' .$rata_prestasi_dosen. '</p>';
+                                                            echo '<p>Skor Tabel 3.d Rekognisi Dosen: ' .$skor_tabel_rekognisi_dosen. '</p>';
+                                                            echo '</div>';
+                                                            ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
@@ -135,25 +180,49 @@ include 'Controller/nilai_3b.php';
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
-                                                                <th>Nomor </th>
-                                                                <th>Departemen</th>
-                                                                <th>Jumlah Dosen</th>
-                                                                <th>Mahasiswa Angkatan 20</th>
-                                                                <th>Jumlah Mahasiswa TA</th>    
+                                                                <th>No. </th>
+                                                                <th>Nama Dosen</th>
+                                                                <th>Bidang Keahlian</th>
+                                                                <th>Rekognisi</th>
+                                                                <th>Tingkat</th>
+                                                                <th>Tahun Perolehan(YYYY)</th>
+                                                                <th>Edit</th>
+                                                                <th>Hapus</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($rekognisi_dosen as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['NOMOR'] . '</td>';
-                                                            echo '<td>' . $row['DEPARTEMEN'] . '</td>';
-                                                            echo '<td>' . $row['Jumlah Dosen'] . '</td>';
-                                                            echo '<td>' . $row['Mahasiswa Angkatan 2020'] . '</td>';
-                                                            echo '<td>' . $row['Jumlah Mahasiswa TA'] . '</td>';
+                                                            echo '<td>' . $row['NO'] . '</td>';
+                                                            echo '<td>' . $row['NAMA'] . '</td>';
+                                                            echo '<td>' . $row['BIDANG_KEAHLIAN'] . '</td>';
+                                                            echo '<td>' . $row['REKOGNISI'] . '</td>';
+                                                            echo '<td>' . $row['TINGKAT'] . '</td>';
+                                                            echo '<td>' . $row['TAHUN'] . '</td>';
+                                                            // Edit Data
+                                                            echo '<td>';
+                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/3d_rekognisi_dosen.php?no=' . $row['NO'] . '" class="btn-icon">';
+                                                            echo '<i class="fa-solid fa-pencil"></i>';
+                                                            echo '</a>';
+                                                            echo '</td>';   
+                                                            // End Edit
+                                                           // Hapus Data
+                                                           echo '<td>';
+                                                            echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/3.d_rekognisi_dosen.php">';
+                                                            echo '<input type="hidden" name="_method" value="DELETE">';
+                                                            echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
+                                                            echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
+                                                            echo '<i class="fa-solid fa-trash"></i>';
+                                                            echo '</button>';
+                                                            echo '</form>';
+                                                            echo '</td>';
+                                                            // Hapus Data
                                                             echo '</tr>';
                                                         }
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+
+                                                   
                                                     ?>
                                             </div>
                                         </div>
@@ -202,7 +271,7 @@ include 'Controller/nilai_3b.php';
                                                 <a href="3a4.php" type="button" class="btn btn-outline-primary">
                                                     3a4
                                                 </a>
-                                                <a href="3b.php" type="button" class="btn btn-outline-primary active">
+                                                <a href="3b.php" type="button" class="btn btn-outline-primary">
                                                     3b
                                                 </a>
                                                 <a href="3c1.php" type="button" class="btn btn-outline-primary">
@@ -211,7 +280,7 @@ include 'Controller/nilai_3b.php';
                                                 <a href="3c2.php" type="button" class="btn btn-outline-primary">
                                                     3c2
                                                 </a>
-                                                <a href="3d.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3d.php" type="button" class="btn btn-outline-primary active">
                                                     3d
                                                 </a>
                                                 <a href="4a.php" type="button" class="btn btn-outline-primary">
@@ -282,8 +351,7 @@ include 'Controller/nilai_3b.php';
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.b Rasio Dosen Terhadap Mahasiswa-->
-
+                    <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
 
                 </div>
                 <!-- content-wrapper ends -->
@@ -303,11 +371,29 @@ include 'Controller/nilai_3b.php';
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <script>
+        function confirmAndRedirect(message, redirectUrl) {
+            if (confirm(message)) {
+                window.location.href = redirectUrl;
+                return true;
+            }
+            return false;
+        }
+
+        // Access the redirect URL from the JSON response
+        var response = < ? php echo json_encode(array('Redirect' =>
+            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
+        var redirectUrl = response.Redirect;
+
+        // Perform redirection if the redirect URL is provided
+        if (redirectUrl) {
+            window.location.href = redirectUrl;
+        }
+    </script>
+
+    </script>
     <!-- container-scroller -->
     <script src="themes/layout.js"></script>
-
-
-
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
@@ -329,6 +415,8 @@ include 'Controller/nilai_3b.php';
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+
+
 </body>
 
 </html>

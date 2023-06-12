@@ -55,10 +55,6 @@
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
                                         href="beranda.php">login</a>
                                 </div>
-                                <div class="text-center mt-4 font-weight-light">
-                                    Belum Mempunyai Akun?
-                                    <a href="register.php" class="text-primary">Register</a>
-                                </div>
                             </form>
                         </div>
                     </div>

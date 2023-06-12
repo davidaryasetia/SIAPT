@@ -1,3 +1,7 @@
+<?php
+include 'Controller/nilai_3c2.php';
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -122,23 +126,65 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                             echo '<div class="skor">';
+                                                             echo '<p>Jumlah pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$null.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$null.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$total_pkm.'</p>';
+                                                             echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$rata_pkm_lugri.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$rata_pkm_dagri.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$rata_pkm_biaya_mandiri.'</p>';
+                                                             echo '<p>Skor Tabel PKM: '.$skor_tabel_pkm.'</p>';
+                                                             echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.c.2_produktivitas_pkm_dosen.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($response, true);
+                                               
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>Nomor</th>
                                                                 <th>Sumber Pembiayaan</th>
-                                                                <th>TS-2(2019)</th>
-                                                                <th>TS-1(2020)</th>
-                                                                <th>TS(2021)</th>    
+                                                                <th>TS-2(2017)</th>
+                                                                <th>TS-1(2018)</th>
+                                                                <th>TS(2020)</th>    
+                                                                <th>Total</th>    
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
@@ -146,13 +192,47 @@
                                                             echo '<tr>';
                                                             echo '<td>' . $row['Nomor'] . '</td>';
                                                             echo '<td>' . $row['Sumber Pembiayaan'] . '</td>';
-                                                            echo '<td>' . $row['TS-2(2019)'] . '</td>';
-                                                            echo '<td>' . $row['TS-1(2020)'] . '</td>';
-                                                            echo '<td>' . $row['TS(2021)'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2017)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2018)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2019)'] . '</td>';
+                                                             // Total Query
+                                                             
+                                                             echo '<td>'. $total_pkm . '</td>';
                                                             echo '</tr>';
                                                         }
+                                                         // Start Dummy Kolom
+                                                         echo '<tr>';
+                                                         
+                                                            echo '<td>' . $kolom_2 . '</td>';
+                                                            echo '<td>' . $nama_2 . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                        echo '<tr>';
+
+                                                         echo '<tr>';
+                                                         $kolom_3=3; $nama_3="Lembaga Luar Negeri";
+                                                            echo '<td>' . $kolom_3 . '</td>';
+                                                            echo '<td>' . $nama_3 . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                        echo '<tr>';
+                                                        // End Dummy Kolom
+
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>' . $row['TS-2(2017)'] . '</td>';
+                                                        echo '<td>' . $row['TS-1(2018)'] . '</td>';
+                                                        echo '<td>' . $row['TS(2019)'] . '</td>';
+                                                        echo '<td>'.$total_pkm  .'</td>';                                       
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+                                                    
                                                     ?>
                                             </div>
                                         </div>
@@ -207,7 +287,7 @@
                                                 <a href="3c1.php" type="button" class="btn btn-outline-primary">
                                                     3c1
                                                 </a>
-                                                <a href="3c2.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3c2.php" type="button" class="btn btn-outline-primary active">
                                                     3c2
                                                 </a>
                                                 <a href="3d.php" type="button" class="btn btn-outline-primary">

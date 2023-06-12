@@ -1,3 +1,39 @@
+<?php
+include "Controller/daftar_tabel.php";
+include "Controller/nilai_2b.php";
+include "Controller/nilai_2c.php";
+include "Controller/nilai_3a1.php";
+include "Controller/nilai_3a2.php";
+include "Controller/nilai_3a3.php";
+include "Controller/nilai_3a4.php";
+include "Controller/nilai_3b.php";
+include "Controller/nilai_3c1.php";
+include "Controller/nilai_3c2.php";
+include "Controller/nilai_3d.php";
+include "Controller/nilai_5b1.php";
+include "Controller/nilai_5b2.php";
+
+// Hitung Total Skor Laporan Kinerja 
+$nilai_laporan_kinerja=0;
+$nilai_laporan_evaluasi_diri=0;
+$nilai_akreditasi=0;
+/** Variabel Hasiol Skor
+ * 7 $skor_mahasiswa_asing (2b)
+ * 8 $skor_kredit_matakuliah (2c)
+ * 9 $skor_rasio_dosen (3a1)
+ * 10 $skor_tabel_jabatan_fungsional (3a2)
+ * 11 $skor_dosen_bersertifikat (3a3)
+ * 12 $skor_dosen_tidak_tetap (3a4)
+ * 14 $skor_tabel_penelitian (3c1)
+ * 15 $skor_tabel_pkm (3c2)
+ */
+
+$nilai_laporan_kinerja = $skor_mahasiswa_asing+$skor_kredit_matakuliah+$skor_rasio_dosen+$skor_tabel_jabatan_fungsional+$skor_dosen_bersertifikat+$skor_dosen_tidak_tetap+$skor_tabel_penelitian+$skor_tabel_pkm;
+$nilai_akreditasi = $nilai_laporan_kinerja + $nilai_laporan_evaluasi_diri;
+// Syarat perlu peringkat Akreditasi 
+
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -30,6 +66,7 @@
 </head>
 
 <body>
+
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -60,7 +97,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a href="index.php" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -129,8 +166,14 @@
                                 <div class="col-md-3 mb-4 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <p class="mb-4">Skoor Laporan Kinerja</p>
-                                            <p class="fs-30 mb-2">0</p>
+                                            <p class="mb-4">
+                                                Nilai Laporan Kinerja
+                                            </p>
+                                            <p class="fs-30 mb-2">
+                                                <?php
+                                                echo $nilai_laporan_kinerja;
+                                                ?>
+                                            </p>
 
                                         </div>
                                     </div>
@@ -139,8 +182,8 @@
                                 <div class="col-md-3 mb-4 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <p class="mb-4">Skoor Laporan LED</p>
-                                            <p class="fs-30 mb-2">-</p>
+                                            <p class="mb-4">Nilai Laporan Evaluasi Diri</p>
+                                            <p class="fs-30 mb-2"><?php echo $nilai_laporan_evaluasi_diri ?></p>
 
                                         </div>
                                     </div>
@@ -148,8 +191,8 @@
                                 <div class="col-md-3 mb-4 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <p class="mb-4">Total Skor</p>
-                                            <p class="fs-30 mb-2">0</p>
+                                            <p class="mb-4">Nilai Akreditasi</p>
+                                            <p class="fs-30 mb-2"><?php echo $nilai_akreditasi ?></p>
 
                                         </div>
                                     </div>
@@ -189,7 +232,7 @@ echo '<table class="display expandable-table" style="width:100%;">';
         echo '<thead>';
            echo' <tr>
                 <th>Nomor</th>
-                <th>Elemen</th>
+                <th>Bab/Kriteria</th>
                 <th>Indikator</th>
                 <th>Skoor Tabel</th>
          
@@ -199,8 +242,9 @@ echo '<table class="display expandable-table" style="width:100%;">';
         foreach ($data as $row) {
             echo '<tr>';
             echo '<td>' . $row['NO'] . '</td>';
-            echo '<td>' . $row['ELEMEN'] . '</td>';
+            echo '<td>' . $row['BAB_KRITERIA'] . '</td>';
             echo '<td>' . $row['INDIKATOR'] . '</td>';
+            echo '<td>' . $row['SKOOR'] . '</td>';
             echo '</tr>';
         }
        echo '</tbody>';

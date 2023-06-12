@@ -1,3 +1,7 @@
+<?php
+include 'Controller/nilai_2c.php';
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -122,16 +126,52 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                           echo '<div class="skor">';
+                                                           echo '<p> Jumlah Kredit Matakuliah Praktikum/praktik/praktik kerja lapangan: '. $total_kredit_praktik .'</p>';
+                                                           echo '<p>Jumlah Kredit Seluruh Matakuliah: ' .$total_seluruh_kredit.'</p>';
+                                                           echo '<p>Presentase Jumlah Kredit Matakuliah Bilangan Bulat :' .$presentase_kredit_matakuliah .'</p>';
+                                                           echo '<p>Presentase Jumlah Kredit Matakuliah (%) :' .$presentase_kredit_matakuliah * 100 .'%</p>';
+                                                           echo '<p>Skor Tabel :'.$skor_kredit_matakuliah.'</p>';
+                                                           echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.c_kredit_mata_kuliah.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($response, true);
-
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -158,8 +198,20 @@
                                                             echo '<td>' .$sum_total. '</td>';
                                                             echo '</tr>';                       
                                                         }
+
+                                                        
+                                                        // Tambah Row Data untuk Kolom Teori, Praktikum, Praktik, PKL
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>' .$total_teori.'</td>';
+                                                        echo '<td>'. $total_praktikum .'</td>';
+                                                        echo '<td>'. $total_praktik .'</td>';
+                                                        echo '<td>'. $total_pkl .'</td>';
+                                                        echo '<td>'. $total_kolom .'</td>';
+                                                        echo '<tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';
+                                                   
                                                     ?>
                                             </div>
                                         </div>

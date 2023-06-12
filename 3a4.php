@@ -1,3 +1,7 @@
+<?php
+include 'Controller/nilai_3a4.php';
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -122,15 +126,53 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                             echo '<div class="skor">';
+                                                             echo '<p>Jumlah Dosen Tidak Tetap '.$dosen_tidak_tetap.'</p>';
+                                                             echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
+                                                             echo '<p>Presentase Dosen Yang Memiliki Sertifikat Bilangan Bulat :'.$presentase_dosen_tidak_tetap.'</p>';
+                                                             echo '<p>Presentase Dosen Tetap Yang Memiliki Sertifikat (%) :' .$presentase_dosen_tidak_tetap *100 . '%</p>';
+                                                             echo '<p>Skor Tabel : '.$skor_dosen_tidak_tetap.'</p>';
+                                                             echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.4_dosen_tidak_tetap.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($response, true);
+
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -145,8 +187,7 @@
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
-
+                                                        foreach ($dosen_tidaktetap as $row) {
                                                             echo '<tr>';
                                                             echo '<td>' . $row['Nomor'] . '</td>';
                                                             echo '<td>' . $row['Pendidikan'] . '</td>';
@@ -155,14 +196,50 @@
                                                             echo '<td>' . $row['Lektor'] . '</td>';
                                                             echo '<td>' . $row['Asisten Ahli'] . '</td>';
                                                             echo '<td>' . $row['Tenaga Pengajar'] . '</td>';
-
-                                                            // Total Query
-                                                            $sum= intval($row['Guru Besar']) + intval($row['Lektor Kepala']) + intval($row['Lektor']) + intval($row['Asisten Ahli']) + intval($row['Tenaga Pengajar']);
-                                                            echo '<td>'. $sum . '</td>';
+                                                           
+                                                            echo '<td>'. $dosen_tidak_tetap . '</td>';
                                                             echo '</tr>';
                                                         }
+
+                                                        // Start Dummy Kolom
+                                                         echo '<tr>';
+                                                        
+                                                            echo '<td>' . $kolom_2 . '</td>';
+                                                            echo '<td>' . $nama_2 . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                        echo '<tr>';
+                                                         echo '<tr>';
+                                                         $kolom_3=3; $nama_3="Profesi";
+                                                            echo '<td>' . $kolom_3 . '</td>';
+                                                            echo '<td>' . $nama_3 . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                            echo '<td>' . $null . '</td>';
+                                                        echo '<tr>';
+                                                        // End Dummy Kolom
+
+                                                         // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>'.$row['Guru Besar'].'</td>';
+                                                        echo '<td>'.$row['Lektor Kepala'].'</td>';
+                                                        echo '<td>'.$row['Lektor'].'</td>';
+                                                        echo '<td>'.$row['Asisten Ahli'].'</td>';
+                                                        echo '<td>'.$row['Tenaga Pengajar'].'</td>';
+                                                        echo '<td>'.$dosen_tidak_tetap.'</td>';                                       
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+                                                    
+                                                   
                                                     ?>
                                             </div>
                                         </div>

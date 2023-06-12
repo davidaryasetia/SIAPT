@@ -1,3 +1,7 @@
+<?php
+include 'Controller/nilai_2b.php';
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -123,6 +127,47 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                           echo '<div class="skor">';
+                                                           echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
+                                                           echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : ' . $total_mahasiswa_aktif.'</p>';
+                                                           echo '<p>Presentase Mahasiswa Asing Bilangan Bulat :' .$presentase_mahasiswa .'</p>';
+                                                           echo '<p>Presentase Mahasiswa (%) :' .$presentase_mahasiswa * 100 .'%</p>';
+                                                           echo '<p>Skor Tabel :'. $skor_mahasiswa_asing.'</p>';
+                                                           echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        </p>
                                     </div>
 
                                     <div class="row">
@@ -130,22 +175,14 @@
                                             <div class="table-responsive">
                                                 <?php
 
-                                                // Fetch API response ?query = mahasiswa_asing & mahasiswa_aktif endpoint
-                                                $response_asing = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.b_mahasiswa_asing.php?query=mahasiswa_asing');
-                                                $response_aktif = file_get_contents('https://project.mis.pens.ac.id/mis143/API/2.b_mahasiswa_asing.php?query=mahasiswa_aktif');
-
-                                                // Decode JSON response $response_asing & $response_aktif ke asociate array
-                                                $mahasiswa_asing = json_decode($response_asing, true);
-                                                $mahasiswa_aktif = json_decode($response_aktif, true);
-
                                                 echo '<table class="display expandable-table table-hover" style="width:100%"; border:1px solid black;>';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
                                                                 <th>Program Sudi</th>
-                                                                <th>TS-2(2018)</th>
-                                                                <th>TS-1(2019)</th>
-                                                                <th>TS(2020)</th>
+                                                                <th>TS-2(2017)</th>
+                                                                <th>TS-1(2018)</th>
+                                                                <th>TS(2019)</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
@@ -153,22 +190,11 @@
                                                             echo '<tr>';
                                                             echo '<td>' . $row['NOMOR'] . '</td>';
                                                             echo '<td>' . $row['Program Studi'] . '</td>';
-                                                            echo '<td>' . $row['TS-2(2018)'] . '</td>';
-                                                            echo '<td>' . $row['TS-1(2019)'] . '</td>';
-                                                            echo '<td>' . $row['TS(2020)'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2017)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2018)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2019)'] . '</td>';
                                                             echo '</tr>';
                                                         }
-
-                                                        // Hitung Total TS-2(2018), TS-1(2019), TS(2020)
-                                                        $sum_ts2 = 0;
-                                                        $sum_ts1 = 0;
-                                                        $sum_ts = 0;
-                                                        foreach ($mahasiswa_asing as $row){
-                                                            $sum_ts2 += $row['TS-2(2018)'];
-                                                            $sum_ts1 += $row['TS-1(2019)'];
-                                                            $sum_ts += $row['TS(2020)'];
-                                                        }
-
                                                         // Tambah Row Data
                                                         echo '<tr class="table-row">';
                                                         echo '<td colspan="2"><p class="total">Total</p></td>';
@@ -177,48 +203,8 @@
                                                         echo '<td>'. $sum_ts .'</td>';
                                                         echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>';
+                                                    echo '</table>';                                 
                                                     
-                                                    // Hitung Total Mahasiswa Asing dalam 3 tahun terakhir
-                                                    $total_mahasiswa_asing=0;
-                                                    foreach($mahasiswa_asing as $row){
-                                                        $total_mahasiswa_asing += $row['TS-2(2018)'] + $row['TS-1(2019)'] + $row['TS(2020)'];
-                                                    }
-
-                                                    // Hitung Total Mahasiswa Aktif dalam 3 tahun terakhir
-                                                    $total_mahasiswa_aktif=0;
-                                                    foreach($mahasiswa_aktif as $row){
-                                                        $total_mahasiswa_aktif += $row['TS-2(2018)'] + $row['TS-1(2019)'] + $row['TS(2020)'];
-                                                    }
-
-                                                    /* Hitung Total Presentase Jumlah Mahasiswa Asing 
-                                                    Rumus :
-                                                    presentase_mahasiswa = (total_mhs_asing/total_mhs_aktif) * 100% [100% = 1]
-                                                    Jika Presentase >= 0,5% skor = 4,
-                                                    Jika presentase < 0,5% skor = 2 + (4 * Presentase_mahasiswa)
-                                                    Jika Presentase = 0% maka skor 1 || 0
-                                                    */ 
-                                                    $presentase_mahasiswa;
-                                                    $skor_mahasiswa_asing;
-                                                    $presentase_mahasiswa = ($total_mahasiswa_asing/$total_mahasiswa_aktif) * 1;
-                                                    $presentase_mahasiswa = number_format($presentase_mahasiswa, 3); // Limit Desimal Output 3 angka
-
-                                                    // Hitung Skoor Tabel 2.b Mahasiswa Asing [notes 0,5% = 0,005]
-                                                    if($presentase_mahasiswa >= 0.005 ){  //[notes 0,5% = 0,005]
-                                                        $skor_mahasiswa_asing = 4;
-                                                    } else if($presentase_mahasiswa < 0.005 && $presentase_mahasiswa > 0){
-                                                        $skor_mahasiswa_asing = 2+(400 * $presentase_mahasiswa);
-                                                    } else {
-                                                        $skor_mahasiswa_asing=  0;/*0;$presentase_mahasiswa == 0 ? 0 : 1; */
-                                                    }
-
-                                                    echo '<div class="skor">';
-                                                    echo '<p> Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
-                                                    echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir: ' . $total_mahasiswa_aktif.'</p>';
-                                                    echo '<p>Presentase Mahasiswa Asing Bilangan Bulat:' .$presentase_mahasiswa .'</p>';
-                                                    echo '<p>Presentase Mahasiswa (%):' .$presentase_mahasiswa * 100 .'%</p>';
-                                                    echo '<p>Skor Tabel :'. $skor_mahasiswa_asing.'</p>';
-                                                    echo '</div>';
                                                     ?>
                                             </div>
                                         </div>

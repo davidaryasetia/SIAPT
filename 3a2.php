@@ -1,3 +1,7 @@
+<?php
+include 'Controller/nilai_3a2.php';
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -122,19 +126,52 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<p>Jumlah Dosen Tetap Yang Memiliki Jabatan Fungsional: ' .$total_jabatan_fungsional_dosen. '</p>';
+                                                            echo '<p>Jumlah Dosen Tetap: ' .$total_dosen_tetap. '</p>';
+                                                            echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .$presentase_jabatanfungsional_dosen. '</p>';
+                                                            echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .($presentase_jabatanfungsional_dosen*100) . '%</p>';
+                                                            echo '<p>Skoor Tabel Jabatan Fungsional Dosen: ' .$skor_tabel_jabatan_fungsional. '</p>';
+                                                            echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                    // Fetch API jabatan akademik dosen tetap
-                                                    $response_jabatan_akademik = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.2_jabatan_akademik_dosen_tetap.php');
-                                                    $response_dosen_tetap = file_get_contents('https://project.mis.pens.ac.id/mis143/API/3.a.1_kecukupan_dosen_perguruan_tinggi.php?query=dosen_tetap');
-
-                                                    // Decode JSON response $response_jabatan_akademik & response_dosen_tetap
-                                                    $jabatan_akademik = json_decode($response_jabatan_akademik, true);
-                                                    $dosen_tetap = json_decode($response_dosen_tetap, true);
-
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -164,22 +201,7 @@
                                                             echo '</tr>';
                                                         }
 
-                                                        // Hitung Kolom Jumlah Jabatan Fungsional Guru Besar, Lektor Kepala, Lektor, Asisten Ahli, Tenaga Pengajar
-                                                        $guru_besar = 0;
-                                                        $lektor_kepala = 0;
-                                                        $lektor = 0;
-                                                        $asisten_ahli = 0;
-                                                        $tenaga_pengajar = 0;
-
-                                                        foreach($jabatan_akademik as $row){
-                                                            $guru_besar += $row['Guru Besar'];
-                                                            $lektor_kepala += $row['Lektor Kepala'];
-                                                            $lektor += $row['Lektor'];
-                                                            $asisten_ahli += $row['Asisten Ahli'];
-                                                            $tenaga_pengajar += $row['Tenaga Pengajar'];
-                                                            $jumlah = $guru_besar + $lektor_kepala + $lektor + $asisten_ahli + $tenaga_pengajar;
-                                                        }
-
+                                                      
                                                         // Tambah Row Data
                                                         echo '<tr class="table-row">';
                                                         echo '<td colspan="2"><p class="total">Total</p></td>';
@@ -193,66 +215,8 @@
                                                        echo '</tbody>';
                                                     echo '</table>';
 
-                                                    // Hitung Total Dosen Tetap yang Memiliki Jabatan Fungsional
-                                                    $total_jabatan_fungsional_dosen = $guru_besar + $lektor_kepala + $lektor + $asisten_ahli + $tenaga_pengajar;
-                                                    
-                                                    // Hitung Kolom Jumlah Doktor, Magister, dan Profesi
-                                                    $doktor = 0;
-                                                    $magister = 0;
-                                                    $profesi = 0;
-                                                    $jumlah = 0;
-                                                    foreach($dosen_tetap as $row){  
-                                                        $doktor += $row['Doktor/Doktor Terapan'];
-                                                        $magister += $row['Magister/Magister Terapan'];
-                                                        $profesi += $row['PROFESI'];
-                                                        $jumlah = $doktor + $magister + $profesi;
-                                                    }
+                                                   
 
-                                                    // Hitung Total Dosen Tetap 
-                                                    $doktor = 0;
-                                                    $magister = 0;
-                                                    $profesi = 0;
-                                                    $jumlah = 0;
-                                                    foreach($dosen_tetap as $row){  
-                                                        $doktor += $row['Doktor/Doktor Terapan'];
-                                                        $magister += $row['Magister/Magister Terapan'];
-                                                        $profesi += $row['PROFESI'];
-                                                        $jumlah = $doktor + $magister + $profesi;
-                                                    }
-                                                    $total_dosen_tetap = $doktor + $magister + $profesi;
-
-                                                    
-
-                                                    /* Hitung Jumlah Presentase Dosen Yang memiliki jabatan fungsional lektor kepala atau guru besar
-                                                    Tabel 3.a.2 (LKPT Jabatan Fungsional Dosen)
-                                                    Rumus : 
-                                                    $presentase_dosen_tetap = ($total_jabatan_fungsional_dosen/$total_dosen_tetap) * 100%
-                                                     */
-                                                    $presentase_dosen_tetap;
-                                                    $skor_tabel_jabatan_fungsional;
-
-                                                    $presentase_dosen_tetap =    ($total_jabatan_fungsional_dosen/$total_dosen_tetap) * 1;
-                                                    $presentase_dosen_tetap = number_format($presentase_dosen_tetap, 2);
-
-                                                    // Hitung Skoor Tabel 3.a.2 (LKPT Jabatan Fungsional Dosen) % = /100 25%= 0.25
-                                                    if($presentase_dosen_tetap >= 0.25){
-                                                        $skor_tabel_jabatan_fungsional = 4;
-                                                    } else if($presentase_dosen_tetap < 0.25){
-                                                        $skor_tabel_jabatan_fungsional = 1 + (12 * $presentase_dosen_tetap);
-                                                    } else if($presentase_dosen_tetap < 0.01){
-                                                        $skor_tabel_jabatan_fungsional = 0;
-                                                    } else {
-                                                        $skor_tabel_jabatan_fungsional = 0;
-                                                    }
-
-                                                    echo '<div class="skor">';
-                                                    echo '<p>Jumlah Dosen Tetap Yang Memiliki Jabatan Fungsional: ' .$total_jabatan_fungsional_dosen. '</p>';
-                                                    echo '<p>Jumlah Dosen Tetap: ' .$total_dosen_tetap. '</p>';
-                                                    echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .$presentase_dosen_tetap. '</p>';
-                                                    echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .($presentase_dosen_tetap*100) . '%</p>';
-                                                    echo '<p>Skoor Tabel Jabatan Fungsional Dosen: ' .$jumlah. '</p>';
-                                                    echo '</div>';
-                                                
                                                     ?>
                                             </div>
                                         </div>

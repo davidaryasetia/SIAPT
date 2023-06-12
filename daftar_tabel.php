@@ -1,3 +1,7 @@
+<?php
+ include "Controller/daftar_tabel.php";
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -26,6 +30,7 @@
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
+
 </head>
 
 <body>
@@ -59,7 +64,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a href="index.php" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -114,24 +119,67 @@
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="card-title">Daftar Tabel-Laporan Kinerja Perguruan Tinggi
+                                    <div class="d-flex flex-row align-items-center mb">
+                                        <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
+                                            Perguruan Tinggi
                                             <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
-                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Tambah Data
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
 
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                           
+                                                            echo '<div class="skor">';
+                                                            // echo '<h5>Status Data:</h5>';
+                                                            echo '<p>Data Lengkap: ' .$total_data_lengkap. '</p>';
+                                                            echo '<p>Data Tidak Lengkap: ' .$total_data_tidaklengkap. '</p>';
+                                                            echo '<p>Data Tidak Tersedia: ' .$total_data_tidaktersedia. '</p>';
+                                                            echo '</div>';
+                                                            echo '<div class="skor">';
+                                                            // echo '<h5>Sumber:</h5>';
+                                                            echo '<p>Data DB MIS: ' .$total_data_mis. '</p>';
+                                                            echo '<p>Data Dummy: ' .$total_data_dummy. '</p>';                            
+                                                            echo '</div>';
+                                                            ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
                                         </p>
+
+
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $tabel_lkpt = file_get_contents('https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php');
-                                                // Decode JSON response into an associative array
-                                                $data = json_decode($tabel_lkpt, true);
+                                               
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -141,12 +189,12 @@
                                                                 <th>Status Data</th>
                                                                 <th>Sumber Data</th>
                                                                 <th>Edit</th>
-                                                                <th>Hapus</th>
+                                                                
                                                                
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($data_lkpt as $row) {
                                                             echo '<tr>';
                                                             echo '<td>' . $row['NO'] . '</td>';
                                                             echo '<td>' . $row['JUDUL'] . '</td>';
@@ -154,6 +202,7 @@
                                                             echo '<td>' . $row['STATUS'] . '</td>';
                                                             echo '<td>' . $row['SUMBER'] . '</td>';
 
+                                                
                                                             // Edit Data
                                                             echo '<td>';
                                                             echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
@@ -163,20 +212,23 @@
                                                         
                                                             // End Edit
                                                            // Hapus Data
-                                                           echo '<td>';
-                                                            echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
-                                                            echo '<input type="hidden" name="_method" value="DELETE">';
-                                                            echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                            echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                            echo '<i class="fa-solid fa-trash"></i>';
-                                                            echo '</button>';
-                                                            echo '</form>';
-                                                            echo '</td>';
+                                                            //    echo '<td>';
+                                                            //     echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
+                                                            //     echo '<input type="hidden" name="_method" value="DELETE">';
+                                                            //     echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
+                                                            //     echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
+                                                            //     echo '<i class="fa-solid fa-trash"></i>';
+                                                            //     echo '</button>';
+                                                            //     echo '</form>';
+                                                            //     echo '</td>';
                                                             // Hapus Data
                                                             echo '</tr>';
+                                                           
                                                         }
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
+
+                                                  
                                                     ?>
                                             </div>
                                         </div>
@@ -325,26 +377,16 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <script>
-        function confirmAndRedirect(message, redirectUrl) {
-            if (confirm(message)) {
-                window.location.href = redirectUrl;
-                return true;
-            }
-            return false;
-        }
 
-        // Access the redirect URL from the JSON response
-        var response = < ? php echo json_encode(array('Redirect' =>
-            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
-        var redirectUrl = response.Redirect;
 
-        // Perform redirection if the redirect URL is provided
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- container-scroller -->
     <script src="themes/layout.js"></script>
@@ -369,6 +411,27 @@
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+
+    <script>
+        function confirmAndRedirect(message, redirectUrl) {
+            if (confirm(message)) {
+                window.location.href = redirectUrl;
+                return true;
+            }
+            return false;
+        }
+
+        // Access the redirect URL from the JSON response
+        var response = < ? php echo json_encode(array('Redirect' =>
+            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
+        var redirectUrl = response.Redirect;
+
+        // Perform redirection if the redirect URL is provided
+        if (redirectUrl) {
+            window.location.href = redirectUrl;
+        }
+    </script>
+
 
 
 </body>

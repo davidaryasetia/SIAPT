@@ -126,7 +126,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Error Response
             http_response_code(500);
-            echo json_encode(array('Pesan' => 'Data Gagal Ditambahkan'));
+            echo json_encode(array('Pesan' => 'Data Gagal Dihapus'));
         }
         oci_free_statement($stid);
     

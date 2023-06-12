@@ -117,7 +117,7 @@
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center">
-                                        <p class="card-title">Edit Data - Laporan Kinerja Perguruan Tinggi
+                                        <p class="card-title">Edit Data - 3.D Tabel Rekognisi Dosen
                                     </div>
                                     <div class="row">
 
@@ -125,17 +125,18 @@
                                         <?php
                                         $no = $_GET['no'];
                                         // Fetch data berdasarkan nomor menggunakan API 
-                                        $api_url = 'https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php?no=' . $no;
+                                        $api_url = 'https://project.mis.pens.ac.id/mis143/API/3.d_rekognisi_dosen.php?no=' . $no;
                                         $data = file_get_contents($api_url);
                                         $record = json_decode($data, true);
                                         // var_dump($record);
 
                                         // Memastikan data berhasil diambil sebelum menampilkan formulir
-                                        if ($record) {
-                                            $judul = $record['JUDUL'];
-                                            $sheet = $record['SHEET'];
-                                            $status = $record['STATUS'];
-                                            $sumber = $record['SUMBER'];
+                                        if($record){
+                                            $nama = $record['NAMA'];
+                                            $bidang_keahlian = $record['BIDANG_KEAHLIAN'];
+                                            $rekognisi = $record['REKOGNISI'];
+                                            $tingkat = $record['TINGKAT'];
+                                            $tahun = $record['TAHUN'];
                                         }
                                         ?>
                                         <!-- End API Endpoint -->
@@ -144,49 +145,95 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <form class="forms-sample" method="POST"
-                                                        action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">
+                                                        action="https://project.mis.pens.ac.id/mis143/API/3.d_rekognisi_dosen.php">
                                                         <input type="hidden" name="_method" value="PUT">
                                                         <input type="hidden" name="no" value="<?php echo $_GET['no']?>">
                                                         <div class="form-group">
-                                                            <label for="judul">Nomor dan Judul
-                                                                Tabel</label>
-                                                            <input type="" class="form-control" id="judul" name="judul"
-                                                                placeholder="Judul Tabel"
-                                                                value="<?php echo $judul; ?>" />
+                                                            <label for="nama">No</label>
+                                                            <input type="text" class="form-control" id="nama"
+                                                                name="nama" placeholder="Nama Dosen"
+                                                                value="<?php echo $no; ?>" disabled />
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="sheet">Nama Sheet</label>
-                                                            <input type="" class="form-control" id="sheet" name="sheet"
-                                                                placeholder="Nama Sheet" value="<?php echo $sheet ?>" />
+                                                            <label for="nama">Nama Dosen</label>
+                                                            <input type="text" class="form-control" id="nama"
+                                                                name="nama" placeholder="Nama Dosen"
+                                                                value="<?php echo $nama; ?>" />
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="bidang">Bidang Keahlian</label>
+                                                            <input type="text" class="form-control" id="bidang_keahlian"
+                                                                name="bidang_keahlian" placeholder="Bidang Keahlian"
+                                                                value="<?php echo $bidang_keahlian ?>" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="rekognisi">Rekognisi</label>
+                                                            <textarea type="text"
+                                                                class="form-control centered-placeholder" id="rekognisi"
+                                                                name="rekognisi"
+                                                                placeholder="Rekognisi Dosen"><?php echo $rekognisi ?></textarea>
+                                                        </div>
+
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
-                                                                <label for="status">Status Data</label>
-                                                                <select class="form-control" id="status" name="status">
-                                                                    <option value="">Pilih Kategori Data</option>
-                                                                    <option value="Data Lengkap"
-                                                                        <?php if($status == 'Data Lengkap') echo 'selected'; ?>>
-                                                                        Data Lengkap</option>
-                                                                    <option value="Data Tidak Lengkap"
-                                                                        <?php if($status == 'Data Tidak Lengkap') echo 'selected'; ?>>
-                                                                        Data Tidak Lengkap
+                                                                <label for="tingkat">Tingkat</label>
+                                                                <select class="form-control" id="tingkat"
+                                                                    name="tingkat">
+                                                                    <option value="">Pilih Tingkat</option>
+                                                                    <option value="Wilayah"
+                                                                        <?php if($tingkat=='Wilayah') echo 'selected'; ?>>
+                                                                        Wilayah
                                                                     </option>
-                                                                    <option value="Data Tidak Tersedia"
-                                                                        <?php if($status == 'Data Tidak Tersedia') echo 'selected'; ?>>
-                                                                        Data Tidak Tersedia
+                                                                    <option value="Nasional"
+                                                                        <?php if($tingkat=='Nasional') echo 'selected'; ?>>
+                                                                        Nasional
                                                                     </option>
+                                                                    <option value="Internasional"
+                                                                        <?php if($tingkat=='Internasional') echo 'selected'; ?>>
+                                                                        Internasional
+                                                                    </option>
+
                                                                 </select>
                                                             </div>
-                                                            <div class="form-group col-6">
-                                                                <label for="sumber">Sumber Data</label>
-                                                                <select class="form-control" id="sumber" name="sumber">
-                                                                    <option value="">Pilih Sumber Data</option>
-                                                                    <option value="Data DB MIS"
-                                                                        <?php if($sumber == 'Data DB MIS') echo 'selected'; ?>>
-                                                                        Data DB MIS</option>
-                                                                    <option value="Data Dummy"
-                                                                        <?php if($sumber == 'Data DB MIS') echo 'selected'; ?>>
-                                                                        Data Dummy</option>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="tahun">Tahun Perolehan (YYYY)</label>
+                                                                <select class="form-control" id="tahun" name="tahun">
+                                                                    <option value="">Pilih Tahun</option>
+                                                                    <option value="2023"
+                                                                        <?php if($tahun==2023) echo 'selected'; ?>>2023
+                                                                    </option>
+                                                                    <option value="2022"
+                                                                        <?php if($tahun==2022) echo 'selected'; ?>>2022
+                                                                    </option>
+                                                                    <option value="2021"
+                                                                        <?php if($tahun==2020) echo 'selected'; ?>>2020
+                                                                    </option>
+                                                                    <option value="2020"
+                                                                        <?php if($tahun==2020) echo 'selected'; ?>>2020
+                                                                    </option>
+                                                                    <option value="2019"
+                                                                        <?php if($tahun==2019) echo 'selected'; ?>>2019
+                                                                    </option>
+                                                                    <option value="2018"
+                                                                        <?php if($tahun==2018) echo 'selected'; ?>>2018
+                                                                    </option>
+                                                                    <option value="2017"
+                                                                        <?php if($tahun==2017) echo 'selected'; ?>>2017
+                                                                    </option>
+                                                                    <option value="2016"
+                                                                        <?php if($tahun==2016) echo 'selected'; ?>>2016
+                                                                    </option>
+                                                                    <option value="2015"
+                                                                        <?php if($tahun==2015) echo 'selected'; ?>>2015
+                                                                    </option>
+                                                                    <option value="2014"
+                                                                        <?php if($tahun==2014) echo 'selected'; ?>>2014
+                                                                    </option>
+                                                                    <option value="2013"
+                                                                        <?php if($tahun==2013) echo 'selected'; ?>>2013
+                                                                    </option>
+
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -194,8 +241,7 @@
                                                         <button type="submit" class="btn btn-primary mr-2">
                                                             Submit
                                                         </button>
-                                                        <a href="../../daftar_tabel.php"
-                                                            class="btn btn-light">Cancel</a>
+                                                        <a href="../../3d.php" class="btn btn-light">Cancel</a>
                                                     </form>
                                                 </div>
                                             </div>
