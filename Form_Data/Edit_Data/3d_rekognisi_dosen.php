@@ -26,11 +26,6 @@
     <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../../includes/contents/Image/logo_svg.svg" />
-
-
-
-
-
 </head>
 
 <body>
@@ -241,7 +236,7 @@
                                                         <button type="submit" class="btn btn-primary mr-2">
                                                             Submit
                                                         </button>
-                                                        <a href="../../3d.php" class="btn btn-light">Cancel</a>
+                                                        <a href="../../View/3d.php" class="btn btn-light">Cancel</a>
                                                     </form>
                                                 </div>
                                             </div>

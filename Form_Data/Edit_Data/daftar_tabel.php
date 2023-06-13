@@ -26,11 +26,6 @@
     <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../../includes/contents/Image/logo_svg.svg" />
-
-
-
-
-
 </head>
 
 <body>
@@ -194,7 +189,7 @@
                                                         <button type="submit" class="btn btn-primary mr-2">
                                                             Submit
                                                         </button>
-                                                        <a href="../../daftar_tabel.php"
+                                                        <a href="../../View/daftar_tabel.php"
                                                             class="btn btn-light">Cancel</a>
                                                     </form>
                                                 </div>

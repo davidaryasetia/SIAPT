@@ -29,13 +29,9 @@
     <script>
         function redirectToDaftarTabel() {
             window.location.href =
-                "https://project.mis.pens.ac.id/mis143/daftar_tabel.php";
+                "https://project.mis.pens.ac.id/mis143/View/daftar_tabel.php";
         }
     </script>
-
-
-
-
 </head>
 
 <body>
@@ -222,7 +218,7 @@
                                                         <button type="submit" class="btn btn-primary mr-2">
                                                             Submit
                                                         </button>
-                                                        <a href="../../daftar_tabel.php"
+                                                        <a href="../../View/daftar_tabel.php"
                                                             class="btn btn-light">Cancel</a>
                                                     </form>
                                                 </div>

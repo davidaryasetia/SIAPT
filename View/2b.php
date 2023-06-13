@@ -1,3 +1,7 @@
+<?php
+include '../Controller/nilai_2b.php';
+?>
+
 <!DOCTYPE html>
 
 <head>
@@ -6,28 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Daftar Tabel</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/feather/feather.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/feather/feather.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="../js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-    <link rel="stylesheet" type="text/css" href="themes/layout.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" type="text/css" href="../themes/layout.css">
     <!-- Font Awesome Icon -->
-    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
-    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
-
-
+    <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
 </head>
 
 <body>
@@ -36,10 +38,10 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo mr-5" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo-mini" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -50,7 +52,7 @@
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
                                 <p class="p-1 mb-0">Hi! Tita Karlita</p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
@@ -110,49 +112,97 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <!-- Tabel 5.b.2 Prestasi Non Akademik Mahasiswa -->
+
+                    <!-- Tabel 2.b Mahasiswa Asing -->
                     <div class="row">
-                        <div class="col-md-12 grid-margin stretch-card ">
+                        <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Tabel 5.b.2 Prestasi Non Akademik Mahasiswa
+                                        <p class="card-title">Tabel 2.b Mahasiswa Asing
                                             <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fa-solid fa-info"></i>
+                                            </button>
+                                            <!-- End Button Trigger -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                            </h3>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                           echo '<div class="skor">';
+                                                           echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
+                                                           echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : ' . $total_mahasiswa_aktif.'</p>';
+                                                           echo '<p>Presentase Mahasiswa Asing Bilangan Bulat :' .$presentase_mahasiswa .'</p>';
+                                                           echo '<p>Presentase Mahasiswa (%) :' .$presentase_mahasiswa * 100 .'%</p>';
+                                                           echo '<p>Skor Tabel :'. $skor_mahasiswa_asing.'</p>';
+                                                           echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        </p>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/5.b.2_prestasi_non_akademik_mahasiswa.php');
-                                                // Decode JSON response into an associative array
-                                             $data = json_decode($response, true);
-                                                echo '<table class="display expandable-table table-hover" style="width:100%">';
+
+                                                echo '<table class="display expandable-table table-hover" style="width:100%"; border:1px solid black;>';
                                                         echo '<thead>';
                                                            echo' <tr>
-                                                                <th>No.</th>
-                                                                <th>Nama Kegiatan</th>
-                                                                <th>Waktu Penyelenggaraan</th>
-                                                                <th>Tingkat</th>
-                                                                <th>Prestasi Yang Dicapai</th>    
+                                                                <th>No. </th>
+                                                                <th>Program Sudi</th>
+                                                                <th>TS-2(2017)</th>
+                                                                <th>TS-1(2018)</th>
+                                                                <th>TS(2019)</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($mahasiswa_asing as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['Nomor'] . '</td>';
-                                                            echo '<td>' . $row['Nama Kegiatan'] . '</td>';
-                                                            echo '<td>' . $row['Waktu Penyelenggaraan'] . '</td>';
-                                                            echo '<td>' . $row['Tingkat'] . '</td>';
-                                                            echo '<td>' . $row['Prestasi Yang Dicapai'] . '</td>';
+                                                            echo '<td>' . $row['NOMOR'] . '</td>';
+                                                            echo '<td>' . $row['Program Studi'] . '</td>';
+                                                            echo '<td>' . $row['TS-2(2017)'] . '</td>';
+                                                            echo '<td>' . $row['TS-1(2018)'] . '</td>';
+                                                            echo '<td>' . $row['TS(2019)'] . '</td>';
                                                             echo '</tr>';
                                                         }
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>'. $sum_ts2 .'</td>';
+                                                        echo '<td>'. $sum_ts1 .'</td>';
+                                                        echo '<td>'. $sum_ts .'</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';                                 
+                                                    
                                                     ?>
                                             </div>
                                         </div>
@@ -183,7 +233,7 @@
                                                 <a href="2a.php" type="button" class="btn btn-outline-primary">
                                                     2a
                                                 </a>
-                                                <a href="2b.php" type="button" class="btn btn-outline-primary">
+                                                <a href="2b.php" type="button" class="btn btn-outline-primary active">
                                                     2b
                                                 </a>
                                                 <a href="2c.php" type="button" class="btn btn-outline-primary">
@@ -228,7 +278,7 @@
                                                 <a href="5b1.php" type="button" class="btn btn-outline-primary">
                                                     5b1
                                                 </a>
-                                                <a href="5b2.php" type="button" class="btn btn-outline-primary active">
+                                                <a href="5b2.php" type="button" class="btn btn-outline-primary">
                                                     5b2
                                                 </a>
                                                 <a href="5c1.php" type="button" class="btn btn-outline-primary">
@@ -281,7 +331,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 5.b.2 Prestasi Non Akademik Mahasiswa-->
+                    <!-- Tabel 2.b Mahasiswa Asing -->
+
+
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -301,27 +353,28 @@
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-    <script src="themes/layout.js"></script>
+    <script src="../themes/layout.js"></script>
+
+    <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="vendors/chart.js/Chart.min.js"></script>
-    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="js/dataTables.select.min.js"></script>
-
+    <script src="../vendors/chart.js/Chart.min.js"></script>
+    <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../js/dataTables.select.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/hoverable-collapse.js"></script>
-    <script src="js/template.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/todolist.js"></script>
+    <script src="../js/off-canvas.js"></script>
+    <script src="../js/hoverable-collapse.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="js/dashboard.js"></script>
-    <script src="js/Chart.roundedBarCharts.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
 </body>
 

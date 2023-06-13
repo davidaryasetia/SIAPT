@@ -7,27 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Beranda</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/feather/feather.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/feather/feather.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
-    <!-- End plugin css for this page -->
-
+    <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="../js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->s
     <!-- Font Awesome Icon -->
-    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
-
-
+    <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
-    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
-
+    <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
 </head>
 
 <body>
@@ -44,16 +40,31 @@
                             <h6 class="font-weight-light">Silahkan Login.</h6>
                             <form action="beranda.php" method="" class="pt-3">
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control form-control-lg"
-                                        id="exampleInputEmail1" placeholder="Username" />
+                                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1"
+                                        placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password" />
+                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
+                                        placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                                        <option>User Privilage</option>
+                                        <option>P3M</option>
+                                        <option>Review Internal</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg"
+                                        id="exampleInputPassword1" placeholder="Password">
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="View/beranda.php">login</a>
+                                        href="beranda.php">login</a>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Sudah Mempunyai Akun?
+                                    <a href="login.php" class="text-primary">Login</a>
                                 </div>
                             </form>
                         </div>

@@ -1,5 +1,5 @@
 <?php
-include 'Controller/nilai_2c.php';
+include '../Controller/nilai_2c.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,28 +10,26 @@ include 'Controller/nilai_2c.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Daftar Tabel</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/feather/feather.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/feather/feather.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="../js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-    <link rel="stylesheet" type="text/css" href="themes/layout.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" type="text/css" href="../themes/layout.css">
     <!-- Font Awesome Icon -->
-    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
-    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
-
-
+    <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
 </head>
 
 <body>
@@ -40,10 +38,10 @@ include 'Controller/nilai_2c.php';
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo mr-5" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo-mini" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -54,7 +52,7 @@ include 'Controller/nilai_2c.php';
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
                                 <p class="p-1 mb-0">Hi! Tita Karlita</p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
@@ -368,29 +366,30 @@ include 'Controller/nilai_2c.php';
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-    <script src="themes/layout.js"></script>
+    <script src="../themes/layout.js"></script>
+    <!-- Start JS Script -->
 
-
+    <!-- container-scroller -->
+    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="vendors/chart.js/Chart.min.js"></script>
-    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="js/dataTables.select.min.js"></script>
-
+    <script src="../vendors/chart.js/Chart.min.js"></script>
+    <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../js/dataTables.select.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/hoverable-collapse.js"></script>
-    <script src="js/template.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/todolist.js"></script>
+    <script src="../js/off-canvas.js"></script>
+    <script src="../js/hoverable-collapse.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="js/dashboard.js"></script>
-    <script src="js/Chart.roundedBarCharts.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
 </body>
 

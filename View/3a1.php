@@ -1,5 +1,5 @@
 <?php
- include "Controller/daftar_tabel.php";
+include '../Controller/nilai_3a1.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,27 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Daftar Tabel</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/feather/feather.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/feather/feather.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="../js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-    <link rel="stylesheet" type="text/css" href="themes/layout.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" type="text/css" href="../themes/layout.css">
     <!-- Font Awesome Icon -->
-    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
-    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
-
+    <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
 </head>
 
 <body>
@@ -39,10 +38,10 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo mr-5" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo-mini" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -53,7 +52,7 @@
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
                                 <p class="p-1 mb-0">Hi! Tita Karlita</p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
@@ -64,7 +63,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="index.php" class="dropdown-item">
+                            <a href="login.php" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -113,20 +112,19 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
-                    <!-- Tabel LKPT  -->
+                    <!-- Tabel 3.a.1 kecukupan dosen perguruan tinggi -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
-                                    <div class="d-flex flex-row align-items-center mb">
-                                        <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
-                                            Perguruan Tinggi
-                                            <!-- <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
-                                                class="btn btn-sm btn-primary btn-icon-text ml-2">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Tambah Data
-                                            </a> -->
+                                    <div class="d-flex justify-content-between">
+                                        <p class="card-title">Tabel 3.a.1 Kecukupan Dosen Perguruan Tinggi
+                                            <a href="daftar_tabel.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                Daftar Tabel
+                                            </a>
+
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#exampleModal">
@@ -141,6 +139,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
                                                             </h3>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -149,19 +148,13 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <?php
-                                                           
-                                                            echo '<div class="skor">';
-                                                            // echo '<h5>Status Data:</h5>';
-                                                            echo '<p>Data Lengkap: ' .$total_data_lengkap. '</p>';
-                                                            echo '<p>Data Tidak Lengkap: ' .$total_data_tidaklengkap. '</p>';
-                                                            echo '<p>Data Tidak Tersedia: ' .$total_data_tidaktersedia. '</p>';
-                                                            echo '</div>';
-                                                            echo '<div class="skor">';
-                                                            // echo '<h5>Sumber:</h5>';
-                                                            echo '<p>Data DB MIS: ' .$total_data_mis. '</p>';
-                                                            echo '<p>Data Dummy: ' .$total_data_dummy. '</p>';                            
-                                                            echo '</div>';
-                                                            ?>
+                                                           echo '<div class="skor">';
+                                                           echo '<p>Jumlah Dosen Tetap: '. $total_dosen_tetap .'</p>';
+                                                           echo '<p>Jumlah Program Studi: '. $total_prodi .'</p>';
+                                                           echo '<p>Rasio Dosen Tetap: '. $rasio_dosen .'</p>';
+                                                           echo '<p>Skor Tabel Rasio Dosen: '. $skor_rasio_dosen .'</p>';
+                                                           echo '</div>';
+                                                           ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -170,65 +163,51 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- End Modal -->
-                                        </p>
-
-
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
+                                                  
+
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
-                                                                <th>Judul Tabel</th>
-                                                                <th>Nama Sheet</th>
-                                                                <th>Status Data</th>
-                                                                <th>Sumber Data</th>
-                                                                <th>Edit</th>
-                                                                
-                                                               
+                                                                <th>Departemen</th>
+                                                                <th>Doktor/Doktor Terapan</th>
+                                                                <th>Magister/ Magister Terapan</th>
+                                                                <th>Profesi</th>
+                                                                <th>Jumlah</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data_lkpt as $row) {
+                                                        foreach ($dosen_tetap as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['NO'] . '</td>';
-                                                            echo '<td>' . $row['JUDUL'] . '</td>';
-                                                            echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
-                                                            echo '<td>' . $row['STATUS'] . '</td>';
-                                                            echo '<td>' . $row['SUMBER'] . '</td>';
-
-                                                
-                                                            // Edit Data
-                                                            echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
-                                                            echo '<i class="fa-solid fa-pencil"></i>';
-                                                            echo '</a>';
-                                                            echo '</td>';   
-                                                        
-                                                            // End Edit
-                                                           // Hapus Data
-                                                            //    echo '<td>';
-                                                            //     echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
-                                                            //     echo '<input type="hidden" name="_method" value="DELETE">';
-                                                            //     echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                            //     echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                            //     echo '<i class="fa-solid fa-trash"></i>';
-                                                            //     echo '</button>';
-                                                            //     echo '</form>';
-                                                            //     echo '</td>';
-                                                            // Hapus Data
+                                                            echo '<td>' . $row['NOMOR'] . '</td>';
+                                                            echo '<td>' . $row['DEPARTEMEN'] . '</td>';
+                                                            echo '<td>' . $row['Doktor/Doktor Terapan'] . '</td>';
+                                                            echo '<td>' . $row['Magister/Magister Terapan'] . '</td>';
+                                                            echo '<td>' . $row['PROFESI'] . '</td>';
+                                                            // Total Query
+                                                            $sum_jumlah = intval($row['Doktor/Doktor Terapan']) + intval($row['Magister/Magister Terapan']) + intval($row['PROFESI']);
+                                                            echo '<td>' . $sum_jumlah . '</td>';
                                                             echo '</tr>';
-                                                           
                                                         }
+                                                       
+
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>'. $doktor .'</td>';
+                                                        echo '<td>'. $magister . '</td>';
+                                                        echo '<td>'. $profesi .'</td>';
+                                                        echo '<td>'. $jumlah . '</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';
-
-                                                  
+                                                    
+                                                    
                                                     ?>
                                             </div>
                                         </div>
@@ -238,7 +217,7 @@
                                         <div class="pagination-container">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary active">
+                                                    class="btn btn-outline-primary">
                                                     Daftar Tabel
                                                 </a>
                                                 <a href="1a1.php" type="button" class="btn btn-outline-primary">
@@ -265,7 +244,7 @@
                                                 <a href="2c.php" type="button" class="btn btn-outline-primary">
                                                     2c
                                                 </a>
-                                                <a href="3a1.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3a1.php" type="button" class="btn btn-outline-primary active">
                                                     3a1
                                                 </a>
                                                 <a href="3a2.php" type="button" class="btn btn-outline-primary">
@@ -357,7 +336,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
+                    <!-- Tabel 3.a.1 kecukupan dosen perguruan tinggi -->
+
 
                 </div>
                 <!-- content-wrapper ends -->
@@ -377,63 +357,31 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
     <!-- container-scroller -->
-    <script src="themes/layout.js"></script>
+    <script src="../themes/layout.js"></script>
+
+    <!-- container-scroller -->
+    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="vendors/chart.js/Chart.min.js"></script>
-    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="js/dataTables.select.min.js"></script>
-
+    <script src="../vendors/chart.js/Chart.min.js"></script>
+    <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../js/dataTables.select.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/hoverable-collapse.js"></script>
-    <script src="js/template.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/todolist.js"></script>
+    <script src="../js/off-canvas.js"></script>
+    <script src="../js/hoverable-collapse.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="js/dashboard.js"></script>
-    <script src="js/Chart.roundedBarCharts.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
-
-    <script>
-        function confirmAndRedirect(message, redirectUrl) {
-            if (confirm(message)) {
-                window.location.href = redirectUrl;
-                return true;
-            }
-            return false;
-        }
-
-        // Access the redirect URL from the JSON response
-        var response = < ? php echo json_encode(array('Redirect' =>
-            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
-        var redirectUrl = response.Redirect;
-
-        // Perform redirection if the redirect URL is provided
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
-    </script>
-
-
-
 </body>
 
 </html>

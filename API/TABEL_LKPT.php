@@ -94,7 +94,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($success) {
             // Response Sukse
             http_response_code(200);
-            header('Location: https://project.mis.pens.ac.id/mis143/daftar_tabel.php');
+            header('Location: https://project.mis.pens.ac.id/mis143/View/daftar_tabel.php');
             // echo json_encode(array('Pesan' => 'Data Berhasil Ditambahkan'));
         } else {
             // Response Error 
@@ -122,7 +122,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($success) {
             // Response Sukses
             http_response_code(200);
-            header('Location: https://project.mis.pens.ac.id/mis143/daftar_tabel.php');
+            header('Location: https://project.mis.pens.ac.id/mis143/View/daftar_tabel.php');
         } else {
             // Error Response
             http_response_code(500);

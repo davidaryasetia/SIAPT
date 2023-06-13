@@ -1,5 +1,5 @@
 <?php
-include 'Controller/nilai_3a3.php';
+include '../Controller/nilai_3a2.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,28 +10,26 @@ include 'Controller/nilai_3a3.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Daftar Tabel</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/feather/feather.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/feather/feather.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="../js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-    <link rel="stylesheet" type="text/css" href="themes/layout.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" type="text/css" href="../themes/layout.css">
     <!-- Font Awesome Icon -->
-    <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
-    <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="../includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
-    <link rel="shortcut icon" href="includes/contents/Image/logo_svg.svg" />
-
-
+    <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
 </head>
 
 <body>
@@ -40,10 +38,10 @@ include 'Controller/nilai_3a3.php';
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo mr-5" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
+                <a href="beranda.php" class="navbar-brand brand-logo-mini" href="index.html">
+                    <img src="../includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -54,7 +52,7 @@ include 'Controller/nilai_3a3.php';
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
                                 <p class="p-1 mb-0">Hi! Tita Karlita</p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
@@ -114,13 +112,13 @@ include 'Controller/nilai_3a3.php';
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <!-- Tabel 3.a.3 Sertifikasi Dosen -->
+                    <!-- Tabel 3.a.2 Jabatan Akademik Dosen Tetap -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Tabel 3.a.3 Sertifikasi Dosen
+                                        <p class="card-title">Tabel 3.a.2 Jabatan Akademik Dosen Tetap
                                             <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
                                                 <i class="fa-solid fa-arrow-left"></i>
@@ -150,11 +148,11 @@ include 'Controller/nilai_3a3.php';
                                                         <div class="modal-body">
                                                             <?php
                                                             echo '<div class="skor">';
-                                                            echo '<p>Jumlah Dosen Tetap bersertifikasi '.$total_dosen_bersertifikasi.'</p>';
-                                                            echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
-                                                            echo '<p>Presentase Dosen Yang Memiliki Sertifikat Bilangan Bulat :'.$presentase_dosen_bersertifikat.'</p>';
-                                                            echo '<p>Presentase Dosen Tetap Yang Memiliki Sertifikat (%) :' .$presentase_dosen_bersertifikat *100 . '%</p>';
-                                                            echo '<p>Skor Tabel :'.$skor_dosen_bersertifikat.'</p>';
+                                                            echo '<p>Jumlah Dosen Tetap Yang Memiliki Jabatan Fungsional: ' .$total_jabatan_fungsional_dosen. '</p>';
+                                                            echo '<p>Jumlah Dosen Tetap: ' .$total_dosen_tetap. '</p>';
+                                                            echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .$presentase_jabatanfungsional_dosen. '</p>';
+                                                            echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .($presentase_jabatanfungsional_dosen*100) . '%</p>';
+                                                            echo '<p>Skoor Tabel Jabatan Fungsional Dosen: ' .$skor_tabel_jabatan_fungsional. '</p>';
                                                             echo '</div>';
                                                            ?>
                                                         </div>
@@ -166,50 +164,57 @@ include 'Controller/nilai_3a3.php';
                                                 </div>
                                             </div>
                                             <!-- End Modal -->
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
-
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
-                                                                <th>Departemen/Jurusan</th>
-                                                                <th>Jumlah Dosen</th>
-                                                                <th>Jumlah Dosen Bersertifikat</th>
+                                                                <th>Pendidikan </th>
+                                                                <th>Guru Besar</th>
+                                                                <th>Lektor Kepala</th>
+                                                                <th>Lektor</th>
+                                                                <th>Asisten Ahli</th>
+                                                                <th>Tenaga Pengajar</th>
                                                                 <th>Total</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($dosen_bersertifikasi as $row) {
+                                                        foreach ($jabatan_akademik as $row) {
                                                             echo '<tr>';
-                                                            echo '<td>' . $row['NOMOR'] . '</td>';
-                                                            echo '<td>' . $row['Departemen/Jurusan'] . '</td>';
-                                                            echo '<td>' . $row['Jumlah Dosen'] . '</td>';
-                                                            echo '<td>' . $row['Jumlah Dosen Bersertifikat'] . '</td>';
-                                                            // Total Query 
-                                                            $total =  intval($row['Jumlah Dosen']) + intval($row['Jumlah Dosen Bersertifikat']);
-                                                            echo '<td>' .$total. '</td>';
+                                                            echo '<td>' . $row['Nomor'] . '</td>';
+                                                            echo '<td>' . $row['Pendidikan'] . '</td>';
+                                                            echo '<td>' . $row['Guru Besar'] . '</td>';
+                                                            echo '<td>' . $row['Lektor Kepala'] . '</td>';
+                                                            echo '<td>' . $row['Lektor'] . '</td>';
+                                                            echo '<td>' . $row['Asisten Ahli'] . '</td>';
+                                                            echo '<td>' . $row['Tenaga Pengajar'] . '</td>';
+                                                            // Total Query
+                                                            $sum_jumlah = intval($row['Guru Besar']) + intval($row['Lektor Kepala']) + intval($row['Lektor']) + intval($row['Asisten Ahli'] + intval($row['Tenaga Pengajar']));
+                                                            echo '<td>' . $sum_jumlah . '</td>';
                                                             echo '</tr>';
                                                         }
 
                                                       
-                                                           // Tambah Row Data
-                                                           echo '<tr class="table-row">'; 
-                                                           echo '<td colspan="2"><p class="total">Total</p>';
-                                                           echo '<td>' .$total_dosen. '</td>';
-                                                           echo '<td>' .$total_dosen_bersertifikasi. '</td>';
-                                                           echo '<td>' .$total_baris. '</td>';
-                                                           echo '</td>';
-                                                           echo '<tr>'; 
+                                                        // Tambah Row Data
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                        echo '<td>' .$guru_besar. '</td>';
+                                                        echo '<td>' .$lektor_kepala. '</td>';
+                                                        echo '<td>' .$lektor. '</td>';
+                                                        echo '<td>' .$asisten_ahli. '</td>';
+                                                        echo '<td>' .$tenaga_pengajar. '</td>';
+                                                        echo '<td>' .$jumlah. '</td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';
 
-                                                  
                                                    
+
                                                     ?>
                                             </div>
                                         </div>
@@ -249,10 +254,10 @@ include 'Controller/nilai_3a3.php';
                                                 <a href="3a1.php" type="button" class="btn btn-outline-primary">
                                                     3a1
                                                 </a>
-                                                <a href="3a2.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3a2.php" type="button" class="btn btn-outline-primary active">
                                                     3a2
                                                 </a>
-                                                <a href="3a3.php" type="button" class="btn btn-outline-primary active">
+                                                <a href="3a3.php" type="button" class="btn btn-outline-primary">
                                                     3a3
                                                 </a>
                                                 <a href="3a4.php" type="button" class="btn btn-outline-primary">
@@ -338,7 +343,7 @@ include 'Controller/nilai_3a3.php';
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.a.3 Sertifikasi Dosen-->
+                    <!-- Tabel 3.a.2 Jabatan Akademik Dosen Tetap -->
 
 
                 </div>
@@ -360,29 +365,29 @@ include 'Controller/nilai_3a3.php';
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-    <script src="themes/layout.js"></script>
+    <script src="../themes/layout.js"></script>
 
-
+    <!-- container-scroller -->
+    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="vendors/chart.js/Chart.min.js"></script>
-    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="js/dataTables.select.min.js"></script>
-
+    <script src="../vendors/chart.js/Chart.min.js"></script>
+    <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../js/dataTables.select.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/hoverable-collapse.js"></script>
-    <script src="js/template.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/todolist.js"></script>
+    <script src="../js/off-canvas.js"></script>
+    <script src="../js/hoverable-collapse.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="js/dashboard.js"></script>
-    <script src="js/Chart.roundedBarCharts.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
 </body>
 

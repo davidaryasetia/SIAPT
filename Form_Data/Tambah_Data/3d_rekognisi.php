@@ -29,7 +29,7 @@
     <script>
         function redirectToRekognisiDosen() {
             window.location.href =
-                "https://project.mis.pens.ac.id/mis143/3d.php";
+                "https://project.mis.pens.ac.id/mis143/View/3d.php";
         }
     </script>
 
@@ -239,7 +239,7 @@
                                                         <button type="submit" class="btn btn-primary mr-2">
                                                             Submit
                                                         </button>
-                                                        <a href="../../3d.php" class="btn btn-light">Cancel</a>
+                                                        <a href="../../View/3d.php" class="btn btn-light">Cancel</a>
                                                     </form>
                                                 </div>
                                             </div>

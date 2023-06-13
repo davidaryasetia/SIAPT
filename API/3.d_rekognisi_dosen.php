@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
         if($success){
             // Response sukse
             http_response_code(200);
-            header('Location:https://project.mis.pens.ac.id/mis143/3d.php');
+            header('Location:https://project.mis.pens.ac.id/mis143/View/3d.php');
             // echo json_encode(array('Pesan' => 'Data Berhasil di edit'));
         }else{
             // Response error
@@ -118,7 +118,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
         if ($success) {
             // Response Sukses
             // http_response_code(200);
-            header('Location: https://project.mis.pens.ac.id/mis143/3d.php');
+            header('Location: https://project.mis.pens.ac.id/mis143/View/3d.php');
         } else {
             // Error Response
             http_response_code(500);
