@@ -122,11 +122,11 @@
                                     <div class="d-flex flex-row align-items-center mb">
                                         <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
                                             Perguruan Tinggi
-                                            <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
+                                            <!-- <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Tambah Data
-                                            </a>
+                                            </a> -->
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#exampleModal">
