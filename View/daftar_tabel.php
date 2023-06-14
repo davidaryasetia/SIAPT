@@ -121,7 +121,7 @@
                                     <div class="d-flex flex-row align-items-center mb">
                                         <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
                                             Perguruan Tinggi
-                                            <!-- <a href="Form_Data\Tambah_Data\daftar_tabel.php" type="button"
+                                            <!-- <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Tambah Data
@@ -204,21 +204,22 @@
                                                 
                                                             // Edit Data
                                                             echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Form_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
+                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
                                                             echo '<i class="fa-solid fa-pencil"></i>';
                                                             echo '</a>';
-                                                            echo '</td>';      
+                                                            echo '</td>';   
+                                                        
                                                             // End Edit
                                                            // Hapus Data
-                                                               echo '<td>';
-                                                                echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
-                                                                echo '<input type="hidden" name="_method" value="DELETE">';
-                                                                echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                                echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                                echo '<i class="fa-solid fa-trash"></i>';
-                                                                echo '</button>';
-                                                                echo '</form>';
-                                                                echo '</td>';
+                                                            //    echo '<td>';
+                                                            //     echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
+                                                            //     echo '<input type="hidden" name="_method" value="DELETE">';
+                                                            //     echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
+                                                            //     echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
+                                                            //     echo '<i class="fa-solid fa-trash"></i>';
+                                                            //     echo '</button>';
+                                                            //     echo '</form>';
+                                                            //     echo '</td>';
                                                             // Hapus Data
                                                             echo '</tr>';
                                                            
@@ -375,6 +376,19 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
+    <!-- Start JS Script -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <!-- container-scroller -->
+    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

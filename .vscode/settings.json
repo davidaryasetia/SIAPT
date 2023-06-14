@@ -15,5 +15,6 @@
       "group": "mysql",
       "connectionTimeout": 3000
     }
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }
