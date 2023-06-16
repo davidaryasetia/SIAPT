@@ -1,10 +1,8 @@
-<?php
-include '../Controller/nilai_2b.php';
-?>
-
 <!DOCTYPE html>
+<html>
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,11 +28,15 @@ include '../Controller/nilai_2b.php';
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+
 </head>
 
 <body>
-    <div class="container-scroller">
+    <?php
+    include '../Controller/nilai_2b.php';
+?>
 
+    <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -125,37 +127,75 @@ include '../Controller/nilai_2b.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                                <i class="fa-solid fa-info mr-2"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
-
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
-                                                            </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
                                                         <div class="modal-body">
+                                                            <h3 class="modal-title " style="font-weight:bolder"
+                                                                id="exampleModalLabel">
+                                                                Keterangan Nilai Tabel 2.b
+                                                            </h3>
                                                             <?php
-                                                           echo '<div class="skor">';
-                                                           echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
-                                                           echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : ' . $total_mahasiswa_aktif.'</p>';
-                                                           echo '<p>Presentase Mahasiswa Asing Bilangan Bulat :' .$presentase_mahasiswa .'</p>';
-                                                           echo '<p>Presentase Mahasiswa (%) :' .$presentase_mahasiswa * 100 .'%</p>';
-                                                           echo '<p>Skor Tabel :'. $skor_mahasiswa_asing.'</p>';
-                                                           echo '</div>';
+                                                            echo '<div class="skor">';
+                                                            echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
+                                                            echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : ' . $total_mahasiswa_aktif.'</p>';
+                                                            echo '<p>Presentase Mahasiswa Asing :' .$presentase_tabel_2b .'%</p>';
+                                                            echo '<p>Skor Tabel :'. $skor_tabel_2b.'</p>';
+                                                            echo '<p>Keterangan :<br>'. $keterangan.'</p>';
+                                                            echo '</div>';
                                                            ?>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <hr>
+                                                            <h3 class="modal-title " style="font-weight:bolder"
+                                                                id="exampleModalLabel">
+                                                                Simulasi Nilai Tabel 2.b
+                                                            </h3>
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="nilai_mahasiswa_asing">Jumlah
+                                                                        Mahasiswa
+                                                                        Asing 3 Tahun
+                                                                        Terakhir</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="nilai_mahasiswa_asing"
+                                                                        name="nilai_mahasiswa_asing"
+                                                                        placeholder="Masukkan Jumlah Mahasiswa Asing"
+                                                                        value="<?php echo $total_mahasiswa_asing; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="nilai_mahasiswa_aktif">Jumlah
+                                                                        Mahasiswa
+                                                                        Aktif 3 Tahun
+                                                                        Terakhir</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="nilai_mahasiswa_aktif"
+                                                                        name="nilai_mahasiswa_aktif"
+                                                                        placeholder="Masukkan Jumlah Mahasiswa Aktif"
+                                                                        value="<?php echo $total_mahasiswa_aktif; ?>" />
+                                                                </div>
+
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 2.b</h4>';
+                                                            echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir : <span id="mahasiswa_asing">' .$total_mahasiswa_asing. '</span></p>';
+                                                            echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Ter     akhir : <span id="mahasiswa_aktif">' .$total_mahasiswa_aktif. '</span></p>';
+                                                            echo '<p>Presentase Mahasiswa Asing: <span id="simulasi_presentase">' .$presentase_tabel_2b. '</span>%</p>';
+                                                            echo '<p>Skoor Mahasiswa Asing: <span id="simulasi_skor">' .$skor_tabel_2b. '</span></p>';
+                                                            echo '<p>Keterangan Skoor:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
+                                                            echo '</div>';
+                                                            ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -165,7 +205,9 @@ include '../Controller/nilai_2b.php';
                                                 </div>
                                             </div>
                                             <!-- End Modal -->
+
                                         </p>
+
                                     </div>
 
                                     <div class="row">
@@ -205,6 +247,7 @@ include '../Controller/nilai_2b.php';
                                                     
                                                     ?>
                                             </div>
+
                                         </div>
                                     </div>
                                     <!-- Start Pagination -->
@@ -219,7 +262,7 @@ include '../Controller/nilai_2b.php';
                                                     1a1
                                                 </a>
                                                 <a href="1a2.php" type="button" class="btn btn-outline-primary">
-                                                    1a2
+                                                    1a2yyy
                                                 </a>
                                                 <a href="1a3.php" type="button" class="btn btn-outline-primary">
                                                     1a3
@@ -354,6 +397,7 @@ include '../Controller/nilai_2b.php';
     </div>
     <!-- container-scroller -->
     <script src="../themes/layout.js"></script>
+
 
     <!-- container-scroller -->
     <!-- plugins:js -->

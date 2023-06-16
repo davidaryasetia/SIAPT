@@ -136,25 +136,22 @@ include '../Controller/nilai_2c.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
+                                                        <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
                                                                 Nilai
                                                             </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
+
                                                             <?php
                                                            echo '<div class="skor">';
                                                            echo '<p> Jumlah Kredit Matakuliah Praktikum/praktik/praktik kerja lapangan: '. $total_kredit_praktik .'</p>';
                                                            echo '<p>Jumlah Kredit Seluruh Matakuliah: ' .$total_seluruh_kredit.'</p>';
-                                                           echo '<p>Presentase Jumlah Kredit Matakuliah Bilangan Bulat :' .$presentase_kredit_matakuliah .'</p>';
+                                                        //    echo '<p>Presentase Jumlah Kredit Matakuliah Bilangan Bulat :' .$presentase_kredit_matakuliah .'</p>';
                                                            echo '<p>Presentase Jumlah Kredit Matakuliah (%) :' .$presentase_kredit_matakuliah * 100 .'%</p>';
                                                            echo '<p>Skor Tabel :'.$skor_kredit_matakuliah.'</p>';
+                                                           echo '<p>Keterangan :'.$skor_kredit_matakuliah.'</p>';
                                                            echo '</div>';
                                                            ?>
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

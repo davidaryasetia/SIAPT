@@ -1,6 +1,7 @@
-<?
-// include '../Controller/nilai_3c1.php';
+<?php
+include '../Controller/nilai_3c1.php';
 ?>
+
 <!DOCTYPE html>
 
 <head>
@@ -111,13 +112,13 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen -->
+                    <!-- Tabel 3.c.2 Produktivitas Pkm Dosen -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Tabel 3.c.1 Produktivitas Penelitian Dosen
+                                        <p class="card-title">Tabel 3.c.2 Produktivitas Pkm Dosen
                                             <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
                                                 <i class="fa-solid fa-arrow-left"></i>
@@ -147,14 +148,14 @@
                                                         <div class="modal-body">
                                                             <?php
                                                              echo '<div class="skor">';
-                                                             echo '<p>Jumlah penelitian dengan biaya luar negeri dalam 3 tahun terakhir '.$null.'</p>';
-                                                             echo '<p>Jumlah penelitian dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$null.'</p>';
-                                                             echo '<p>Jumlah penelitian dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$total_penelitian.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$null.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$null.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$total_penelitian.'</p>';
                                                              echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
-                                                             echo '<p>Rata-Rata penelitian dengan biaya luar negeri dalam 3 tahun terakhir '.$rata_penelitan_lugri.'</p>';
-                                                             echo '<p>Rata-Rata penelitian dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$rata_penelitan_dagri.'</p>';
-                                                             echo '<p>Rata-Rata penelitian dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$rata_penelitian_biaya_mandiri.'</p>';
-                                                             echo '<p>Skor Tabel Penlitian: '.$skor_tabel_penelitian.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$rata_pkm_lugri.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$rata_penelitian_dagri.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$rata_penelitian_biaya_mandiri.'</p>';
+                                                             echo '<p>Skor Tabel PKM: '.$skor_tabel_penelitian.'</p>';
                                                              echo '</div>';
                                                            ?>
                                                         </div>
@@ -172,15 +173,15 @@
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               include 'Controller/nilai_3c1.php';
+                                               
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>Nomor</th>
                                                                 <th>Sumber Pembiayaan</th>
                                                                 <th>TS-2(2017)</th>
-                                                                <th>TS-1(2028)</th>
-                                                                <th>TS(2019)</th>    
+                                                                <th>TS-1(2018)</th>
+                                                                <th>TS(2020)</th>    
                                                                 <th>Total</th>    
                                                             </tr>';
                                                         echo '</thead>';
@@ -192,15 +193,14 @@
                                                             echo '<td>' . $row['TS-2(2017)'] . '</td>';
                                                             echo '<td>' . $row['TS-1(2018)'] . '</td>';
                                                             echo '<td>' . $row['TS(2019)'] . '</td>';
-                                                           
-                                                            echo '<td>'. $total_penelitian . '</td>';
+                                                             // Total Query
+                                                             
+                                                             echo '<td>'. $total_penelitian . '</td>';
                                                             echo '</tr>';
                                                         }
-
                                                          // Start Dummy Kolom
                                                          echo '<tr>';
-                                                         $kolom_2=2; $nama_2="Lembaga Dalam Negeri(Diluar PT)";
-                                                         $null=0;
+                                                         
                                                             echo '<td>' . $kolom_2 . '</td>';
                                                             echo '<td>' . $nama_2 . '</td>';
                                                             echo '<td>' . $null . '</td>';
@@ -226,7 +226,7 @@
                                                         echo '<td>' . $row['TS-2(2017)'] . '</td>';
                                                         echo '<td>' . $row['TS-1(2018)'] . '</td>';
                                                         echo '<td>' . $row['TS(2019)'] . '</td>';
-                                                        echo '<td>'.$total_penelitian.'</td>';                                       
+                                                        echo '<td>'.$total_penelitian  .'</td>';                                       
                                                         echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';
@@ -282,10 +282,10 @@
                                                 <a href="3b.php" type="button" class="btn btn-outline-primary">
                                                     3b
                                                 </a>
-                                                <a href="3c1.php" type="button" class="btn btn-outline-primary active">
+                                                <a href="3c1.php" type="button" class="btn btn-outline-primary">
                                                     3c1
                                                 </a>
-                                                <a href="3c2.php" type="button" class="btn btn-outline-primary">
+                                                <a href="3c2.php" type="button" class="btn btn-outline-primary active">
                                                     3c2
                                                 </a>
                                                 <a href="3d.php" type="button" class="btn btn-outline-primary">
@@ -359,7 +359,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.c.1 Produktivitas Penelitian Dosen-->
+                    <!-- Tabel 3.c.2 Produktivitas Pkm Dosen-->
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->

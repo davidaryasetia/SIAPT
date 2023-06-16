@@ -155,7 +155,7 @@
                                                                 placeholder="Nama Sheet" value="<?php echo $sheet ?>" />
                                                         </div>
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-6">
                                                                 <label for="status">Status Data</label>
                                                                 <select class="form-control" id="status" name="status">
                                                                     <option value="">Pilih Kategori Data</option>

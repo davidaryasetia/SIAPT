@@ -1,7 +1,3 @@
-<?php
- include "../Controller/daftar_tabel.php";
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,6 +29,23 @@
 </head>
 
 <body>
+    <?php
+    include "../Controller/daftar_tabel.php";
+    include "../Controller/daftar_tabel.php";
+    include "../Controller/nilai_2b.php";
+    include "../Controller/nilai_2c.php";
+    include "../Controller/nilai_3a1.php";
+    include "../Controller/nilai_3a2.php";
+    include "../Controller/nilai_3a3.php";
+    include "../Controller/nilai_3a4.php";
+    include "../Controller/nilai_3b.php";
+    include "../Controller/nilai_3c1.php";
+    include "../Controller/nilai_3c2.php";
+    include "../Controller/nilai_3d.php";
+    include "../Controller/nilai_5b1.php";
+    include "../Controller/nilai_5b2.php";
+
+?>
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -121,7 +134,7 @@
                                     <div class="d-flex flex-row align-items-center mb">
                                         <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
                                             Perguruan Tinggi
-                                            <!-- <a href="Function_Data\Tambah_Data\daftar_tabel.php" type="button"
+                                            <!-- <a href="../Form_Data/Tambah_Data/daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Tambah Data
@@ -178,7 +191,6 @@
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
                                                 echo '<table class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -188,29 +200,41 @@
                                                                 <th>Status Data</th>
                                                                 <th>Sumber Data</th>
                                                                 <th>Edit</th>
-                                                                
-                                                               
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
                                                         foreach ($data_lkpt as $row) {
+                                                            
                                                             echo '<tr>';
                                                             echo '<td>' . $row['NO'] . '</td>';
                                                             echo '<td>' . $row['JUDUL'] . '</td>';
                                                             echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
-                                                            echo '<td>' . $row['STATUS'] . '</td>';
-                                                            echo '<td>' . $row['SUMBER'] . '</td>';
+                                                            
+                                                            // Check Value Status and set text color 
+                                                            if($row['STATUS']=='Data Lengkap'){
+                                                                echo '<td style="color:green;">' .$row['STATUS'].'</td>';
+                                                            }else if($row['STATUS']=='Data Tidak Lengkap'){
+                                                                echo '<td style="color:yellow;">' .$row['STATUS']. '</td>';
+                                                            }else {
+                                                                echo '<td style="color:red">' .$row['STATUS']. '</td>';
+                                                            }
 
-                                                
+                                                            // Check Value Sumber dan set text color 
+                                                            if($row['SUMBER']=='Data DB MIS'){
+                                                                echo '<td style="color:green;">' .$row['SUMBER']. '</td>';
+                                                            }else {
+                                                                echo '<td style="color:red;">' .$row['SUMBER']. '</td>';
+                                                            }
+
                                                             // Edit Data
                                                             echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Function_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
+                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Form_Data/Edit_Data/daftar_tabel.php?no=' . $row['NO'] . '" class="btn-icon">';
                                                             echo '<i class="fa-solid fa-pencil"></i>';
                                                             echo '</a>';
-                                                            echo '</td>';   
-                                                        
+                                                            echo '</td>';                       
                                                             // End Edit
-                                                           // Hapus Data
+
+                                                            // Hapus Data
                                                             //    echo '<td>';
                                                             //     echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">';
                                                             //     echo '<input type="hidden" name="_method" value="DELETE">';

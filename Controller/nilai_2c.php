@@ -32,7 +32,7 @@
  $total_kredit_praktik = $total_praktikum+$total_praktik+$total_pkl;
  $total_seluruh_kredit = $total_teori+$total_praktikum+$total_praktik+$total_pkl;
  $presentase_kredit_matakuliah = ($total_kredit_praktik/$total_seluruh_kredit)*1;
- $presentase_kredit_matakuliah = number_format($presentase_kredit_matakuliah, 3);
+ $presentase_kredit_matakuliah = number_format($presentase_kredit_matakuliah, 1);
  
  
  // Hitung Skoor $skor_kredit_matakuliah
@@ -45,4 +45,6 @@
  }
  
  $skor_kredit_matakuliah = number_format($skor_kredit_matakuliah, 1);
+
+ 
 ?>
