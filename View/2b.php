@@ -128,6 +128,11 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="simulasi_test.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text ml-2">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Data
+                                            </a>
 
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
@@ -162,19 +167,7 @@
                                                                 id="exampleModalLabel">
                                                                 Simulasi Nilai Tabel 2.b
                                                             </h3>
-                                                            <button id="tooltip" role="tooltip">Tooltip</button>
-                                                            <!-- Development version -->
-                                                            <script
-                                                                src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js">
-                                                            </script>
-                                                            <script>
-                                                                const tooltip = document.querySelector('#tooltip');
 
-                                                                // magic positioning for you:
-                                                                Popper.createPopper(tooltip, {
-                                                                    placement: 'right',
-                                                                });
-                                                            </script>
                                                             <form class="forms-sample" id="form-container">
                                                                 <div class="form-group">
                                                                     <label for="nilai_mahasiswa_asing">Jumlah
