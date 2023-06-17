@@ -148,7 +148,7 @@
                                                             echo '<div class="skor">';
                                                             echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
                                                             echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : ' . $total_mahasiswa_aktif.'</p>';
-                                                            echo '<p>Presentase Mahasiswa Asing :' .$presentase_tabel_2b .'%</p>';
+                                                            echo '<p>Presentase Mahasiswa Asing' .$presentase_tabel_2b .'%</p>';
                                                             echo '<p>Skor Tabel :'. $skor_tabel_2b.'</p>';
                                                             echo '<p>Keterangan :<br>'. $keterangan.'</p>';
                                                             echo '</div>';
@@ -262,7 +262,7 @@
                                                     1a1
                                                 </a>
                                                 <a href="1a2.php" type="button" class="btn btn-outline-primary">
-                                                    1a2yyy
+                                                    1a2
                                                 </a>
                                                 <a href="1a3.php" type="button" class="btn btn-outline-primary">
                                                     1a3
