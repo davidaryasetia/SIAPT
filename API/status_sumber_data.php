@@ -141,6 +141,30 @@ function jumlah_rekognisi(){
     echo json_encode($hasil);
 }
 
+// API endpoint 6 -> Tampil Sheet Pagination 
+function pagination(){
+    $database = new koneksi();
+
+    // Query tampil pagination 
+    $query = 'SELECT SHEET AS "Nama Sheet"
+    FROM TABEL_LKPT
+    ORDER BY 1';
+
+    // Eksekusi Query 
+    $hasil = $database->executeQuery($query);
+
+    // Set response 200 ok 
+    http_response_code(200);
+
+    // Set header parse to json
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+
+    // Output result json 
+    echo json_encode($hasil);
+
+}
+
 // Route API ke titik akhir endpoint 
 if(isset($_GET['query'])){
     $query = $_GET['query'];
@@ -163,6 +187,9 @@ if(isset($_GET['query'])){
             break;
         case 'jumlah_rekognisi';
             jumlah_rekognisi();
+            break;
+        case 'pagination';
+            pagination();
             break;
             default;
             // Jika query parameter tidak valid maka return http 404 method not allowed

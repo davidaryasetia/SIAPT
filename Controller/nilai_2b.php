@@ -7,59 +7,59 @@
   $mahasiswa_asing = json_decode($response_asing, true);
   $mahasiswa_aktif = json_decode($response_aktif, true);
 
-       // Hitung Total TS-2(2017), TS-1(2018), TS(2019)
-       $sum_ts2 = 0;
-       $sum_ts1 = 0;
-       $sum_ts = 0;
-       foreach ($mahasiswa_asing as $row){
-           $sum_ts2 += $row['TS-2(2017)'];
-           $sum_ts1 += $row['TS-1(2018)'];
-           $sum_ts += $row['TS(2019)'];
-       }
+    // Hitung Total TS-2(2017), TS-1(2018), TS(2019)
+    $sum_ts2 = 0;
+    $sum_ts1 = 0;
+    $sum_ts = 0;
+    foreach ($mahasiswa_asing as $row){
+        $sum_ts2 += $row['TS-2(2017)'];
+        $sum_ts1 += $row['TS-1(2018)'];
+        $sum_ts += $row['TS(2019)'];
+    }
 
-       //Total Mahasiswa Asing dalam 3 tahun terakhir
-       $total_mahasiswa_asing=0;
-       foreach($mahasiswa_asing as $row){
-           $total_mahasiswa_asing += $row['TS-2(2017)'] + $row['TS-1(2018)'] + $row['TS(2019)'];
-       }
+    //Total Mahasiswa Asing dalam 3 tahun terakhir
+    $total_mahasiswa_asing=0;
+    foreach($mahasiswa_asing as $row){
+        $total_mahasiswa_asing += $row['TS-2(2017)'] + $row['TS-1(2018)'] + $row['TS(2019)'];
+    }
 
-       //Total Mahasiswa Aktif dalam 3 tahun terakhir
-       $total_mahasiswa_aktif=0;
-       foreach($mahasiswa_aktif as $row){
-           $total_mahasiswa_aktif += $row['TS-2(2017)'] + $row['TS-1(2018)'] + $row['TS(2019)'];
-       }
+    //Total Mahasiswa Aktif dalam 3 tahun terakhir
+    $total_mahasiswa_aktif=0;
+    foreach($mahasiswa_aktif as $row){
+        $total_mahasiswa_aktif += $row['TS-2(2017)'] + $row['TS-1(2018)'] + $row['TS(2019)'];
+    }
 
-       /* 
-       No 19
-       Hitung Total Presentase Jumlah Mahasiswa Asing 
-       Rumus :
-       presentase_tabel_2b = (total_mhs_asing/total_mhs_aktif) * 100% [100% = 1]
-       Jika Presentase >= 0,5% skor = 4,
-       Jika presentase < 0,5% skor = 2 + (4 * presentase_tabel_2b)
-       Jika Presentase = 0% maka skor 1 || 0
-       */ 
-       $presentase_tabel_2b;
-       $skor_tabel_2b;
-       $presentase_tabel_2b = ($total_mahasiswa_asing/$total_mahasiswa_aktif) * 100 ;
-       $presentase_tabel_2b = number_format($presentase_tabel_2b, 1); // Limit Desimal Output 3 angka
+    /* 
+    No 19
+    Hitung Total Presentase Jumlah Mahasiswa Asing 
+    Rumus :
+    presentase_tabel_2b = (total_mhs_asing/total_mhs_aktif) * 100% [100% = 1]
+    Jika Presentase >= 0,5% skor = 4,
+    Jika presentase < 0,5% skor = 2 + (4 * presentase_tabel_2b)
+    Jika Presentase = 0% maka skor 1 || 0
+    */ 
+    $presentase_tabel_2b;
+    $skor_tabel_2b;
+    $presentase_tabel_2b = ($total_mahasiswa_asing/$total_mahasiswa_aktif) * 100 ;
+    $presentase_tabel_2b = number_format($presentase_tabel_2b, 1); // Limit Desimal Output 3 angka
 
-       // Hitung Skoor Tabel 2.b Mahasiswa Asing 
-       if($presentase_tabel_2b >= 0.5 ){  //[notes 0,5% = 0,5]
-           $skor_tabel_2b = 4;  
-       } else if($presentase_tabel_2b < 0.5 && $presentase_tabel_2b > 0){
-           $skor_tabel_2b = 2+(400 * ($presentase_tabel_2b/100));
-       } else {
-           $skor_tabel_2b=  0;
-       }
+    // Hitung Skoor Tabel 2.b Mahasiswa Asing 
+    if($presentase_tabel_2b >= 0.5 ){  //[notes 0,5% = 0,5]
+        $skor_tabel_2b = 4;  
+    } else if($presentase_tabel_2b < 0.5 && $presentase_tabel_2b > 0){
+        $skor_tabel_2b = 2+(400 * ($presentase_tabel_2b/100));
+    } else {
+        $skor_tabel_2b=  0;
+    }
 
-       $keterangan='txt';
-       if($skor_tabel_2b == 4){
-        $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 2.b Mahasiswa Asing telah mencapai Maksimal</span>';
-       }else if($skor_tabel_2b < 4){
-        $keterangan = '<span style="color:yellow">Skor Tabel 2.b Mahasiswa Asing belum memenuhi target maksimal</span>';
-       }else {
-        $keterangan = '<span style="color:red">Skor Tabel 2.b Mahasiswa Asing Nol 0</span>';
-       }
+    $keterangan='txt';
+    if($skor_tabel_2b == 4){
+    $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 2.b Mahasiswa Asing telah mencapai Maksimal</span>';
+    }else if($skor_tabel_2b < 4){
+    $keterangan = '<span style="color:yellow">Skor Tabel 2.b Mahasiswa Asing belum memenuhi target maksimal</span>';
+    }else {
+    $keterangan = '<span style="color:red">Skor Tabel 2.b Mahasiswa Asing Nol 0</span>';
+    }
 
 /****************************************************************************************/
 /****************************************************************************************/

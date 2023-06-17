@@ -243,114 +243,20 @@ include '../Controller/nilai_3c1.php';
                                                     class="btn btn-outline-primary">
                                                     Daftar Tabel
                                                 </a>
-                                                <a href="1a1.php" type="button" class="btn btn-outline-primary">
-                                                    1a1
+                                                <?php
+                                                include '../Controller/daftar_tabel.php';
+                                                ?>
+                                                <?php
+                                                foreach($data_lkpt as $sheet) : ?>
+                                                <?php
+                                                $isActive = ($sheet['SHEET'] === '3c1');
+                                                $btnClass = $isActive ? 'btn btn-outline-primary active' : 'btn btn-outline-primary';
+                                                ?>
+                                                <a href="<?php echo $sheet['SHEET'] .'.php'; ?>" type="button"
+                                                    class="<?php echo $btnClass; ?>">
+                                                    <?php echo $sheet['SHEET'] ?>
                                                 </a>
-                                                <a href="1a2.php" type="button" class="btn btn-outline-primary">
-                                                    1a2
-                                                </a>
-                                                <a href="1a3.php" type="button" class="btn btn-outline-primary">
-                                                    1a3
-                                                </a>
-                                                <a href="1b.php" type="button" class="btn btn-outline-primary">
-                                                    1b
-                                                </a>
-                                                <a href="1c.php" type="button" class="btn btn-outline-primary">
-                                                    1c
-                                                </a>
-                                                <a href="2a.php" type="button" class="btn btn-outline-primary">
-                                                    2a
-                                                </a>
-                                                <a href="2b.php" type="button" class="btn btn-outline-primary">
-                                                    2b
-                                                </a>
-                                                <a href="2c.php" type="button" class="btn btn-outline-primary">
-                                                    2c
-                                                </a>
-                                                <a href="3a1.php" type="button" class="btn btn-outline-primary">
-                                                    3a1
-                                                </a>
-                                                <a href="3a2.php" type="button" class="btn btn-outline-primary">
-                                                    3a2
-                                                </a>
-                                                <a href="3a3.php" type="button" class="btn btn-outline-primary">
-                                                    3a3
-                                                </a>
-                                                <a href="3a4.php" type="button" class="btn btn-outline-primary">
-                                                    3a4
-                                                </a>
-                                                <a href="3b.php" type="button" class="btn btn-outline-primary">
-                                                    3b
-                                                </a>
-                                                <a href="3c1.php" type="button" class="btn btn-outline-primary">
-                                                    3c1
-                                                </a>
-                                                <a href="3c2.php" type="button" class="btn btn-outline-primary active">
-                                                    3c2
-                                                </a>
-                                                <a href="3d.php" type="button" class="btn btn-outline-primary">
-                                                    3d
-                                                </a>
-                                                <a href="4a.php" type="button" class="btn btn-outline-primary">
-                                                    4a
-                                                </a>
-                                                <a href="4b.php" type="button" class="btn btn-outline-primary">
-                                                    4b
-                                                </a>
-                                                <a href="5a1.php" type="button" class="btn btn-outline-primary">
-                                                    5a1
-                                                </a>
-                                                <a href="5a2.php" type="button" class="btn btn-outline-primary">
-                                                    5a2
-                                                </a>
-                                                <a href="5b1.php" type="button" class="btn btn-outline-primary">
-                                                    5b1
-                                                </a>
-                                                <a href="5b2.php" type="button" class="btn btn-outline-primary">
-                                                    5b2
-                                                </a>
-                                                <a href="5c1.php" type="button" class="btn btn-outline-primary">
-                                                    5c1
-                                                </a>
-                                                <a href="5c2.php" type="button" class="btn btn-outline-primary">
-                                                    5c2
-                                                </a>
-                                                <a href="Ref5d1d2e2.php" type="button" class="btn btn-outline-primary">
-                                                    Ref 5d1d2e2
-                                                </a>
-                                                <a href="5d1.php" type="button" class="btn btn-outline-primary">
-                                                    5d1
-                                                </a>
-                                                <a href="5d2.php" type="button" class="btn btn-outline-primary">
-                                                    5d2
-                                                </a>
-                                                <a href="Ref5e1.php" type="button" class="btn btn-outline-primary">
-                                                    Ref 5e1
-                                                </a>
-                                                <a href="5e1.php" type="button" class="btn btn-outline-primary">
-                                                    5e1
-                                                </a>
-                                                <a href="5e2.php" type="button" class="btn btn-outline-primary">
-                                                    5e2
-                                                </a>
-                                                <a href="5f.php" type="button" class="btn btn-outline-primary">
-                                                    5f
-                                                </a>
-                                                <a href="5g.php" type="button" class="btn btn-outline-primary">
-                                                    5g
-                                                </a>
-                                                <a href="5h1.php" type="button" class="btn btn-outline-primary">
-                                                    5h1
-                                                </a>
-                                                <a href="5h2.php" type="button" class="btn btn-outline-primary">
-                                                    5h2
-                                                </a>
-                                                <a href="5h3.php" type="button" class="btn btn-outline-primary">
-                                                    5h3
-                                                </a>
-                                                <a href="5h4.php" type="button" class="btn btn-outline-primary">
-                                                    5h4
-                                                </a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
                                     </div>
