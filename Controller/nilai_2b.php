@@ -55,17 +55,22 @@
     $keterangan='txt';
     if($skor_tabel_2b == 4){
     $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 2.b Mahasiswa Asing telah mencapai Maksimal</span>';
-    }else if($skor_tabel_2b < 4){
-    $keterangan = '<span style="color:yellow">Skor Tabel 2.b Mahasiswa Asing belum memenuhi target maksimal</span>';
+    }else if($skor_tabel_2b < 4 && $skor_tabel_2b > 0){
+    $keterangan = '<span style="color:orange">Skor Tabel 2.b Mahasiswa Asing belum memenuhi target maksimal</span>';
     }else {
     $keterangan = '<span style="color:red">Skor Tabel 2.b Mahasiswa Asing Nol 0</span>';
     }
 
-/****************************************************************************************/
-/****************************************************************************************/
-/****************************************************************************************/
+   
+
 ?>
 
+
+<!-- End Export Data -->
+
+
+
+<!-- Simulasi Skoor -->
 <!-- Hitung Skor Simulasi Mahasiswa Asing Menggunakan Javascript -->
 <script>
     // Mendapatkan input dari form nilai_mahasiswa_aktif dan nilai_mahasiswa_asing
@@ -105,11 +110,9 @@
                     '<span style="color:green">Skoor Simulasi tabel 2.b Telah Mencapai Hasil Maksimal</span>';
             } else if (nilai_simulasi_skor < 4 && nilai_simulasi_skor > 0) {
                 nilai_simulasi_keterangan =
-                    '<span style="color:yellow">Skoor Simulasi Tabel 2.b mencapai hasil maksimal (Tambah Mahasiswa Asing!)</span>';
-            } else if (nilai_simulasi_skor == 0) {
-                nilai_simulasi_keterangan = '<span style="color:red">Tidak terdapat Skoor 0 </span>';
+                    '<span style="color:orange">Skoor Simulasi Tabel 2.b mencapai hasil maksimal (Tambah Mahasiswa Asing !!)</span>';
             } else {
-                nilai_simulasi_keterangan = 0;
+                nilai_simulasi_keterangan = '<span style="color:red">Tidak terdapat Skoor 0 !!</span>';
             }
 
             // Menampilkan simulasi presentase 
@@ -122,6 +125,7 @@
 
         // Deklarasi Variabel dan mendengarkan perubahan dengan addEventLister
         nilai_asing.addEventListener("input", hitung_simulasi);
-        nilai_aktif.addEventListener("input", hitung_simulasi);
+        nilai_aktif.addEventListener("input",
+            hitung_simulasi);
     });
 </script>

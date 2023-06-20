@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_2c.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,6 +29,10 @@ include '../Controller/nilai_2c.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_2c.php';
+?>
+
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -124,10 +124,15 @@ include '../Controller/nilai_2c.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_2c.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Tabel
+                                            </a>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                                <i class="fa-solid fa-info mr-2"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -138,20 +143,58 @@ include '../Controller/nilai_2c.php';
                                                     <div class="modal-content">
                                                         <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
+                                                                Nilai 2.c
                                                             </h3>
 
                                                             <?php
                                                            echo '<div class="skor">';
                                                            echo '<p> Jumlah Kredit Matakuliah Praktikum/praktik/praktik kerja lapangan: '. $total_kredit_praktik .'</p>';
                                                            echo '<p>Jumlah Kredit Seluruh Matakuliah: ' .$total_seluruh_kredit.'</p>';
-                                                        //    echo '<p>Presentase Jumlah Kredit Matakuliah Bilangan Bulat :' .$presentase_kredit_matakuliah .'</p>';
-                                                           echo '<p>Presentase Jumlah Kredit Matakuliah (%) :' .$presentase_kredit_matakuliah * 100 .'%</p>';
-                                                           echo '<p>Skor Tabel :'.$skor_kredit_matakuliah.'</p>';
-                                                           echo '<p>Keterangan :'.$skor_kredit_matakuliah.'</p>';
+                                                           echo '<p>Presentase Jumlah Kredit Matakuliah (%) :' .$presentase_2c.'%</p>';
+                                                           echo '<p>Skor Tabel :'.$skor_2c.'</p>';
+                                                           echo '<p>Keterangan :<br>' .$keterangan. '</p>';
                                                            echo '</div>';
                                                            ?>
 
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <hr>
+                                                            <h3 class="modal-title " style="font-weight:bolder"
+                                                                id="exampleModalLabel">
+                                                                Simulasi Nilai Tabel 2.c
+                                                            </h3>
+
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="total_kredit_praktik">Total Kredit Mata
+                                                                        Kuliah Praktik</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="total_kredit_praktik"
+                                                                        name="total_kredit_praktik"
+                                                                        placeholder="Masukkan Jumlah Kredit Mata Kuliah Praktik"
+                                                                        value="<?php echo $total_kredit_praktik; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Total Seluruh Kredit
+                                                                        Matakuliah</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="total_seluruh_kredit"
+                                                                        name="total_seluruh_kredit"
+                                                                        placeholder="Masukkan Jumlah Seluruh Kredit Matakuliah"
+                                                                        value="<?php echo $total_seluruh_kredit; ?>" />
+                                                                </div>
+
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 2.c</h4>';
+                                                            echo '<p>Jumlah Kredit Matakuliah Praktikum/praktik/praktik kerja lapangan : <span id="praktik">' .$total_kredit_praktik. '</span></p>';
+                                                            echo '<p>Jumlah Kredit Seluruh Matakuliah (%): <span id="sks">' .$total_seluruh_kredit. '</span></p>';
+                                                            echo '<p>Presentase Jumlah Kredit Matakuliah (%) : <span id="presentase_2c">' .$presentase_2c. '</span>%</p>';
+                                                            echo '<p>Skor Tabel : <span id="skor_2c">' .$skor_2c. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
+                                                            echo '</div>';
+                                                            ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

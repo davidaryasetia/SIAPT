@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_3a1.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,6 +29,10 @@ include '../Controller/nilai_3a1.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_3a1.php';
+?>
+
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -124,11 +124,16 @@ include '../Controller/nilai_3a1.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_3a1.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-arrow-left fa-file-export"></i>
+                                                Export Data
+                                            </a>
 
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-primary ml-2"
-                                                data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                <i class="fa-solid fa-info mr-2"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -137,24 +142,55 @@ include '../Controller/nilai_3a1.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
-                                                            </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
                                                         <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">
+                                                                Keterangan Nilai 3a1
+                                                            </h3>
                                                             <?php
                                                            echo '<div class="skor">';
                                                            echo '<p>Jumlah Dosen Tetap: '. $total_dosen_tetap .'</p>';
                                                            echo '<p>Jumlah Program Studi: '. $total_prodi .'</p>';
-                                                           echo '<p>Rasio Dosen Tetap: '. $rasio_dosen .'</p>';
-                                                           echo '<p>Skor Tabel Rasio Dosen: '. $skor_rasio_dosen .'</p>';
+                                                           echo '<p>Rasio Dosen Tetap: '. $rasio_3a1 .'</p>';
+                                                           echo '<p>Skor Tabel Rasio Dosen: '. $skor_3a1 .'</p>';
+                                                           echo '<p>Keterangan: <br>'. $keterangan .'</p>';
                                                            echo '</div>';
                                                            ?>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <hr>
+                                                            <h3 class="modal-title " style="font-weight:bolder"
+                                                                id="exampleModalLabel">
+                                                                Simulasi Nilai Tabel 3a1
+                                                            </h3>
+
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="total_dosen_tetap">Total Dosen
+                                                                        Tetap</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_tetap" name="total_dosen_tetap"
+                                                                        placeholder="Masukkan Jumlah Kredit Mata Kuliah Praktik"
+                                                                        value="<?php echo $total_dosen_tetap; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Total Prodi</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_total_prodi" name="total_prodi"
+                                                                        placeholder="Masukkan Total Prodi"
+                                                                        value="<?php echo $total_prodi; ?>" />
+                                                                </div>
+
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.a.1</h4>';
+                                                            echo '<p>Total Dosen Tetap : <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
+                                                            echo '<p>Total Program Studi: <span id="prodi">' .$total_prodi. '</span></p>';
+                                                            echo '<p>Rasio Dosen Tetap: <span id="rasio">' .$rasio_3a1. '</span></p>';
+                                                            echo '<p>Skor Tabel 3a1: <span id="skor_3a1">' .$skor_3a1. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
+                                                            echo '</div>';
+                                                            ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

@@ -5,8 +5,12 @@ include "../includes/func.inc.php";
 // Koneksi ke Db
 $con = konekDb($db_user, $db_pass);
 
-// Set headers
+// Set Headers
+
+// Set Headers
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Method: GET, POST');
+header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
 // Check jika request method === GET
@@ -61,6 +65,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
     }
     
 } else if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    
     // Jika mthod = PUT
     if(isset($_POST['_method']) && $_POST['_method'] === 'PUT'){
         // Put request(update)
@@ -101,6 +106,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
      
         // Jika _method = DELETE
     }else if(isset($_POST['_method']) && $_POST['_method'] === 'DELETE'){
+
         // Delete request
         $no = $_POST['no'];
 

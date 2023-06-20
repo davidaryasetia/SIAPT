@@ -130,37 +130,41 @@ include '../Controller/nilai_3d.php';
                                                 <i class="fa-solid fa-plus"></i>
                                                 Tambah Data
                                             </a>
+                                            <a href="../Controller/export/tabel_3d.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Data
+                                            </a>
+
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                                <i class="fa-solid fa-info"></i>Simulasi Skoor
                                             </button>
+
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
-                                                            </h3>
-                                                            <button type="button" class="close btn-dark"
-                                                                data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
                                                         <div class="modal-body">
+                                                            <h3 class="modal-title " style="font-weight:bolder"
+                                                                id="exampleModalLabel">
+                                                                Keterangan Nilai Tabel 3.d
+                                                            </h3>
                                                             <?php
-                                                           
                                                             echo '<div class="skor">';
-                                                            echo '<p>Jumlah Pengakuan / Prestasi Atas Kinerja Dosen: ' .$total_rekognisi_dosen. '</p>';
-                                                            echo '<p>Jumlah Dosen Tetap: ' .$total_dosen_tetap. '</p>';
-                                                            echo '<p>Rata-Rata Jumlah Pengakuan prestasi/kinerja dosen terhadap dosen tetap: ' .$rata_prestasi_dosen. '</p>';
-                                                            echo '<p>Skor Tabel 3.d Rekognisi Dosen: ' .$skor_tabel_rekognisi_dosen. '</p>';
+                                                            echo '<p>Jumlah Pengakuan atas prestasi atau kinerja dosen 3 tahun terakhir: '. $total_rekognisi_dosen .'</p>';
+                                                            echo '<p>Jumlah Dosen Tetap: ' . $total_dosen_tetap.'</p>';
+                                                            echo '<p>Rata-rata pengakuan/prestasi kinerja dosen: ' .$rata_prestasi_dosen .' </p>';
+                                                            echo '<p>Skor Tabel 3.d: '. $skor_3d.'</p>';
+                                                        
                                                             echo '</div>';
-                                                            ?>
+                                                           ?>
                                                         </div>
+
+
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>

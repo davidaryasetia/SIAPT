@@ -124,10 +124,15 @@ include '../Controller/nilai_3a2.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_3a2.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Tabel
+                                            </a>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                            <button type="button" class="btn btn-sm btn-primary ml-1"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                                <i class="fa-solid fa-info mr-2"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 

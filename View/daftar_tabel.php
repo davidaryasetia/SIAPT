@@ -165,7 +165,7 @@
                                                             echo '<div class="skor">';
                                                             // echo '<h5>Status Data:</h5>';
                                                             echo '<p>Data Lengkap: ' .$total_data_lengkap. '</p>';
-                                                            echo '<p>Data Tidak Lengkap: ' .$total_data_tidaklengkap. '</p>';
+                                                            
                                                             echo '<p>Data Tidak Tersedia: ' .$total_data_tidaktersedia. '</p>';
                                                             echo '</div>';
                                                             echo '<div class="skor">';

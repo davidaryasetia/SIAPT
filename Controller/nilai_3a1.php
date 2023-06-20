@@ -30,17 +30,90 @@
    Hitung Rasio Jumlah Dosen Tetap 
    Tabel 3.a.1 (LKPT Kecukupan Dosen Perguruan Tinggi)
    */
-   $rasio_dosen;
-   $skor_rasio_dosen;
-   $rasio_dosen = ($total_dosen_tetap/$total_prodi);
-   $rasio_dosen = number_format($rasio_dosen, 1);
+   $rasio_3a1;
+   $skor_3a1;
+   $rasio_3a1 = ($total_dosen_tetap/$total_prodi);
+   $rasio_3a1 = number_format($rasio_3a1, 1);
 
    // Hitung Skoor Tabel 3.a.1 (Kecukupan Dosen Perguruan Tinggi)
-   if($rasio_dosen >= 10){
-       $skor_rasio_dosen = 4;
-   } else if($rasio_dosen >= 5 && $rasio_dosen < 10){
-       $skor_rasio_dosen = (2 * $rasio_dosen) / 5;
+   if($rasio_3a1 >= 10){
+       $skor_3a1 = 4;
+   } else if($rasio_3a1 >= 5 && $rasio_3a1 < 10){
+       $skor_3a1 = (2 * $rasio_3a1) / 5;
    } else {    
-       $skor_rasio_dosen = 0;
+       $skor_3a1 = 0;
    }
+
+//    Keterangan Skoor
+$keterangan='txt';
+if($skor_3a1 == 4){
+   $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 3.a.1 Rasio Dosen Tetap memenuhi target maksimum</span>';
+   }else if($skor_3a1 < 4 && $skor_3a1 > 0){
+   $keterangan = '<span style="color:orange">Skor Tabel 3.a.1 Rasio Dosen Tetap belum memenuhi target maksimal !!</span>';
+   }else {
+   $keterangan = '<span style="color:red">Skor Tabel 3.a.1 Rasio Dosen Tetap 0 !!</span>';
+   }
+
 ?>
+
+<!-- Simuasi Skoor Javascript 3a1-->
+<script>
+    // Mendapatkan input dari form nilai_mahasiswa_aktif dan nilai_mahasiswa_asing
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get Input Form
+        var dosenTetap = document.getElementById("value_dosen_tetap");
+        var totalProdi = document.getElementById("value_total_prodi");
+
+        // Modify text
+        var dosen_tetap = document.getElementById("dosen_tetap");
+        var prodi = document.getElementById("prodi");
+        var rasio = document.getElementById("rasio");
+        var skor_3a1 = document.getElementById("skor_3a1");
+        var simulasi_keterangan = document.getElementById("simulasi_keterangan");
+
+        // Mendefinisikan fungsi untuk melakukan perhitungan tabel
+        function hitung_simulasi() {
+            // Mengambil nilai input dari form
+            var dosen_Tetap = parseInt(dosenTetap.value);
+            var total_Prodi = parseInt(totalProdi.value);
+
+            var simulasi_rasio_3a1 = (dosen_Tetap / total_Prodi);
+            simulasi_rasio_3a1 = simulasi_rasio_3a1.toFixed(1);
+
+            // Hitung Skor Tabel Simulasi
+            var simulasi_skor_3a1;
+            if (simulasi_rasio_3a1 >= 10) {
+                simulasi_skor_3a1 = 4;
+            } else if (simulasi_rasio_3a1 >= 5 && simulasi_rasio_3a1 < 10) {
+                simulasi_skor_3a1 = (2 * simulasi_rasio_3a1) / 5
+            } else {
+                simulasi_skor_3a1 = 0;
+            }
+            simulasi_skor_3a1 = simulasi_skor_3a1.toFixed(1);
+
+            // Simulasi Keterangan
+            var nilai_simulasi_keterangan;
+            if (simulasi_skor_3a1 == 4) {
+                nilai_simulasi_keterangan =
+                    '<span style="color:green">Skoor Simulasi tabel Rasio Dosen Tetap 3.a.1 Telah Mencapai Hasil Maksimal (4)</span>';
+            } else if (simulasi_skor_3a1 < 4 && simulasi_skor_3a1 > 0) {
+                nilai_simulasi_keterangan =
+                    '<span style="color:orange">Skoor Simulasi Tabel 3.a.1 Rasio Dosen Tetap Belum mencapai hasil maksimal !!</span>';
+            } else {
+                nilai_simulasi_keterangan =
+                    '<span style="color:red">Skoor Simulasi Tabel 3.a.1 Rasio Dosen Tetap 0 !!</span>';;
+            }
+
+            // Menampilkan simulasi presentase 
+            dosen_tetap.textContent = dosen_Tetap;
+            prodi.textContent = total_Prodi;
+            rasio.textContent = simulasi_rasio_3a1;
+            skor_3a1.textContent = simulasi_skor_3a1;
+            simulasi_keterangan.innerHTML = nilai_simulasi_keterangan;
+        }
+
+        // Deklarasi Variabel dan mendengarkan perubahan dengan addEventLister
+        dosenTetap.addEventListener("input", hitung_simulasi);
+        totalProdi.addEventListener("input", hitung_simulasi);
+    });
+</script>

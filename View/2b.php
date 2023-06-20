@@ -128,7 +128,7 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
-                                            <a href="simulasi_test.php" type="button"
+                                            <a href="../Controller/export/tabel_2b.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-file-export"></i>
                                                 Export Data
@@ -154,7 +154,7 @@
                                                             echo '<div class="skor">';
                                                             echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
                                                             echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : ' . $total_mahasiswa_aktif.'</p>';
-                                                            echo '<p>Presentase Mahasiswa Asing' .$presentase_tabel_2b .'%</p>';
+                                                            echo '<p>Presentase Mahasiswa Asing : ' .$presentase_tabel_2b .'%</p>';
                                                             echo '<p>Skor Tabel :'. $skor_tabel_2b.'</p>';
                                                             echo '<p>Keterangan :<br>'. $keterangan.'</p>';
                                                             echo '</div>';
@@ -221,7 +221,6 @@
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-
                                                 echo '<table class="display expandable-table table-hover" style="width:100%"; border:1px solid black;>';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -254,7 +253,6 @@
                                                     
                                                     ?>
                                             </div>
-
                                         </div>
                                     </div>
                                     <!-- Start Pagination -->

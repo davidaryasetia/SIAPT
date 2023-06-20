@@ -50,6 +50,12 @@ oci_free_statement($stid);
 oci_close($con);
 
 http_response_code(200);
+
+  // Set headers parse to json
+  header('Access-Control-Allow-Origin: *');
+  header('Content-Type: application/json');
+
+
 echo json_encode($data);
 
 ?>

@@ -24,17 +24,30 @@
  Hitung Rumus No 28 Tabel 3.d Rekognisi Dosen
  */
  $rata_prestasi_dosen=0;
- $skor_tabel_rekognisi_dosen=0;
+ $skor_3d=0;
  $rata_prestasi_dosen = ($total_rekognisi_dosen/$total_dosen_tetap);
  $rata_prestasi_dosen = number_format($rata_prestasi_dosen,1);
 
  // Hitung Skor Tabel 3.d Rekognisi Dosen
  if($rata_prestasi_dosen >= 0.25){
-     $skor_tabel_rekognisi_dosen=4;
+     $skor_3d=4;
  }else if($rata_prestasi_dosen<=0.2){
-     $skor_tabel_rekognisi_dosen= 2+(8 * $rata_prestasi_dosen);
+     $skor_3d= 2+(8 * $rata_prestasi_dosen);
  } else {
      $skor < 2;
  }
 
+ $keterangan='txt';
+ if($skor_3d == 4){
+ $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 2.b Mahasiswa Asing telah mencapai Maksimal</span>';
+ }else if($skor_3d < 4){
+ $keterangan = '<span style="color:yellow">Skor Tabel 2.b Mahasiswa Asing belum memenuhi target maksimal</span>';
+ }else {
+ $keterangan = '<span style="color:red">Skor Tabel 2.b Mahasiswa Asing Nol 0</span>';
+ }
+
+
+
 ?>
+
+<!-- Script Menghitung simulasi nilai 3d Rekognisi Dosen -->
