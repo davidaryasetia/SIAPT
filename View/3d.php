@@ -135,16 +135,19 @@ include '../Controller/nilai_3d.php';
                                                 <i class="fa-solid fa-file-export"></i>
                                                 Export Data
                                             </a>
+                                            <a href="../Controller/export/tabel_3d_pdf.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export .pdf
+                                            </a>
 
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
-                                                data-toggle="modal" data-target="#exampleModal">
+                                                data-toggle="modal" data-target="#simulasi">
                                                 <i class="fa-solid fa-info"></i>Simulasi Skoor
                                             </button>
-
-
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                            <div class="modal fade" id="simulasi" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -174,6 +177,8 @@ include '../Controller/nilai_3d.php';
                                             </div>
                                             <!-- End Modal -->
 
+
+
                                         </p>
                                     </div>
                                     <div class="row">
@@ -181,7 +186,7 @@ include '../Controller/nilai_3d.php';
                                             <div class="table-responsive">
                                                 <?php
                                                
-                                                echo '<table class="display expandable-table table-hover" style="width:100%">';
+                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>

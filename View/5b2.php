@@ -129,7 +129,7 @@
                                                 $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/5.b.2_prestasi_non_akademik_mahasiswa.php');
                                                 // Decode JSON response into an associative array
                                              $data = json_decode($response, true);
-                                                echo '<table class="display expandable-table table-hover" style="width:100%">';
+                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No.</th>

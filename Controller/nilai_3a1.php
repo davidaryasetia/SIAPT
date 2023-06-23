@@ -107,7 +107,7 @@ if($skor_3a1 == 4){
             // Menampilkan simulasi presentase 
             dosen_tetap.textContent = dosen_Tetap;
             prodi.textContent = total_Prodi;
-            rasio.textContent = simulasi_rasio_3a1;
+            rasio.textContent = simulai_rasio_3a1;
             skor_3a1.textContent = simulasi_skor_3a1;
             simulasi_keterangan.innerHTML = nilai_simulasi_keterangan;
         }

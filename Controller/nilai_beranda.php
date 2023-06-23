@@ -22,8 +22,7 @@ $data = json_decode($response, true);
 
 // Hitung Total Skor Laporan Kinerja 
 $skor_lkpt=0;
-$skor_led=0;
-$nilai_akreditasi=0;
+
 
 
 /** $skor_tabel_lkpt
@@ -41,14 +40,17 @@ $skor_lkpt =  $skor_tabel_2b
             + $skor_dosen_tidak_tetap
             + $skor_tabel_penelitian
             + $skor_tabel_pkm
-            + $skor_tabel_rekognisi_dosen
+            // + $skor_tabel_rekognisi_dosen
             ;
 
-// Hitung Skor LED
-$skor_led;
+            $skorArray = [
+                        $skor_tabel_2b, 
+                        $skor_2c,
+                    ];
 
-// Hitung Total Nilai Akreditasi
-$nilai_akreditasi = $skor_lkpt + $skor_led;
+
+            
+
 
 
 // Syarat perlu peringkat Akreditasi 

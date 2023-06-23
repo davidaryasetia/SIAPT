@@ -10,7 +10,6 @@ require '../../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-// Nama Tabel
 
 
 // Heading Tabel
@@ -23,6 +22,8 @@ $activeWorksheet->getStyle('A3:F3')->getAlignment()->setVertical(\PhpOffice\PhpS
 $activeWorksheet->getStyle('A3:F3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
 $activeWorksheet->getStyle('A3:F3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
 $activeWorksheet->getRowDimension(3)->setRowHeight(30);
+
+
 
 
 $activeWorksheet->mergeCells('A1:C1'); // Merge cells A1 and B1
@@ -66,15 +67,26 @@ foreach ($rekognisi as $row) {
     $activeWorksheet->setCellValue('E' . $rowIndex, $row['TINGKAT']);
     $activeWorksheet->setCellValue('F' . $rowIndex, $row['TAHUN']);
 
+    // Wrap text
+    // Mengatur wrap text
+    $activeWorksheet->getStyle('A2:F' . $rowIndex)->getAlignment()->setWrapText(true);
     $activeWorksheet->getStyle('C2:E' . ($rowIndex - 1))->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
     $activeWorksheet->getStyle('A2:A' . ($rowIndex - 1))->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-
-    $activeWorksheet->getStyle('B' . $rowIndex . ':F' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
-    $activeWorksheet->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
+    
+    // Mengatur lebar kolom
+    $activeWorksheet->getColumnDimension('A')->setWidth(5); // Mengatur lebar kolom A
+    $activeWorksheet->getColumnDimension('B')->setWidth(20); // Mengatur lebar kolom B
+    $activeWorksheet->getColumnDimension('C')->setWidth(20); // Mengatur lebar kolom C
+    $activeWorksheet->getColumnDimension('D')->setWidth(20); // Mengatur lebar kolom D
+    $activeWorksheet->getColumnDimension('E')->setWidth(10); // Mengatur lebar kolom E
+    $activeWorksheet->getColumnDimension('F')->setWidth(10); // Mengatur lebar kolom F
+        $activeWorksheet->getStyle('B' . $rowIndex . ':F' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
+        $activeWorksheet->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
     $rowIndex++;
 }
 
 $activeWorksheet->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$activeWorksheet->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
 $activeWorksheet->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
 $activeWorksheet->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getAlignment()->setWrapText(true); // Enable text wrapping
 

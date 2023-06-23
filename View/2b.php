@@ -221,7 +221,7 @@
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                echo '<table class="display expandable-table table-hover" style="width:100%"; border:1px solid black;>';
+                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%"; border:1px solid black;>';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>

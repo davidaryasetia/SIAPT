@@ -174,7 +174,7 @@ include '../Controller/nilai_3c1.php';
                                             <div class="table-responsive">
                                                 <?php
                                                
-                                                echo '<table class="display expandable-table table-hover" style="width:100%">';
+                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>Nomor</th>

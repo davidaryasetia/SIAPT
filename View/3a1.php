@@ -206,7 +206,7 @@ include '../Controller/nilai_3a1.php';
                                                 <?php
                                                   
 
-                                                echo '<table class="display expandable-table table-hover" style="width:100%">';
+                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>

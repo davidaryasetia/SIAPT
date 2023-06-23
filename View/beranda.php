@@ -32,6 +32,7 @@
     <?php
     include "../Controller/nilai_beranda.php";
     ?>
+
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -78,7 +79,7 @@
         <div class="container-fluid page-body-wrapper">
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas fiz" id="sidebar">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="beranda.php">
@@ -143,7 +144,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 mb-4 stretch-card transparent">
+                                <!-- <div class="col-md-3 mb-4 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
                                             <p class="mb-4">Nilai Laporan Evaluasi Diri</p>
@@ -169,7 +170,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 
@@ -180,33 +181,51 @@
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="card-title">Elemen & Indikator Akreditasi
-
+                                    <p class="card-title">Elemen & Indikator Akreditasi Berdasarkan Matriks LKPT
+                                        <a href="../Controller/export/tabel_2b.php" type="button"
+                                            class="btn btn-sm btn-primary btn-icon-text ml-2">
+                                            <i class="fa-solid fa-file-pdf"></i>
+                                            Export Data
+                                        </a>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="table-responsive">
                                                     <?php
-                                                echo '<table class="display expandable-table" style="width:100%;">';
+                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%;">';
                                                         echo '<thead>';
                                                         echo' <tr>
                                                                 <th>Nomor</th>
                                                                 <th>Bab/Kriteria/Elemen</th>
                                                                 <th>Indikator</th>
-                                                                <th>Keterangan Skoor</th>
-                                                                
-                                                        
+                                                                <th>Sheet</th>
+                                                                <th>Skoor Tabel</th>                                                        
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        $skorCount = count($skorArray); // Jumlah elemen dalam $skorArray
+                                                        foreach ($data as $index => $row) {
                                                             echo '<tr>';
                                                             echo '<td>' . $row['NO'] . '</td>';
                                                             echo '<td>' . $row['BAB'] . '</td>';
                                                             echo '<td>' . $row['INDIKATOR'] . '</td>';
-                                                            echo '<td>' . $row['SKOR'] . '</td>';
-                                                            
-                                                    echo '</tr>';
-                                                    }
+                                                            echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
+                                                            $skor = ($index < $skorCount) ? $skorArray[$index] : '';
+
+                                                            // echo '<td>' . $skor . '</td>';
+
+                                                            /* Check Value if $skor==4 print Green, 
+                                                                           else if $skor <4 && >0 print orange, 
+                                                                           else print red
+                                                            */
+                                                            if($skor == 4){
+                                                                echo '<td style="color:green; font-weight:bold">' .$skor. '</td>';
+                                                            } else if($skor < 4 && $skor >0){
+                                                                echo '<td style="color:orange; font-weight:bold">' .$skor. '</td>';
+                                                            } else {
+                                                                echo '<td style="color:red; font-weight:bold">' .$skor. '</td>';
+                                                            }
+                                                            echo '</tr>';
+                                                            }
                                                     echo '</tbody>';
                                                     echo '</table>'
 
@@ -238,11 +257,7 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
 
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

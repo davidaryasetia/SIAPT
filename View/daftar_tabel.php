@@ -191,7 +191,7 @@
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                echo '<table class="display expandable-table table-hover" style="width:100%">';
+                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
@@ -257,7 +257,7 @@
                                         </div>
                                     </div>
                                     <!-- Start Pagination -->
-                                    <div class="container">
+                                    <!-- <div class="container">
                                         <div class="pagination-container">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
@@ -272,7 +272,7 @@
                                                 <?php endforeach; ?>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- End Pagination -->
 
                                 </div>
