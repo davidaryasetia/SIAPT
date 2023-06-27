@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_3d.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,6 +29,10 @@ include '../Controller/nilai_3d.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_3d.php';
+?>
+
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -135,16 +135,10 @@ include '../Controller/nilai_3d.php';
                                                 <i class="fa-solid fa-file-export"></i>
                                                 Export Data
                                             </a>
-                                            <a href="../Controller/export/tabel_3d_pdf.php" type="button"
-                                                class="btn btn-sm btn-primary btn-icon-text">
-                                                <i class="fa-solid fa-file-export"></i>
-                                                Export .pdf
-                                            </a>
-
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#simulasi">
-                                                <i class="fa-solid fa-info"></i>Simulasi Skoor
+                                                <i class="fa-solid fa-info mr-1"></i>Simulasi Skoor
                                             </button>
                                             <!-- Modal -->
                                             <div class="modal fade" id="simulasi" tabindex="-1" role="dialog"
@@ -158,11 +152,49 @@ include '../Controller/nilai_3d.php';
                                                             </h3>
                                                             <?php
                                                             echo '<div class="skor">';
-                                                            echo '<p>Jumlah Pengakuan atas prestasi atau kinerja dosen 3 tahun terakhir: '. $total_rekognisi_dosen .'</p>';
-                                                            echo '<p>Jumlah Dosen Tetap: ' . $total_dosen_tetap.'</p>';
-                                                            echo '<p>Rata-rata pengakuan/prestasi kinerja dosen: ' .$rata_prestasi_dosen .' </p>';
-                                                            echo '<p>Skor Tabel 3.d: '. $skor_3d.'</p>';
-                                                        
+                                                            echo '<p>Jumlah prestasi atau kinerja dosen dalam 3 tahun terakhir : '. $total_rekognisi_dosen .'</p>';
+                                                            echo '<p>Jumlah Dosen Tetap : ' . $total_dosen_tetap.'</p>';
+                                                            echo '<p>Rata-rata pengakuan/prestasi kinerja dosen : ' .$rata_prestasi_dosen .' </p>';
+                                                            echo '<p>Skor Tabel 3.d Rekognisi Dosen: '. $skor_3d.'</p>';
+                                                            echo '<p>Keterangan :<br>'. $keterangan.'</p>';
+                                                            echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="modal-title " style="font-weight:bolder"
+                                                                id="exampleModalLabel">
+                                                                Keterangan Nilai Tabel 3.d
+                                                            </h3>
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah
+                                                                        restasi atau kinerja dosen dalam
+                                                                        3 tahun terakhir</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_rekognisi_dosen"
+                                                                        name="value_rekognisi_dosen"
+                                                                        placeholder="Masukkan Jumlah Rekognisi Dosen"
+                                                                        value="<?php echo $total_rekognisi_dosen; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Dosen
+                                                                        Tetap
+                                                                    </label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_tetap" name=""
+                                                                        placeholder="Masukkan Jumlah Dosen Tetap"
+                                                                        value="<?php echo $total_dosen_tetap; ?>" />
+                                                                </div>
+
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.a.3</h4>';
+                                                            echo '<p>Jumlah prestasi atau kinerja dosen dalam 3 tahun terakhir: <span id="rekognisi_dosen">' .$total_rekognisi_dosen. '</span></p>';
+                                                            echo '<p>Jumlah Dosen Tetap <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
+                                                            echo '<p>Rata-rata pengakuan atau prestasi kinerja dosen: <span id="rata">' .$rata_prestasi_dosen. '</span></p>';
+                                                            echo '<p>Skor Tabel 3.d Rekognisi Dosen: <span id="skor_3d">' .$skor_3d. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
                                                             echo '</div>';
                                                            ?>
                                                         </div>

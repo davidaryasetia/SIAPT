@@ -144,7 +144,7 @@ include '../Controller/nilai_3a1.php';
                                                     <div class="modal-content">
                                                         <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">
-                                                                Keterangan Nilai 3a1
+                                                                Keterangan Nilai Tabel 3a1
                                                             </h3>
                                                             <?php
                                                            echo '<div class="skor">';
@@ -162,7 +162,6 @@ include '../Controller/nilai_3a1.php';
                                                                 id="exampleModalLabel">
                                                                 Simulasi Nilai Tabel 3a1
                                                             </h3>
-
                                                             <form class="forms-sample" id="form-container">
                                                                 <div class="form-group">
                                                                     <label for="total_dosen_tetap">Total Dosen
@@ -179,7 +178,6 @@ include '../Controller/nilai_3a1.php';
                                                                         placeholder="Masukkan Total Prodi"
                                                                         value="<?php echo $total_prodi; ?>" />
                                                                 </div>
-
                                                             </form>
                                                             <?php
                                                             echo '<div class="skor">';
@@ -204,8 +202,6 @@ include '../Controller/nilai_3a1.php';
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                  
-
                                                 echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -230,8 +226,6 @@ include '../Controller/nilai_3a1.php';
                                                             echo '<td>' . $sum_jumlah . '</td>';
                                                             echo '</tr>';
                                                         }
-                                                       
-
                                                         // Tambah Row Data
                                                         echo '<tr class="table-row">';
                                                         echo '<td colspan="2"><p class="total">Total</p></td>';
@@ -242,8 +236,6 @@ include '../Controller/nilai_3a1.php';
                                                         echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';
-                                                    
-                                                    
                                                     ?>
                                             </div>
                                         </div>

@@ -124,10 +124,15 @@ include '../Controller/nilai_3a4.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_3a4.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Data
+                                            </a>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-primary ml-2"
+                                            <button type="button" class="btn btn-sm btn-primary ml-1"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                                <i class="fa-solid fa-info"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -136,16 +141,11 @@ include '../Controller/nilai_3a4.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
+
+                                                        <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
                                                                 Nilai
                                                             </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
                                                             <?php
                                                              echo '<div class="skor">';
                                                              echo '<p>Jumlah Dosen Tidak Tetap '.$dosen_tidak_tetap.'</p>';

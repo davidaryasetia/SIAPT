@@ -52,6 +52,7 @@
         $skor_tabel_2b=  0;
     }
 
+   
     $keterangan='txt';
     if($skor_tabel_2b == 4){
     $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 2.b Mahasiswa Asing telah mencapai Maksimal</span>';

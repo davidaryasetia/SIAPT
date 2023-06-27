@@ -1,5 +1,4 @@
 <?php
-// fetch api response
                         
 // fetch api response
 $tabel_lkpt = file_get_contents('https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php');
@@ -32,4 +31,7 @@ foreach ($data_db_mis as $data) {
 foreach ($data_dummy as $data) {
     $total_data_dummy = $data['Data Dummy'];
 }
+
+
+
 ?>

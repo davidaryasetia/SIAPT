@@ -14,6 +14,7 @@ include "../Controller/nilai_5b1.php";
 include "../Controller/nilai_5b2.php";
 
 
+
 // fetch api response
 $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/elemen_indikator_akreditasi.php');
 // Decode JSON response into an associative array
@@ -35,7 +36,7 @@ $skor_lkpt=0;
 $skor_lkpt =  $skor_tabel_2b 
             + $skor_2c 
             + $skor_3a1
-            + $skor_tabel_jabatan_fungsional
+            + $skor_3a2
             + $skor_dosen_bersertifikat
             + $skor_dosen_tidak_tetap
             + $skor_tabel_penelitian
@@ -46,13 +47,9 @@ $skor_lkpt =  $skor_tabel_2b
             $skorArray = [
                         $skor_tabel_2b, 
                         $skor_2c,
+                        $skor_3a1,
+                        $skor_3a2,
+                        $skor_3a2,
                     ];
-
-
-            
-
-
-
-// Syarat perlu peringkat Akreditasi 
 
 ?>

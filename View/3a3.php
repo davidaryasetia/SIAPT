@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_3a3.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,8 +29,10 @@ include '../Controller/nilai_3a3.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_3a3.php';
+?>
     <div class="container-scroller">
-
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -124,10 +122,15 @@ include '../Controller/nilai_3a3.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_3a3.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Data
+                                            </a>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-primary ml-2"
-                                                data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                <i class="mr-1 fa-solid fa-info"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -136,23 +139,54 @@ include '../Controller/nilai_3a3.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
+                                                        <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
                                                                 Nilai
+                                                                Tabel 3.a.3
                                                             </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
                                                             <?php
                                                             echo '<div class="skor">';
-                                                            echo '<p>Jumlah Dosen Tetap bersertifikasi '.$total_dosen_bersertifikasi.'</p>';
+                                                            echo '<p>Jumlah Dosen Tetap bersertifikasi :'.$total_dosen_bersertifikasi.'</p>';
                                                             echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
-                                                            echo '<p>Presentase Dosen Yang Memiliki Sertifikat Bilangan Bulat :'.$presentase_dosen_bersertifikat.'</p>';
-                                                            echo '<p>Presentase Dosen Tetap Yang Memiliki Sertifikat (%) :' .$presentase_dosen_bersertifikat *100 . '%</p>';
-                                                            echo '<p>Skor Tabel :'.$skor_dosen_bersertifikat.'</p>';
+                                                            echo '<p>Persentase Jumlah Dosen Tetap Yang Memiliki Sertifikat:' .$presentase_3a3 . '%</p>';
+                                                            echo '<p>Skor Tabel :'.$skor_3a3.'</p>';
+                                                            echo '<p>Keterangan :<br>'.$keterangan.'</p>';
+                                                            echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai
+                                                                Tabel 3.a.3
+                                                            </h3>
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="dosen_bersertifikasi">
+                                                                        Jumlah Dosen Tetap Bersertifikasi Kompetensi,
+                                                                        profesi, atau industri
+                                                                    </label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_bersertifikasi"
+                                                                        name="value_dosen_bersertifikasi"
+                                                                        placeholder="Jumlah Dosen Tetap Bersertifikasi"
+                                                                        value="<?php echo $total_dosen_bersertifikasi  ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="dosen_tetap">Jumlah Dosen Tetap</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_tetap" name="dosen_tetap"
+                                                                        placeholder="Masukkan Jumlah Dosen Tetap"
+                                                                        value="<?php echo $total_dosen_tetap; ?>" />
+                                                                </div>
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.a.3</h4>';
+                                                            echo '<p>Jumlah Dosen Tetap Bersertifikasi: <span id="dosen_bersertifikasi">' .$total_dosen_bersertifikasi. '</span></p>';
+                                                            echo '<p>Jumlah Dosen Tetap <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
+                                                            echo '<p>Persentase  : <span id="presentase">' .$presentase_3a3. '</span>%</p>';
+                                                            echo '<p>Skor Tabel 3.2.2 Jabatan Fungsional Dosen: <span id="skor_3a3">' .$skor_3a3. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
                                                             echo '</div>';
                                                            ?>
                                                         </div>
@@ -169,8 +203,6 @@ include '../Controller/nilai_3a3.php';
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
-
                                                 echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -193,8 +225,6 @@ include '../Controller/nilai_3a3.php';
                                                             echo '<td>' .$total. '</td>';
                                                             echo '</tr>';
                                                         }
-
-                                                      
                                                            // Tambah Row Data
                                                            echo '<tr class="table-row">'; 
                                                            echo '<td colspan="2"><p class="total">Total</p>';
@@ -205,9 +235,6 @@ include '../Controller/nilai_3a3.php';
                                                            echo '<tr>'; 
                                                        echo '</tbody>';
                                                     echo '</table>';
-
-                                                  
-                                                   
                                                     ?>
                                             </div>
                                         </div>

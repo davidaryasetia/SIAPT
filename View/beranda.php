@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -26,13 +27,14 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+
 </head>
 
 <body>
+
     <?php
     include "../Controller/nilai_beranda.php";
     ?>
-
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -182,7 +184,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p class="card-title">Elemen & Indikator Akreditasi Berdasarkan Matriks LKPT
-                                        <a href="../Controller/export/tabel_2b.php" type="button"
+                                        <a href="../Controller/export/resume_beranda.php" type="button"
                                             class="btn btn-sm btn-primary btn-icon-text ml-2">
                                             <i class="fa-solid fa-file-pdf"></i>
                                             Export Data
@@ -211,15 +213,9 @@
                                                             echo '<td><a href="' .$row['SHEET']. '.php">' .$row['SHEET']. '</a></td>';
                                                             $skor = ($index < $skorCount) ? $skorArray[$index] : '';
 
-                                                            // echo '<td>' . $skor . '</td>';
-
-                                                            /* Check Value if $skor==4 print Green, 
-                                                                           else if $skor <4 && >0 print orange, 
-                                                                           else print red
-                                                            */
                                                             if($skor == 4){
                                                                 echo '<td style="color:green; font-weight:bold">' .$skor. '</td>';
-                                                            } else if($skor < 4 && $skor >0){
+                                                            } else if($skor < 4 && $skor>= 0){
                                                                 echo '<td style="color:orange; font-weight:bold">' .$skor. '</td>';
                                                             } else {
                                                                 echo '<td style="color:red; font-weight:bold">' .$skor. '</td>';

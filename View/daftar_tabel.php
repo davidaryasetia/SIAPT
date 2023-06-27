@@ -134,6 +134,11 @@
                                     <div class="d-flex flex-row align-items-center mb">
                                         <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
                                             Perguruan Tinggi
+                                            <a href="../Controller/export/tabel_2b.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text ml-2">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Data
+                                            </a>
                                             <!-- <a href="../Form_Data/Tambah_Data/daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-plus"></i>
@@ -142,7 +147,7 @@
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                                <i class="fa-solid fa-info"></i> Keterangan Data
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -153,6 +158,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Kategori & Sumber Data
                                                             </h3>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -161,17 +167,16 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <?php
-                                                           
                                                             echo '<div class="skor">';
-                                                            // echo '<h5>Status Data:</h5>';
-                                                            echo '<p>Data Lengkap: ' .$total_data_lengkap. '</p>';
-                                                            
-                                                            echo '<p>Data Tidak Tersedia: ' .$total_data_tidaktersedia. '</p>';
+                                                            echo '<h4>Kategori Data : </h4>';
+                                                            echo '<p>Jumlah Data Lengkap       : ' .$total_data_lengkap. '</p>';
+                                                            echo '<p>Jumlah Data Tidak Tersedia: ' .$total_data_tidaktersedia. '</p>';
                                                             echo '</div>';
+                                                            echo '<hr/>';
                                                             echo '<div class="skor">';
-                                                            // echo '<h5>Sumber:</h5>';
-                                                            echo '<p>Data DB MIS: ' .$total_data_mis. '</p>';
-                                                            echo '<p>Data Dummy: ' .$total_data_dummy. '</p>';                            
+                                                            echo '<h4>Sumber Data : </h4>';
+                                                            echo '<p>Jumlah Data Bersumber DB MIS         : ' .$total_data_mis. '</p>';
+                                                            echo '<p>Jumlah Data Bersumber Pada Data Dummy: ' .$total_data_dummy. '</p>';                            
                                                             echo '</div>';
                                                             ?>
                                                         </div>
@@ -197,7 +202,7 @@
                                                                 <th>No. </th>
                                                                 <th>Judul Tabel</th>
                                                                 <th>Nama Sheet</th>
-                                                                <th>Status Data</th>
+                                                                <th>Kategori Data</th>
                                                                 <th>Sumber Data</th>
                                                                 <th>Edit</th>
                                                             </tr>';
@@ -300,16 +305,7 @@
         <!-- page-body-wrapper ends -->
     </div>
 
-    <!-- Start JS Script -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
+
     <!-- container-scroller -->
     <script src="../themes/layout.js"></script>
     <!-- plugins:js -->

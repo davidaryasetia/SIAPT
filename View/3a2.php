@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_3a2.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,8 +29,10 @@ include '../Controller/nilai_3a2.php';
 </head>
 
 <body>
+    <?php
+    include "../Controller/nilai_3a2.php";
+    ?>
     <div class="container-scroller">
-
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -141,23 +139,53 @@ include '../Controller/nilai_3a2.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
-                                                            </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
                                                         <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">
+                                                                Keterangan Nilai Tabel 3a2
+                                                            </h3>
                                                             <?php
                                                             echo '<div class="skor">';
-                                                            echo '<p>Jumlah Dosen Tetap Yang Memiliki Jabatan Fungsional: ' .$total_jabatan_fungsional_dosen. '</p>';
+                                                            echo '<p>Jumlah Dosen Tetap Yang Memiliki Jabatan Fungsional (Lektor Kepala atau Guru Besar): ' .$total_jabatan_fungsional_dosen. '</p>';
                                                             echo '<p>Jumlah Dosen Tetap: ' .$total_dosen_tetap. '</p>';
-                                                            echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .$presentase_jabatanfungsional_dosen. '</p>';
-                                                            echo '<p>Presentase Jumlah Dosen Yang memiliki jabatan fungsional: ' .($presentase_jabatanfungsional_dosen*100) . '%</p>';
-                                                            echo '<p>Skoor Tabel Jabatan Fungsional Dosen: ' .$skor_tabel_jabatan_fungsional. '</p>';
+                                                            echo '<p>Persentase Jumlah Dosen Yang Memiliki Jabatan Fungsional Minimal Lektor Kepala ' .$presentase_3a2. '%</p>';
+                                                            echo '<p>Skoor Tabel 3.a.2 Jabatan Fungsional Dosen: ' .$skor_3a2. '</p>';
+                                                            echo '<p>Keterangan : <br>' .$keterangan. '</p>';
+                                                            echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">
+                                                                Simulasi Nilai Tabel 3a2
+                                                            </h3>
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="total_dosen_tetap">Jumlah Dosen Tetap
+                                                                        Yang memiliki Jabatan Fungsional (Lektor
+                                                                        Kepala/Guru Besar)</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_jabatan_fungsional"
+                                                                        name="total_dosen_tetap" placeholder="Jumlah Dosen Tetap
+                                                                        Yang memiliki Jabatan Fungsional (Lektor
+                                                                        Kepala/Guru Besar)"
+                                                                        value="<?php echo $total_jabatan_fungsional_dosen; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Dosen Tetap</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_tetap" name="dosen_tetap"
+                                                                        placeholder="Masukkan Jumlah Dosen Tetap"
+                                                                        value="<?php echo $total_dosen_tetap; ?>" />
+                                                                </div>
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.a.2</h4>';
+                                                            echo '<p>Jumlah Dosen Tetap Yang Memiliki Jabatan Fungsional (Lektor atau Lektor Kepala): <span id="jabatan_fungsional">' .$total_jabatan_fungsional_dosen. '</span></p>';
+                                                            echo '<p>Jumlah Dosen Tetap: <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
+                                                            echo '<p>Persentase Jumlah Dosen Yang Memiliki Jabatan Fungsional Minimal Lektor Kepala : <span id="presentase">' .$presentase_3a2. '</span>%</p>';
+                                                            echo '<p>Skor Tabel 3.2.2 Jabatan Fungsional Dosen: <span id="skor_3a2">' .$skor_3a2. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
                                                             echo '</div>';
                                                            ?>
                                                         </div>
@@ -203,8 +231,6 @@ include '../Controller/nilai_3a2.php';
                                                             echo '<td>' . $sum_jumlah . '</td>';
                                                             echo '</tr>';
                                                         }
-
-                                                      
                                                         // Tambah Row Data
                                                         echo '<tr class="table-row">';
                                                         echo '<td colspan="2"><p class="total">Total</p></td>';
@@ -217,9 +243,6 @@ include '../Controller/nilai_3a2.php';
                                                         echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';
-
-                                                   
-
                                                     ?>
                                             </div>
                                         </div>

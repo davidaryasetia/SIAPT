@@ -143,54 +143,65 @@
                                                         <input type="hidden" name="_method" value="PUT">
                                                         <input type="hidden" name="no" value="<?php echo $_GET['no']?>">
                                                         <div class="form-group">
-                                                            <label for="judul">Nomor dan Judul
+                                                            <label for="judul">Nomor
                                                                 Tabel</label>
                                                             <input type="" class="form-control" id="judul" name="judul"
-                                                                placeholder="Judul Tabel"
-                                                                value="<?php echo $judul; ?>" />
+                                                                placeholder="Judul Tabel" value="<?php echo $no; ?>"
+                                                                disabled />
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="sheet">Nama Sheet</label>
-                                                            <input type="" class="form-control" id="sheet" name="sheet"
-                                                                placeholder="Nama Sheet" value="<?php echo $sheet ?>" />
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-6">
-                                                                <label for="status">Status Data</label>
-                                                                <select class="form-control" id="status" name="status">
-                                                                    <option value="">Pilih Kategori Data</option>
-                                                                    <option value="Data Lengkap"
-                                                                        <?php if($status == 'Data Lengkap') echo 'selected'; ?>>
-                                                                        Data Lengkap</option>
-                                                                    <option value="Data Tidak Lengkap"
-                                                                        <?php if($status == 'Data Tidak Lengkap') echo 'selected'; ?>>
-                                                                        Data Tidak Lengkap
-                                                                    </option>
-                                                                    <option value="Data Tidak Tersedia"
-                                                                        <?php if($status == 'Data Tidak Tersedia') echo 'selected'; ?>>
-                                                                        Data Tidak Tersedia
-                                                                    </option>
-                                                                </select>
+                                                            <div class="form-group">
+                                                                <label for="judul">Nomor dan Judul
+                                                                    Tabel</label>
+                                                                <input type="" class="form-control" id="judul"
+                                                                    name="judul" placeholder="Judul Tabel"
+                                                                    value="<?php echo $judul; ?>" disabled />
                                                             </div>
-                                                            <div class="form-group col-6">
-                                                                <label for="sumber">Sumber Data</label>
-                                                                <select class="form-control" id="sumber" name="sumber">
-                                                                    <option value="">Pilih Sumber Data</option>
-                                                                    <option value="Data DB MIS"
-                                                                        <?php if($sumber == 'Data DB MIS') echo 'selected'; ?>>
-                                                                        Data DB MIS</option>
-                                                                    <option value="Data Dummy"
-                                                                        <?php if($sumber == 'Data DB MIS') echo 'selected'; ?>>
-                                                                        Data Dummy</option>
-                                                                </select>
+                                                            <div class="form-group">
+                                                                <label for="sheet">Nama Sheet</label>
+                                                                <input type="" class="form-control" id="sheet"
+                                                                    name="sheet" placeholder="Nama Sheet"
+                                                                    value="<?php echo $sheet ?>" disabled />
                                                             </div>
-                                                        </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-6">
+                                                                    <label for="status">Kategori Data</label>
+                                                                    <select class="form-control" id="status"
+                                                                        name="status">
+                                                                        <option value="">Pilih Kategori Data</option>
+                                                                        <option value="Data Lengkap"
+                                                                            <?php if($status == 'Data Lengkap') echo 'selected'; ?>>
+                                                                            Data Lengkap</option>
+                                                                        <option value="Data Tidak Lengkap"
+                                                                            <?php if($status == 'Data Tidak Lengkap') echo 'selected'; ?>>
+                                                                            Data Tidak Lengkap
+                                                                        </option>
+                                                                        <option value="Data Tidak Tersedia"
+                                                                            <?php if($status == 'Data Tidak Tersedia') echo 'selected'; ?>>
+                                                                            Data Tidak Tersedia
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-6">
+                                                                    <label for="sumber">Sumber Data</label>
+                                                                    <select class="form-control" id="sumber"
+                                                                        name="sumber">
+                                                                        <option value="">Pilih Sumber Data</option>
+                                                                        <option value="Data DB MIS"
+                                                                            <?php if($sumber == 'Data DB MIS') echo 'selected'; ?>>
+                                                                            Data DB MIS</option>
+                                                                        <option value="Data Dummy"
+                                                                            <?php if($sumber == 'Data DB MIS') echo 'selected'; ?>>
+                                                                            Data Dummy</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
 
-                                                        <button type="submit" class="btn btn-primary mr-2">
-                                                            Submit
-                                                        </button>
-                                                        <a href="../../View/daftar_tabel.php"
-                                                            class="btn btn-light">Cancel</a>
+                                                            <button type="submit" class="btn btn-primary mr-2">
+                                                                Submit
+                                                            </button>
+                                                            <a href="../../View/daftar_tabel.php"
+                                                                class="btn btn-light">Cancel</a>
                                                     </form>
                                                 </div>
                                             </div>

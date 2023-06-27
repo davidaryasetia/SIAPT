@@ -143,7 +143,7 @@ include '../Controller/nilai_2c.php';
                                                     <div class="modal-content">
                                                         <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai 2.c
+                                                                Nilai Tabel 2.c
                                                             </h3>
 
                                                             <?php
@@ -236,8 +236,6 @@ include '../Controller/nilai_2c.php';
                                                             echo '<td>' .$sum_total. '</td>';
                                                             echo '</tr>';                       
                                                         }
-
-                                                        
                                                         // Tambah Row Data untuk Kolom Teori, Praktikum, Praktik, PKL
                                                         echo '<tr class="table-row">';
                                                         echo '<td colspan="2"><p class="total">Total</p></td>';
