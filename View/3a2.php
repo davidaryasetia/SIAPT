@@ -153,8 +153,9 @@
                                                             echo '</div>';
                                                            ?>
                                                         </div>
-                                                        <hr>
+
                                                         <div class="modal-body">
+                                                            <hr>
                                                             <h3 class="modal-title" id="exampleModalLabel">
                                                                 Simulasi Nilai Tabel 3a2
                                                             </h3>
@@ -165,9 +166,8 @@
                                                                         Kepala/Guru Besar)</label>
                                                                     <input type="number" class="form-control"
                                                                         id="value_jabatan_fungsional"
-                                                                        name="total_dosen_tetap" placeholder="Jumlah Dosen Tetap
-                                                                        Yang memiliki Jabatan Fungsional (Lektor
-                                                                        Kepala/Guru Besar)"
+                                                                        name="total_dosen_tetap"
+                                                                        placeholder="Jumlah Dosen Tetap Yang memiliki Jabatan Fungsional"
                                                                         value="<?php echo $total_jabatan_fungsional_dosen; ?>" />
                                                                 </div>
                                                                 <div class="form-group">

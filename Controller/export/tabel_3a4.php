@@ -16,8 +16,7 @@ $activeWorksheet->getStyle('A3:H3')->getAlignment()->setHorizontal(\PhpOffice\Ph
 $activeWorksheet->getStyle('A3:H3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
 $activeWorksheet->getStyle('A3:H3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
 $activeWorksheet->getStyle('A3:H3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getDefaultColumnDimension('D')->setWidth(5, 'cm');
-// $activeWorksheet->getRowDimension(3)->setRowHeight(100);
+$activeWorksheet->getRowDimension(3)->setRowHeight(15);
 $activeWorksheet->mergeCells('A1:C1'); // Merge cells A1 and B1'
 $activeWorksheet->setCellValue('A1', 'Tabel 3.a.4) Dosen Tidak Tetap');
 $activeWorksheet->setCellValue('A3', 'No.');
@@ -59,10 +58,10 @@ foreach ($dosen_tidak_tetap as $row)  {
     $activeWorksheet->setCellValue('F' . $rowIndex, $row['Asisten Ahli']);
     $activeWorksheet->setCellValue('G' . $rowIndex, $row['Tenaga Pengajar']);
     // Calculate Total untuk setiap row
-    $activeWorksheet->setCellValue('H'. $rowIndex, '=C' .$rowIndex . '+D' .$rowIndex . 'E' . $rowIndex . 'F' . $rowIndex . 'G' .$rowIndex );
+    $activeWorksheet->setCellValue('H'. $rowIndex, '=C' .$rowIndex . '+D' .$rowIndex. '+E' .$rowIndex. '+F' .$rowIndex. '+G' .$rowIndex );
     $activeWorksheet->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
     $activeWorksheet->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('B' . $rowIndex . ':H' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
+    $activeWorksheet->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
     $activeWorksheet->getStyle('A' . $rowIndex . ':H' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
     $rowIndex++;
 }
@@ -87,7 +86,7 @@ $activeWorksheet->setCellValue('G' . $rowIndex, $tenaga_pengajar);
 $activeWorksheet->setCellValue('H' . $rowIndex, $jumlah);
 $activeWorksheet->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 $activeWorksheet->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('C2:F' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$activeWorksheet->getStyle('C2:H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 $activeWorksheet->getStyle('A2:A' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 $activeWorksheet->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF'); 
 $activeWorksheet->getStyle('A' . $rowIndex . ':H' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
@@ -102,7 +101,7 @@ $writer = new Xlsx($spreadsheet);
 
 // Set headers for download
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Tabel 3a4 Dosen Tidak Tetap.xlsx"');
+header('Content-Disposition: attachment;filename="Tabel 3.a.4 Dosen Tidak Tetap.xlsx"');
 header('Cache-Control: max-age=0');
 $writer->save('php://output');
 exit();

@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_3a4.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,6 +29,10 @@ include '../Controller/nilai_3a4.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_3a4.php';
+?>
+
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -132,7 +132,7 @@ include '../Controller/nilai_3a4.php';
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-1"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>Simulasi Skoor
+                                                <i class="fa-solid fa-info mr-1"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -141,19 +141,51 @@ include '../Controller/nilai_3a4.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-
                                                         <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
+                                                                Nilai 3.a.4
                                                             </h3>
                                                             <?php
                                                              echo '<div class="skor">';
                                                              echo '<p>Jumlah Dosen Tidak Tetap '.$dosen_tidak_tetap.'</p>';
                                                              echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
-                                                             echo '<p>Presentase Dosen Yang Memiliki Sertifikat Bilangan Bulat :'.$presentase_dosen_tidak_tetap.'</p>';
-                                                             echo '<p>Presentase Dosen Tetap Yang Memiliki Sertifikat (%) :' .$presentase_dosen_tidak_tetap *100 . '%</p>';
-                                                             echo '<p>Skor Tabel : '.$skor_dosen_tidak_tetap.'</p>';
+                                                             echo '<p>Presentase Jumlah Dosen Tidak Tetap Terhadap Seluruh Dosen Tetap:' .$presentase_3a4. '%</p>';
+                                                             echo '<p>Skor Tabel 3a4 Dosen Tidak Tetap: '.$skor_3a4.'</p>';
+                                                             echo '<p>Skor Tabel : '.$keterangan.'</p>';
                                                              echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Simulasi
+                                                                Keterangan Nilai 3.a.4
+                                                            </h3>
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="total_dosen_tetap">Jumlah Dosen Tidak
+                                                                        Tetap</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_tidaktetap"
+                                                                        name="dosen_tidaktetap"
+                                                                        placeholder="Jumlah Dosen Tidak Tetap"
+                                                                        value="<?php echo $dosen_tidak_tetap; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Dosen Tetap</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_tetap" name="dosen_tetap"
+                                                                        placeholder="Masukkan Jumlah Dosen Tetap"
+                                                                        value="<?php echo $total_dosen_tetap; ?>" />
+                                                                </div>
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.a.4</h4>';
+                                                            echo '<p>Jumlah Dosen Tidak Tetap: <span id="dosen_tidaktetap">' .$dosen_tidak_tetap. '</span></p>';
+                                                            echo '<p>Jumlah Dosen Tetap: <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
+                                                            echo '<p>Persentase Jumlah Dosen Tidak Tetap Terhadap Seluruh Dosen Tetap: <span id="presentase">' .$presentase_3a4. '</span>%</p>';
+                                                            echo '<p>Skor Tabel 3a4 Dosen Tidak Tetap: <span id="skor_3a4">' .$skor_3a4. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
+                                                            echo '</div>';
                                                            ?>
                                                         </div>
                                                         <div class="modal-footer">

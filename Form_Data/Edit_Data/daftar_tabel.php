@@ -156,7 +156,8 @@
                                                                 <input type="" class="form-control" id="judul"
                                                                     name="judul" placeholder="Judul Tabel"
                                                                     value="<?php echo $judul; ?>" disabled />
-                                                            </div>
+                                                            
+                                                                </div>
                                                             <div class="form-group">
                                                                 <label for="sheet">Nama Sheet</label>
                                                                 <input type="" class="form-control" id="sheet"

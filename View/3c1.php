@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_3c1.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,6 +29,9 @@ include '../Controller/nilai_3c1.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_3c1.php';
+?>
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -112,22 +111,27 @@ include '../Controller/nilai_3c1.php';
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <!-- Tabel 3.c.2 Produktivitas Pkm Dosen -->
+                    <!-- Tabel 3.c.2 Produktivitas Penelitian Dosen -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p class="card-title">Tabel 3.c.2 Produktivitas Pkm Dosen
+                                        <p class="card-title">Tabel 3.c.1 Produktivitas Penelitian Dosen
                                             <a href="daftar_tabel.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_3c1.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export mr-1"></i>
+                                                Export Tabel
+                                            </a>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary ml-2"
                                                 data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                                <i class="fa-solid fa-info mr-1"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -136,27 +140,86 @@ include '../Controller/nilai_3c1.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
-                                                            </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
                                                         <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai 3.c.1
+                                                            </h3>
                                                             <?php
                                                              echo '<div class="skor">';
-                                                             echo '<p>Jumlah pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$null.'</p>';
-                                                             echo '<p>Jumlah pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$null.'</p>';
-                                                             echo '<p>Jumlah pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$total_penelitian.'</p>';
+                                                             echo '<p>Jumlah Penelitian dengan biaya luar negeri 3 tahun terakhir: '.$null.'</p>';
+                                                             echo '<p>Jumlah Penelitian dengan biaya dalam negeri 3 tahun terakhir: '.$null.'</p>';
+                                                             echo '<p>Jumlah Penelitian dengan biaya dari PT 3 tahun terakhir: '.$total_penelitian_mandiri.'</p>';
                                                              echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
-                                                             echo '<p>Rata-Rata pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$rata_pkm_lugri.'</p>';
-                                                             echo '<p>Rata-Rata pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$rata_penelitian_dagri.'</p>';
-                                                             echo '<p>Rata-Rata pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$rata_penelitian_biaya_mandiri.'</p>';
-                                                             echo '<p>Skor Tabel PKM: '.$skor_tabel_penelitian.'</p>';
+                                                             echo '<hr>';
+                                                             echo '<p>Rata-Rata Penelitian dengan biaya luar negeri : '. $rata_penelitian_lugri.'</p>';
+                                                             echo '<p>Rata-Rata Penelitian dengan biaya dalam negeri diluar PT : '.$rata_penelitian_dagri.'</p>';
+                                                             echo '<p>Rata-Rata Penelitian dengan biaya dari PT atau mandiri : '.$rata_penelitian_biaya_mandiri.'</p>';
+                                                             echo '<p>Skor Tabel 3.c.1 Penelitian Dosen : '.$skor_3c1.'</p>';
+                                                             echo '<p>Keterangan : <br>'.$keterangan.'</p>';
                                                              echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <hr>
+                                                            <hr>
+                                                            <h3 class="modal-title" id="exampleModalLabel">
+                                                                Simulasi Nilai Tabel 3.c.1
+                                                            </h3>
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Penelitian
+                                                                        dengan biaya luar negeri dalam 3 tahun
+                                                                        terakhir</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_penelitian_lugri"
+                                                                        name="penelitian_lugri"
+                                                                        placeholder="Masukkan Jumlah Penelitian Luar Negeri"
+                                                                        value="<?php echo $null; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Penelitian
+                                                                        dengan biaya dalam negeri diluar PT 3
+                                                                        tahun
+                                                                        terakhir</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_penelitian_dagri"
+                                                                        name="penelitian_dalam"
+                                                                        placeholder="Masukkan Jumlah Penelitian Dalam Negeri Diluar PT"
+                                                                        value="<?php echo $null; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Penelitian
+                                                                        dengan biaya dari PT atau Mandiri 3 tahun
+                                                                        terakhir</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_penelitian_mandiri"
+                                                                        name="penelitian_mandiri"
+                                                                        placeholder="Masukkan Jumlah Penelitian dengan Biaya PT atau Mandiri"
+                                                                        value="<?php echo $total_penelitian_mandiri; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Dosen Tetap</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_dosen_tetap" name="dosen_tetap"
+                                                                        placeholder="Masukkan Jumlah Dosen Tetap"
+                                                                        value="<?php echo $total_dosen_tetap; ?>" />
+                                                                </div>
+
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.c.1</h4>';
+                                                            echo '<p>Jumlah Penelitian dengan biaya luar negeri 3 tahun terakhir: <span id="penelitian_lugri">' .$null. '</span></p>';
+                                                            echo '<p>Jumlah Penelitian dengan biaya dalam negeri 3 tahun terakhir: <span id="penelitian_dagri">' .$null. '</span></p>';
+                                                            echo '<p>Jumlah Penelitian dengan biaya dari PT 3 tahun terakhir: <span id="penelitian_mandiri">' .$total_penelitian_mandiri. '</span></p>';
+                                                            echo '<p>Jumlah Dosen Tetap: <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
+                                                            echo '<hr>';
+                                                            echo '<p>Rata-Rata Penelitian dengan Biaya Luar Negeri: <span id="rata_penelitian_lugri">' .$rata_penelitian_lugri. '</span></p>';
+                                                            echo '<p>Rata-Rata Penelitian dengan Biaya Dalam Negeri: <span id="rata_penelitian_dagri">' .$rata_penelitian_dagri. '</span></p>';
+                                                            echo '<p>Rata-Rata Penelitian dengan Biaya PT atau Mandiri: <span id="rata_penelitian_mandiri">' .$rata_penelitian_biaya_mandiri. '</span></p>';
+                                                            echo '<p>Skor_Tabel_3.c.1  : <span id="skor">' .$skor_3c1. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
+                                                            echo '</div>';
                                                            ?>
                                                         </div>
                                                         <div class="modal-footer">
@@ -173,7 +236,6 @@ include '../Controller/nilai_3c1.php';
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
                                                 echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -194,8 +256,7 @@ include '../Controller/nilai_3c1.php';
                                                             echo '<td>' . $row['TS-1(2018)'] . '</td>';
                                                             echo '<td>' . $row['TS(2019)'] . '</td>';
                                                              // Total Query
-                                                             
-                                                             echo '<td>'. $total_penelitian . '</td>';
+                                                             echo '<td>'. $total_penelitian_mandiri . '</td>';
                                                             echo '</tr>';
                                                         }
                                                          // Start Dummy Kolom
@@ -226,7 +287,7 @@ include '../Controller/nilai_3c1.php';
                                                         echo '<td>' . $row['TS-2(2017)'] . '</td>';
                                                         echo '<td>' . $row['TS-1(2018)'] . '</td>';
                                                         echo '<td>' . $row['TS(2019)'] . '</td>';
-                                                        echo '<td>'.$total_penelitian  .'</td>';                                       
+                                                        echo '<td>'.$total_penelitian_mandiri  .'</td>';                                       
                                                         echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';
@@ -265,7 +326,7 @@ include '../Controller/nilai_3c1.php';
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.c.2 Produktivitas Pkm Dosen-->
+                    <!-- Tabel 3.c.2 Produktivitas Penelitian Dosen-->
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
