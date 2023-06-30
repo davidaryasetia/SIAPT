@@ -168,7 +168,7 @@ include '../Controller/nilai_3d.php';
                                                             <form class="forms-sample" id="form-container">
                                                                 <div class="form-group">
                                                                     <label for="">Jumlah
-                                                                        restasi atau kinerja dosen dalam
+                                                                        Prestasi atau kinerja dosen dalam
                                                                         3 tahun terakhir</label>
                                                                     <input type="number" class="form-control"
                                                                         id="value_rekognisi_dosen"

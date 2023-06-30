@@ -1,7 +1,3 @@
-<?php
-include '../Controller/nilai_3c2.php';
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -33,6 +29,10 @@ include '../Controller/nilai_3c2.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_3c2.php';
+?>
+
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->
@@ -124,10 +124,15 @@ include '../Controller/nilai_3c2.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_3c2.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Data
+                                            </a>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-primary ml-2"
-                                                data-toggle="modal" data-target="#exampleModal">
-                                                <i class="fa-solid fa-info"></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                <i class="fa-solid fa-info mr-1"></i>Simulasi Skoor
                                             </button>
                                             <!-- End Button Trigger -->
 
@@ -136,28 +141,82 @@ include '../Controller/nilai_3c2.php';
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
-                                                                Nilai
-                                                            </h3>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
                                                         <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai 3.c.2
+                                                            </h3>
                                                             <?php
                                                              echo '<div class="skor">';
-                                                             echo '<p>Jumlah pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$null.'</p>';
-                                                             echo '<p>Jumlah pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$null.'</p>';
-                                                             echo '<p>Jumlah pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$total_pkm.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya luar negeri 3 tahun terakhir: '.$null.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya dalam negeri 3 tahun terakhir: '.$null.'</p>';
+                                                             echo '<p>Jumlah pkm dengan biaya dari PT 3 tahun terakhir: '.$total_pkm_biaya_mandiri.'</p>';
                                                              echo '<p>Jumlah Dosen Tetap : '.$total_dosen_tetap.'</p>';
-                                                             echo '<p>Rata-Rata pkm dengan biaya luar negeri dalam 3 tahun terakhir '.$rata_pkm_lugri.'</p>';
-                                                             echo '<p>Rata-Rata pkm dengan biaya dalam negeri diluar PT dalam 3 tahun terakhir'.$rata_pkm_dagri.'</p>';
-                                                             echo '<p>Rata-Rata pkm dengan biaya dari PT atau mandiri dalam 3 tahun terakhir : '.$rata_pkm_biaya_mandiri.'</p>';
-                                                             echo '<p>Skor Tabel PKM: '.$skor_tabel_pkm.'</p>';
+                                                             echo '<hr>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya luar negeri : '. $rata_pkm_lugri.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya dalam negeri diluar PT : '.$rata_pkm_dagri.'</p>';
+                                                             echo '<p>Rata-Rata pkm dengan biaya dari PT atau mandiri : '.$rata_pkm_biaya_mandiri.'</p>';
+                                                             echo '<p>Skor Tabel 3.c.1 pkm Dosen : '.$skor_3c2.'</p>';
+                                                             echo '<p>Keterangan : <br>'.$keterangan.'</p>';
                                                              echo '</div>';
                                                            ?>
+                                                            <div class="modal-body">
+                                                                <hr>
+                                                                <h3 class="modal-title" id="exampleModalLabel">
+                                                                    Simulasi Nilai Tabel 3.c.2
+                                                                </h3>
+                                                                <form class="forms-sample" id="form-container">
+                                                                    <div class="form-group">
+                                                                        <label for="">Jumlah pkm
+                                                                            dengan biaya luar negeri dalam 3 tahun
+                                                                            terakhir</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="value_pkm_lugri" name="pkm_lugri"
+                                                                            placeholder="Masukkan Jumlah pkm Luar Negeri"
+                                                                            value="<?php echo $null; ?>" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="">Jumlah pkm
+                                                                            dengan biaya dalam negeri diluar PT 3
+                                                                            tahun
+                                                                            terakhir</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="value_pkm_dagri" name="pkm_dagri"
+                                                                            placeholder="Masukkan Jumlah pkm Dalam Negeri Diluar PT"
+                                                                            value="<?php echo $null; ?>" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="">Jumlah pkm
+                                                                            dengan biaya dari PT atau Mandiri 3 tahun
+                                                                            terakhir</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="value_pkm_mandiri" name="pkm_mandiri"
+                                                                            placeholder="Masukkan Jumlah pkm dengan Biaya PT atau Mandiri"
+                                                                            value="<?php echo $total_pkm_biaya_mandiri; ?>" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="">Jumlah Dosen Tetap</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="value_dosen_tetap" name="dosen_tetap"
+                                                                            placeholder="Masukkan Jumlah Dosen Tetap"
+                                                                            value="<?php echo $total_dosen_tetap; ?>" />
+                                                                    </div>
+                                                                </form>
+                                                                <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.c.1</h4>';
+                                                            echo '<p>Jumlah pkm dengan biaya luar negeri 3 tahun terakhir: <span id="pkm_lugri">' .$null. '</span></p>';
+                                                            echo '<p>Jumlah pkm dengan biaya dalam negeri 3 tahun terakhir: <span id="pkm_dagri">' .$null. '</span></p>';
+                                                            echo '<p>Jumlah pkm dengan biaya dari PT 3 tahun terakhir: <span id="pkm_mandiri">' .$total_pkm_biaya_mandiri. '</span></p>';
+                                                            echo '<p>Jumlah Dosen Tetap: <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
+                                                            echo '<hr>';    
+                                                            echo '<p>Rata-Rata pkm dengan Biaya Luar Negeri: <span id="rata_pkm_lugri">' .$rata_pkm_lugri. '</span></p>';
+                                                            echo '<p>Rata-Rata pkm dengan Biaya Dalam Negeri: <span id="rata_pkm_dagri">' .$rata_pkm_dagri. '</span></p>';
+                                                            echo '<p>Rata-Rata pkm dengan Biaya PT atau Mandiri: <span id="rata_pkm_mandiri">' .$rata_pkm_biaya_mandiri. '</span></p>';
+                                                            echo '<p>Skor_Tabel_3.c.1  : <span id="skor">' .$skor_3c2 . '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
+                                                            echo '</div>';
+                                                           ?>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -195,7 +254,7 @@ include '../Controller/nilai_3c2.php';
                                                             echo '<td>' . $row['TS(2019)'] . '</td>';
                                                              // Total Query
                                                              
-                                                             echo '<td>'. $total_pkm . '</td>';
+                                                             echo '<td>'. $total_pkm_biaya_mandiri . '</td>';
                                                             echo '</tr>';
                                                         }
                                                          // Start Dummy Kolom
@@ -226,7 +285,7 @@ include '../Controller/nilai_3c2.php';
                                                         echo '<td>' . $row['TS-2(2017)'] . '</td>';
                                                         echo '<td>' . $row['TS-1(2018)'] . '</td>';
                                                         echo '<td>' . $row['TS(2019)'] . '</td>';
-                                                        echo '<td>'.$total_pkm  .'</td>';                                       
+                                                        echo '<td>'. $total_pkm_biaya_mandiri  .'</td>';                                       
                                                         echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>';

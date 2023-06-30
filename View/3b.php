@@ -124,6 +124,11 @@ include '../Controller/nilai_3b.php';
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_3b.php" type="button"
+                                                class="btn btn-sm btn-primary ">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Tabel
+                                            </a>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">

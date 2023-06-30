@@ -92,6 +92,9 @@
             var rata_penelitian_Lugri = penelitian_Lugri / 3 / dosen_Tetap;
             var rata_penelitian_Dagri = penelitian_Dagri / 3 / dosen_Tetap;
             var rata_penelitian_Mandiri = penelitian_Mandiri / 3 / dosen_Tetap;
+            rata_penelitian_Lugri = rata_penelitian_Lugri.toFixed(2);
+            rata_penelitian_Dagri = rata_penelitian_Dagri.toFixed(2);
+            rata_penelitian_Mandiri = rata_penelitian_Mandiri.toFixed(2);
 
             if (rata_penelitian_Lugri >= a) {
                 simulasi_skor_3c1 = 4;
@@ -101,12 +104,14 @@
                 rata_penelitian_Dagri > 0) {
                 simulasi_skor_3c1 = (2 + (2(rata_penelitian_Lugri / a)) + (rata_penelitian_Dagri / b) - ((
                     rata_penelitian_Lugri / rata_penelitian_Dagri) / (a * b)));
-            } else if (rata_penelitian_Lugri == 0 && rata_penelitian_Dagri == 0 && rata_penelitian_Mandiri >=
+            } else if (rata_penelitian_Lugri == 0 && rata_penelitian_Dagri == 0 && rata_penelitian_Mandiri >
                 0) {
                 simulasi_skor_3c1 = 2;
             } else {
                 simulasi_skor_3c1 = (2 * rata_penelitian_Mandiri) / c;
             }
+            simulasi_skor_3c1 = simulasi_skor_3c1.toFixed(2);
+
 
             // Simulasi Keterangan
             var nilai_simulasi_keterangan;

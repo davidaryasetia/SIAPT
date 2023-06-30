@@ -13,6 +13,10 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 // Heading Tabel
 $spreadsheet = new Spreadsheet();
 $activeWorksheet = $spreadsheet->getActiveSheet();
+$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+// $activeWorksheet->getActiveSheet()->getColumnDimension('B')->setWidth(10);
+// $activeWorksheet->getActiveSheet()->getColumnDimension('C')->setWidth(10);
+// $activeWorksheet->getActiveSheet()->getColumnDimension('D')->setWidth(10);
 $activeWorksheet->setTitle('3d');
 $activeWorksheet->getStyle('A3:F3')->getFont()->setBold(true); // Apply bold font to header row
 $activeWorksheet->getStyle('A3:F3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
@@ -78,7 +82,7 @@ $activeWorksheet->getColumnDimension('E')->setWidth(10); // Mengatur lebar kolom
 $activeWorksheet->getColumnDimension('F')->setWidth(10); // Mengatur lebar kolom F
 // Auto-size columns
 foreach (range('A', 'F') as $column) {
-    $activeWorksheet->getColumnDimension($column)->setAutoSize(true);
+    $activeWorksheet->getColumnDimension($column)->setAutoSize(false);
 }
 
 $writer = new Xlsx($spreadsheet);

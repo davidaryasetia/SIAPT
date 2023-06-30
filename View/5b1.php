@@ -1,3 +1,6 @@
+<?php
+include '../Controller/nilai_5b1.php';
+?>
 <!DOCTYPE html>
 
 <head>
@@ -120,35 +123,145 @@
                                                 <i class="fa-solid fa-arrow-left"></i>
                                                 Daftar Tabel
                                             </a>
+                                            <a href="../Controller/export/tabel_5b1.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text">
+                                                <i class="fa-solid fa-file-export"></i>
+                                                Export Tabel
+                                            </a>
+                                            <!-- Modal -->
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                <i class="fa-solid fa-info mr-1"></i>Simulasi Skoor
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <h3 class="modal-title" id="exampleModalLabel">Keterangan
+                                                                Nilai 5.b.1
+                                                            </h3>
+                                                            <?php
+                                                             echo '<div class="skor">';
+                                                             echo '<p>Jumlah Prestasi Akademik Tingkat Internasional: '.$prestasi_internasional.'</p>';
+                                                             echo '<p>Jumlah Prestasi Akademik Tingkat Nasional: '.$prestasi_nasional.'</p>';
+                                                             echo '<p>Jumlah Prestasi Akademik Tingkat Wilayah/Provinsi: '.$prestasi_provinsi.'</p>';
+                                                             echo '<p>Jumlah Mahasiswa Aktif Pada Saat TS: '.$total_mahasiswa_aktif.'</p>';
+                                                             echo '<hr>';
+                                                             echo '<p>Rata-Rata Prestasi Akademik Tingkat Internasional: '.$rata_prestasi_internasional.'%</p>';
+                                                             echo '<p>Rata-Rata Prestasi Akademik Tingkat Nasional: '.$rata_prestasi_nasional.'%</p>';
+                                                             echo '<p>Rata-Rata Prestasi Akademik Tingkat Wilayah/Provinsi: '.$rata_prestasi_provinsi.'%</p>';
+                                                             echo '<p>Skor Tabel 5.b.1 Prestasi Akademik Mahasiswa: '.$skor_5b1.'</p>';
+                                                             echo '<p>Keterangan : <br>'.$keterangan.'</p>';
+                                                             echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <hr>
+                                                            <h3 class="modal-title" id="exampleModalLabel">
+                                                                Simulasi Nilai Tabel 5.b.1
+                                                            </h3>
+                                                            <form class="forms-sample" id="form-container">
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Prestasi Akademik Tingkat
+                                                                        Internasional</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_prestasi_internasional"
+                                                                        name="prestasi_internasional"
+                                                                        placeholder="Masukkan Jumlah Prestasi Akademik Tingkat Internasional"
+                                                                        value="<?php echo $prestasi_internasional; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Prestasi Akademik Tingkat
+                                                                        Nasional</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_prestasi_nasional"
+                                                                        name="penelitian_nasional"
+                                                                        placeholder="Masukkan Jumlah Prestasi Akademik Tingkat Nasional"
+                                                                        value="<?php echo $prestasi_nasional; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Prestasi Akademik Tingkat
+                                                                        Wilayah/Provinsi</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_prestasi_provinsi"
+                                                                        name="penelitian_mandiri"
+                                                                        placeholder="Masukkan Jumlah Penelitian dengan Biaya PT atau Mandiri"
+                                                                        value="<?php echo $prestasi_provinsi; ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah Mahasiswa Aktif Pada saat
+                                                                        TS</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="value_mahasiswa_aktif" name="dosen_tetap"
+                                                                        placeholder="Masukkan Jumlah Mahasiswa Aktif"
+                                                                        value="<?php echo $total_mahasiswa_aktif; ?>" />
+                                                                </div>
+                                                            </form>
+                                                            <?php
+                                                            echo '<div class="skor">';
+                                                            echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor 5.b.1</h4>';
+                                                            echo '<p>Jumlah Prestasi Akademik Tingkat Internasional: <span id="prestasi_internasional">' .$prestasi_internasional. '</span></p>';
+                                                            echo '<p>Jumlah Prestasi Akademik Tingkat Nasional: <span id="prestasi_nasional">' .$prestasi_nasional. '</span></p>';
+                                                            echo '<p>Jumlah Prestasi Akademik Tingkat Wilayah/Provinsi: <span id="prestasi_provinsi">' .$prestasi_provinsi. '</span></p>';
+                                                            echo '<p>Jumlah Mahasiswa Aktif Pada Saat TS: <span id="mahasiswa_aktif">' .$total_mahasiswa_aktif. '</span></p>';
+                                                            echo '<hr>';
+                                                            echo '<p>Rata-Rata Prestasi Akademik Tingkat Internasional: <span id="rata_prestasi_internasional">' .$rata_prestasi_internasional. '</span>%</p>';
+                                                            echo '<p>Rata-Rata Prestasi Akademik Tingkat Nasional: <span id="rata_prestasi_nasional">' .$rata_prestasi_nasional. '</span>%</p>';
+                                                            echo '<p>Rata-Rata Prestasi Akademik Tingkat Wilayah/Provinsi: <span id="rata_prestasi_provinsi">' .$rata_prestasi_provinsi. '</span>%</p>';
+                                                            echo '<p>Skor Tabel 5.b.1: <span id="skor">' .$skor_5b1. '</span></p>';
+                                                            echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
+                                                            echo '</div>';
+                                                           ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        </p>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                // fetch api response
-                                                $response = file_get_contents('https://project.mis.pens.ac.id/mis143/API/5.b.1_prestasi_akademik_mahasiswa.php');
-                                                // Decode JSON response into an associative array
-                                             $data = json_decode($response, true);
+                                               
                                                 echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No.</th>
                                                                 <th>Nama Kegiatan</th>
                                                                 <th>Waktu Penyelenggaraan</th>
-                                                                <th>Tingkat</th>
-                                                                <th>Prestasi Yang Dicapai</th>    
+                                                                <th>Provinsi/Wilayah</th>
+                                                                <th>Nasional</th>
+                                                                <th>Internasional</th>
+                                                                <th>Prestasi Yang Dicapai</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($prestasi_akademik as $row) {
                                                             echo '<tr>';
                                                             echo '<td>' . $row['Nomor'] . '</td>';
                                                             echo '<td>' . $row['Nama Kegiatan'] . '</td>';
                                                             echo '<td>' . $row['Waktu Penyelenggaraan'] . '</td>';
-                                                            echo '<td>' . $row['Tingkat'] . '</td>';
+                                                            echo '<td>' . $row['Provinsi/Wilayah'] . '</td>';
+                                                            echo '<td>' . $row['Nasional'] . '</td>';
+                                                            echo '<td>' . $row['Internasional'] . '</td>';
                                                             echo '<td>' . $row['Prestasi Yang Dicapai'] . '</td>';
                                                             echo '</tr>';
                                                         }
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="3">Total</td>';
+                                                        echo '<td>' .$prestasi_provinsi. '</td>';
+                                                        echo '<td>' .$prestasi_nasional. '</td>';
+                                                        echo '<td>' .$prestasi_internasional. '</td>';
+                                                        echo '<td></td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>'
                                                     ?>
