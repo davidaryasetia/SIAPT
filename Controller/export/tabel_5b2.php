@@ -11,75 +11,74 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 // Heading Tabel
-$spreadsheet = new Spreadsheet();
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$activeWorksheet->setTitle('5b2');
-$activeWorksheet->getStyle('A3:G3')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A3:G3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A3:G3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A3:G3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A3:G3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-
+$tabel = new Spreadsheet();
+$tabel_5b2 = $tabel->getActiveSheet();
+$tabel_5b2->setTitle('5b2');
+$tabel_5b2->getStyle('A3:G3')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_5b2->getStyle('A3:G3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_5b2->getStyle('A3:G3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_5b2->getStyle('A3:G3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
+$tabel_5b2->getStyle('A3:G3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
 
 // Set Autosize and widht height column
-$activeWorksheet->getColumnDimension('A')->setAutoSize(true);
-$activeWorksheet->getColumnDimension('C')->setAutoSize(true);
-$activeWorksheet->getColumnDimension('B')->setWidth(300, 'px');
-$activeWorksheet->getColumnDimension('D')->setWidth(73, 'px');
-$activeWorksheet->getColumnDimension('E')->setWidth(73, 'px');
-$activeWorksheet->getColumnDimension('F')->setWidth(87, 'px');
-$activeWorksheet->getColumnDimension('G')->setWidth(220, 'px');
-$activeWorksheet->getRowDimension(3)->setRowHeight(30);
+$tabel_5b2->getColumnDimension('A')->setAutoSize(true);
+$tabel_5b2->getColumnDimension('B')->setWidth(200, 'px');
+$tabel_5b2->getColumnDimension('C')->setWidth(120, 'px');
+$tabel_5b2->getColumnDimension('D')->setWidth(120, 'px');
+$tabel_5b2->getColumnDimension('E')->setWidth(120, 'px');
+$tabel_5b2->getColumnDimension('F')->setWidth(120, 'px');
+$tabel_5b2->getColumnDimension('G')->setWidth(200, 'px');
+$tabel_5b2->getRowDimension(3)->setRowHeight(30);
 
-$activeWorksheet->mergeCells('A1:C1');  // Merge cells A1 and B1
-$activeWorksheet->setCellValue('A1', 'Tabel 5.b.2) Prestasi Non-Akademik Mahasiswa');
-$activeWorksheet->setCellValue('A3', 'No.');
-$activeWorksheet->setCellValue('B3', 'Nama Kegiatan');
-$activeWorksheet->setCellValue('C3', 'Waktu Penyelenggaraan');
-$activeWorksheet->setCellValue('D3', 'Provinsi/Wilayah');
-$activeWorksheet->setCellValue('E3', 'Nasional');
-$activeWorksheet->setCellValue('F3', 'Internasional');
-$activeWorksheet->setCellValue('G3', 'Prestasi Yang Dicapai');
+$tabel_5b2->mergeCells('A1:C1');  // Merge cells A1 and B1
+$tabel_5b2->setCellValue('A1', 'Tabel 5.b.2) Prestasi Non-Akademik Mahasiswa');
+$tabel_5b2->setCellValue('A3', 'No.');
+$tabel_5b2->setCellValue('B3', 'Nama Kegiatan');
+$tabel_5b2->setCellValue('C3', 'Waktu Penyelenggaraan');
+$tabel_5b2->setCellValue('D3', 'Provinsi/Wilayah');
+$tabel_5b2->setCellValue('E3', 'Nasional');
+$tabel_5b2->setCellValue('F3', 'Internasional');
+$tabel_5b2->setCellValue('G3', 'Prestasi Yang Dicapai');
 
 // Heading No
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$activeWorksheet->getStyle('A4:G4')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A4:G4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A4:G4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A4:G4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A4:G4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getRowDimension(4)->setRowHeight(15);
-$activeWorksheet->setCellValue('A4', '1.');
-$activeWorksheet->setCellValue('B4', '2');
-$activeWorksheet->setCellValue('C4', '3');
-$activeWorksheet->setCellValue('D4', '4');
-$activeWorksheet->setCellValue('E4', '5');
-$activeWorksheet->setCellValue('F4', '6');
-$activeWorksheet->setCellValue('G4', '7');
+$tabel_5b2 = $tabel->getActiveSheet();
+$tabel_5b2->getStyle('A4:G4')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_5b2->getStyle('A4:G4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_5b2->getStyle('A4:G4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_5b2->getStyle('A4:G4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
+$tabel_5b2->getStyle('A4:G4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
+$tabel_5b2->getRowDimension(4)->setRowHeight(15);
+$tabel_5b2->setCellValue('A4', '1.');
+$tabel_5b2->setCellValue('B4', '2');
+$tabel_5b2->setCellValue('C4', '3');
+$tabel_5b2->setCellValue('D4', '4');
+$tabel_5b2->setCellValue('E4', '5');
+$tabel_5b2->setCellValue('F4', '6');
+$tabel_5b2->setCellValue('G4', '7');
 
 
 // End Heading Tabel
 $rowIndex = 5; // Start row index for data
 foreach ($prestasi_nonakademik as $row) {
-    $activeWorksheet->setCellValue('A' . $rowIndex, $row['Nomor']);
-    $activeWorksheet->setCellValue('B' . $rowIndex, $row['Nama Kegiatan']);
-    $activeWorksheet->setCellValue('C' . $rowIndex, $row['Waktu Penyelenggaraan']);
-    $activeWorksheet->setCellValue('D' . $rowIndex, $row['Provinsi/Wilayah']);
-    $activeWorksheet->setCellValue('E' . $rowIndex, $row['Nasional']);
-    $activeWorksheet->setCellValue('F' . $rowIndex, $row['Internasional']);
-    $activeWorksheet->setCellValue('G' . $rowIndex, $row['Prestasi Yang Dicapai']);
+    $tabel_5b2->setCellValue('A' . $rowIndex, $row['Nomor']);
+    $tabel_5b2->setCellValue('B' . $rowIndex, $row['Nama Kegiatan']);
+    $tabel_5b2->setCellValue('C' . $rowIndex, $row['Waktu Penyelenggaraan']);
+    $tabel_5b2->setCellValue('D' . $rowIndex, $row['Provinsi/Wilayah']);
+    $tabel_5b2->setCellValue('E' . $rowIndex, $row['Nasional']);
+    $tabel_5b2->setCellValue('F' . $rowIndex, $row['Internasional']);
+    $tabel_5b2->setCellValue('G' . $rowIndex, $row['Prestasi Yang Dicapai']);
     
     // Mengatur wrap text
-    $activeWorksheet->getStyle('A2:G' . $rowIndex)->getAlignment()->setWrapText(true);
-    $activeWorksheet->getStyle('D2:F' .$rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('A2:G' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-    $activeWorksheet->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    // $activeWorksheet->getStyle('A2:A' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-    $activeWorksheet->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
-    $activeWorksheet->getStyle('A' . $rowIndex . ':G' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
+    $tabel_5b2->getStyle('A2:G' . $rowIndex)->getAlignment()->setWrapText(true);
+    $tabel_5b2->getStyle('D2:F' .$rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $tabel_5b2->getStyle('A2:G' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+    $tabel_5b2->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    // $tabel_5b2->getStyle('A2:A' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+    $tabel_5b2->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
+    $tabel_5b2->getStyle('A' . $rowIndex . ':G' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
     $rowIndex++;
 }
-$writer = new Xlsx($spreadsheet);
+$writer = new Xlsx($tabel);
 
 // Set headers for download
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

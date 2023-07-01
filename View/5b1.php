@@ -1,6 +1,3 @@
-<?php
-include '../Controller/nilai_5b1.php';
-?>
 <!DOCTYPE html>
 
 <head>
@@ -32,6 +29,9 @@ include '../Controller/nilai_5b1.php';
 </head>
 
 <body>
+    <?php
+include '../Controller/nilai_5b1.php';
+?>
     <div class="container-scroller">
 
         <!-- partial:partials/_navbar.html -->

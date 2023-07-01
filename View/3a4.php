@@ -155,7 +155,9 @@ include '../Controller/nilai_3a4.php';
                                                              echo '</div>';
                                                            ?>
                                                         </div>
+
                                                         <div class="modal-body">
+                                                            <hr>
                                                             <h3 class="modal-title" id="exampleModalLabel">Simulasi
                                                                 Keterangan Nilai 3.a.4
                                                             </h3>

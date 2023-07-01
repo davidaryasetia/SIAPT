@@ -11,81 +11,73 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 // Heading Tabel
-$spreadsheet = new Spreadsheet();
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(10);
-// $activeWorksheet->getActiveSheet()->getColumnDimension('B')->setWidth(10);
-// $activeWorksheet->getActiveSheet()->getColumnDimension('C')->setWidth(10);
-// $activeWorksheet->getActiveSheet()->getColumnDimension('D')->setWidth(10);
-$activeWorksheet->setTitle('3d');
-$activeWorksheet->getStyle('A3:F3')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A3:F3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A3:F3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A3:F3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A3:F3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getRowDimension(3)->setRowHeight(30);
+$tabel = new Spreadsheet();
+$tabel_3d = $tabel->getActiveSheet();
+$tabel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+$tabel_3d->setTitle('3d');
+$tabel_3d->getStyle('A3:F3')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_3d->getStyle('A3:F3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3d->getStyle('A3:F3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3d->getStyle('A3:F3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
+$tabel_3d->getStyle('A3:F3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
+$tabel_3d->getRowDimension(3)->setRowHeight(30);
 
-$activeWorksheet->mergeCells('A1:C1'); // Merge cells A1 and B1
-// $activeWorksheet->getColumnDimension('A')->setWidth(15); // Set the width of column A to 15 characters
-$activeWorksheet->setCellValue('A1', 'Tabel 3d) Rekognisi Dosen');
-$activeWorksheet->setCellValue('A3', 'No.');
-$activeWorksheet->setCellValue('B3', 'Nama Dosen');
-$activeWorksheet->setCellValue('C3', 'Bidang Keahlian');
-$activeWorksheet->setCellValue('D3', 'Rekognisi');
-$activeWorksheet->setCellValue('E3', 'Tingkat');
-$activeWorksheet->setCellValue('F3', 'Tahun Perolehan');
+// Set Autosize and widht height column and wrap text
+$tabel_3d->getColumnDimension('A')->setAutoSize(true);
+$tabel_3d->getColumnDimension('B')->setWidth(150, 'px');
+$tabel_3d->getColumnDimension('C')->setWidth(200, 'px');
+$tabel_3d->getColumnDimension('D')->setWidth(400, 'px');
+$tabel_3d->getColumnDimension('E')->setWidth(100, 'px');
+$tabel_3d->getColumnDimension('F')->setWidth(100, 'px');
+
+
+$tabel_3d->mergeCells('A1:C1'); // Merge cells A1 and B1
+$tabel_3d->setCellValue('A1', 'Tabel 3d) Rekognisi Dosen');
+$tabel_3d->setCellValue('A3', 'No.');
+$tabel_3d->setCellValue('B3', 'Nama Dosen');
+$tabel_3d->setCellValue('C3', 'Bidang Keahlian');
+$tabel_3d->setCellValue('D3', 'Rekognisi');
+$tabel_3d->setCellValue('E3', 'Tingkat');
+$tabel_3d->setCellValue('F3', 'Tahun Perolehan');
 
 // Heading No
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$activeWorksheet->getStyle('A4:F4')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A4:F4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A4:F4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A4:F4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A4:F4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getRowDimension(4)->setRowHeight(15);
-$activeWorksheet->setCellValue('A4', '1.');
-$activeWorksheet->setCellValue('B4', '2');
-$activeWorksheet->setCellValue('C4', '3');
-$activeWorksheet->setCellValue('D4', '4');
-$activeWorksheet->setCellValue('E4', '5');
-$activeWorksheet->setCellValue('F4', '6');
+$tabel_3d = $tabel->getActiveSheet();
+$tabel_3d->getStyle('A4:F4')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_3d->getStyle('A4:F4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3d->getStyle('A4:F4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3d->getStyle('A4:F4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
+$tabel_3d->getStyle('A4:F4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
+$tabel_3d->getRowDimension(4)->setRowHeight(15);
+$tabel_3d->setCellValue('A4', '1.');
+$tabel_3d->setCellValue('B4', '2');
+$tabel_3d->setCellValue('C4', '3');
+$tabel_3d->setCellValue('D4', '4');
+$tabel_3d->setCellValue('E4', '5');
+$tabel_3d->setCellValue('F4', '6');
 
 // End Heading Tabel
 $rowIndex = 5; // Start row index for data
 foreach ($rekognisi as $row) {
-    $activeWorksheet->setCellValue('A' . $rowIndex, $row['NO']);
-    $activeWorksheet->setCellValue('B' . $rowIndex, $row['NAMA']);
-    $activeWorksheet->setCellValue('C' . $rowIndex, $row['BIDANG_KEAHLIAN']);
-    $activeWorksheet->setCellValue('D' . $rowIndex, $row['REKOGNISI']);
-    $activeWorksheet->setCellValue('E' . $rowIndex, $row['TINGKAT']);
-    $activeWorksheet->setCellValue('F' . $rowIndex, $row['TAHUN']);
+    $tabel_3d->setCellValue('A' . $rowIndex, $row['NO']);
+    $tabel_3d->setCellValue('B' . $rowIndex, $row['NAMA']);
+    $tabel_3d->setCellValue('C' . $rowIndex, $row['BIDANG_KEAHLIAN']);
+    $tabel_3d->setCellValue('D' . $rowIndex, $row['REKOGNISI']);
+    $tabel_3d->setCellValue('E' . $rowIndex, $row['TINGKAT']);
+    $tabel_3d->setCellValue('F' . $rowIndex, $row['TAHUN']);
 
     // Mengatur wrap text
-    $activeWorksheet->getStyle('A2:F' . $rowIndex)->getAlignment()->setWrapText(true);
-    $activeWorksheet->getStyle('B2:C' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('E2:F' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('B2:C' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-    $activeWorksheet->getStyle('E2:F' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-    $activeWorksheet->getStyle('D5:D' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-    $activeWorksheet->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('A2:A' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-    $activeWorksheet->getStyle('B' . $rowIndex . ':F' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
-    $activeWorksheet->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
+    $tabel_3d->getStyle('A2:F' . $rowIndex)->getAlignment()->setWrapText(true);
+    $tabel_3d->getStyle('E2:F' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $tabel_3d->getStyle('A2:F' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+    $tabel_3d->getStyle('D5:D' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+    $tabel_3d->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $tabel_3d->getStyle('A2:A' . $rowIndex )->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+    $tabel_3d->getStyle('B' . $rowIndex . ':F' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
+    $tabel_3d->getStyle('A' . $rowIndex . ':F' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
     $rowIndex++;
 }
-// Mengatur lebar kolom
-$activeWorksheet->getColumnDimension('A')->setWidth(5); // Mengatur lebar kolom A
-$activeWorksheet->getColumnDimension('B')->setWidth(20); // Mengatur lebar kolom B
-$activeWorksheet->getColumnDimension('C')->setWidth(20); // Mengatur lebar kolom C
-$activeWorksheet->getColumnDimension('D')->setWidth(20); // Mengatur lebar kolom D
-$activeWorksheet->getColumnDimension('E')->setWidth(10); // Mengatur lebar kolom E
-$activeWorksheet->getColumnDimension('F')->setWidth(10); // Mengatur lebar kolom F
-// Auto-size columns
-foreach (range('A', 'F') as $column) {
-    $activeWorksheet->getColumnDimension($column)->setAutoSize(false);
-}
 
-$writer = new Xlsx($spreadsheet);
+$writer = new Xlsx($tabel);
 
 // Set headers for download
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

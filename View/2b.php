@@ -154,8 +154,8 @@
                                                             echo '<div class="skor">';
                                                             echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir: '. $total_mahasiswa_asing .'</p>';
                                                             echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : ' . $total_mahasiswa_aktif.'</p>';
-                                                            echo '<p>Presentase Mahasiswa Asing : ' .$presentase_tabel_2b .'%</p>';
-                                                            echo '<p>Skor Tabel :'. $skor_tabel_2b.'</p>';
+                                                            echo '<p>Presentase Mahasiswa Asing : ' .$presentase_2b .'%</p>';
+                                                            echo '<p>Skor Tabel :'. $skor_2b.'</p>';
                                                             echo '<p>Keterangan :<br>'. $keterangan.'</p>';
                                                             echo '</div>';
                                                            ?>
@@ -197,9 +197,9 @@
                                                             echo '<div class="skor">';
                                                             echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 2.b</h4>';
                                                             echo '<p>Jumlah Mahasiswa Asing 3 Tahun Terakhir : <span id="mahasiswa_asing">' .$total_mahasiswa_asing. '</span></p>';
-                                                            echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Ter     akhir : <span id="mahasiswa_aktif">' .$total_mahasiswa_aktif. '</span></p>';
-                                                            echo '<p>Presentase Mahasiswa Asing: <span id="simulasi_presentase">' .$presentase_tabel_2b. '</span>%</p>';
-                                                            echo '<p>Skoor Mahasiswa Asing: <span id="simulasi_skor">' .$skor_tabel_2b. '</span></p>';
+                                                            echo '<p>Jumlah Mahasiswa Aktif 3 Tahun Terakhir : <span id="mahasiswa_aktif">' .$total_mahasiswa_aktif. '</span></p>';
+                                                            echo '<p>Presentase Mahasiswa Asing: <span id="simulasi_presentase">' .$presentase_2b. '</span>%</p>';
+                                                            echo '<p>Skoor Mahasiswa Asing: <span id="simulasi_skor">' .$skor_2b. '</span></p>';
                                                             echo '<p>Keterangan Skoor:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
                                                             echo '</div>';
                                                             ?>

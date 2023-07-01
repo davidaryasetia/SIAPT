@@ -136,8 +136,8 @@ include '../Controller/nilai_3d.php';
                                                 Export Data
                                             </a>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-primary ml-2"
-                                                data-toggle="modal" data-target="#simulasi">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#simulasi">
                                                 <i class="fa-solid fa-info mr-1"></i>Simulasi Skoor
                                             </button>
                                             <!-- Modal -->
@@ -161,9 +161,10 @@ include '../Controller/nilai_3d.php';
                                                            ?>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <hr>
                                                             <h3 class="modal-title " style="font-weight:bolder"
                                                                 id="exampleModalLabel">
-                                                                Keterangan Nilai Tabel 3.d
+                                                                Keterangan Simulasi Nilai Tabel 3.d
                                                             </h3>
                                                             <form class="forms-sample" id="form-container">
                                                                 <div class="form-group">

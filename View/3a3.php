@@ -155,6 +155,7 @@ include '../Controller/nilai_3a3.php';
                                                            ?>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <hr>
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
                                                                 Nilai
                                                                 Tabel 3.a.3

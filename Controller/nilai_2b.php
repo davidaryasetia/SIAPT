@@ -33,30 +33,30 @@
     No 19
     Hitung Total Presentase Jumlah Mahasiswa Asing 
     Rumus :
-    presentase_tabel_2b = (total_mhs_asing/total_mhs_aktif) * 100% [100% = 1]
+    presentase_2b = (total_mhs_asing/total_mhs_aktif) * 100% [100% = 1]
     Jika Presentase >= 0,5% skor = 4,
-    Jika presentase < 0,5% skor = 2 + (4 * presentase_tabel_2b)
+    Jika presentase < 0,5% skor = 2 + (4 * presentase_2b)
     Jika Presentase = 0% maka skor 1 || 0
     */ 
-    $presentase_tabel_2b;
-    $skor_tabel_2b;
-    $presentase_tabel_2b = ($total_mahasiswa_asing/$total_mahasiswa_aktif) * 100 ;
-    $presentase_tabel_2b = number_format($presentase_tabel_2b, 1); // Limit Desimal Output 3 angka
+    $presentase_2b;
+    $skor_2b;
+    $presentase_2b = ($total_mahasiswa_asing/$total_mahasiswa_aktif) * 100 ;
+    $presentase_2b = number_format($presentase_2b, 1); // Limit Desimal Output 3 angka
 
     // Hitung Skoor Tabel 2.b Mahasiswa Asing 
-    if($presentase_tabel_2b >= 0.5 ){  //[notes 0,5% = 0,5]
-        $skor_tabel_2b = 4;  
-    } else if($presentase_tabel_2b < 0.5 && $presentase_tabel_2b > 0){
-        $skor_tabel_2b = 2+(400 * ($presentase_tabel_2b/100));
+    if($presentase_2b >= 0.5 ){  //[notes 0,5% = 0,5]
+        $skor_2b = 4;  
+    } else if($presentase_2b < 0.5 && $presentase_2b > 0){
+        $skor_2b = 2+(400 * ($presentase_2b/100));
     } else {
-        $skor_tabel_2b=  0;
+        $skor_2b=  0;
     }
 
    
     $keterangan='txt';
-    if($skor_tabel_2b == 4){
+    if($skor_2b == 4){
     $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 2.b Mahasiswa Asing telah mencapai Maksimal</span>';
-    }else if($skor_tabel_2b < 4 && $skor_tabel_2b > 0){
+    }else if($skor_2b < 4 && $skor_2b > 0){
     $keterangan = '<span style="color:orange">Skor Tabel 2.b Mahasiswa Asing belum memenuhi target maksimal</span>';
     }else {
     $keterangan = '<span style="color:red">Skor Tabel 2.b Mahasiswa Asing Nol 0</span>';

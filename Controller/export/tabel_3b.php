@@ -8,52 +8,60 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 // Heading Tabel
-$spreadsheet = new Spreadsheet();
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$activeWorksheet->setTitle('3b');
-$activeWorksheet->getStyle('A3:E3')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A3:E3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A3:E3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A3:E3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A3:E3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getRowDimension(3)->setRowHeight(15);
-$activeWorksheet->mergeCells('A1:C1'); // Merge cells A1 and B1'
-$activeWorksheet->setCellValue('A1', 'Tabel 3.b) Rasio Dosen Terhadap Mahasiswa');
-$activeWorksheet->setCellValue('A3', 'No.');
-$activeWorksheet->setCellValue('B3', 'Departemen');
-$activeWorksheet->setCellValue('C3', 'Jumlah Dosen');
-$activeWorksheet->setCellValue('D3', 'Mahasiswa (TS)');
-$activeWorksheet->setCellValue('E3', 'Jumlah Mahasiswa TA');
+$tabel = new Spreadsheet();
+$tabel_3b = $tabel->getActiveSheet();
+$tabel_3b->setTitle('3b');
+$tabel_3b->getStyle('A3:E3')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_3b->getStyle('A3:E3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3b->getStyle('A3:E3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3b->getStyle('A3:E3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
+$tabel_3b->getStyle('A3:E3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
+$tabel_3b->getRowDimension(3)->setRowHeight(15);
+$tabel_3b->mergeCells('A1:C1'); // Merge cells A1 and B1'
+$tabel_3b->setCellValue('A1', 'Tabel 3.b) Rasio Dosen Terhadap Mahasiswa');
+$tabel_3b->setCellValue('A3', 'No.');
+$tabel_3b->setCellValue('B3', 'Departemen');
+$tabel_3b->setCellValue('C3', 'Jumlah Dosen');
+$tabel_3b->setCellValue('D3', 'Mahasiswa (TS)');
+$tabel_3b->setCellValue('E3', 'Jumlah Mahasiswa TA');
 // End Heading Tabel
 
+// Set Autosize and widht height column and wrap text
+$tabel_3b->getColumnDimension('A')->setAutoSize(true);
+$tabel_3b->getColumnDimension('B')->setWidth(250, 'px');
+$tabel_3b->getColumnDimension('C')->setWidth(150, 'px');
+$tabel_3b->getColumnDimension('D')->setWidth(150, 'px');
+$tabel_3b->getColumnDimension('E')->setWidth(150, 'px');
+
+
 // Heading No
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$activeWorksheet->getStyle('A4:E4')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A4:E4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A4:E4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A4:E4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A4:E4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getRowDimension(4)->setRowHeight(15);
-$activeWorksheet->setCellValue('A4', '1.');
-$activeWorksheet->setCellValue('B4', '2');
-$activeWorksheet->setCellValue('C4', '3');
-$activeWorksheet->setCellValue('D4', '4');
-$activeWorksheet->setCellValue('E4', '5');
+$tabel_3b = $tabel->getActiveSheet();
+$tabel_3b->getStyle('A4:E4')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_3b->getStyle('A4:E4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3b->getStyle('A4:E4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3b->getStyle('A4:E4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
+$tabel_3b->getStyle('A4:E4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
+$tabel_3b->getRowDimension(4)->setRowHeight(15);
+$tabel_3b->setCellValue('A4', '1.');
+$tabel_3b->setCellValue('B4', '2');
+$tabel_3b->setCellValue('C4', '3');
+$tabel_3b->setCellValue('D4', '4');
+$tabel_3b->setCellValue('E4', '5');
 
 
 // End Heading Tabel
 $rowIndex = 5; // Start row index for data
 foreach ($rasio_dosen as $row)  {
-    $activeWorksheet->setCellValue('A' . $rowIndex, $row['NOMOR']);
-    $activeWorksheet->setCellValue('B' . $rowIndex, $row['DEPARTEMEN']);
-    $activeWorksheet->setCellValue('C' . $rowIndex, $row['Jumlah Dosen']);
-    $activeWorksheet->setCellValue('D' . $rowIndex, $row['Mahasiswa Angkatan 2020']);
-    $activeWorksheet->setCellValue('E' . $rowIndex, $row['Jumlah Mahasiswa TA']);
+    $tabel_3b->setCellValue('A' . $rowIndex, $row['NOMOR']);
+    $tabel_3b->setCellValue('B' . $rowIndex, $row['DEPARTEMEN']);
+    $tabel_3b->setCellValue('C' . $rowIndex, $row['Jumlah Dosen']);
+    $tabel_3b->setCellValue('D' . $rowIndex, $row['Mahasiswa Angkatan 2020']);
+    $tabel_3b->setCellValue('E' . $rowIndex, $row['Jumlah Mahasiswa TA']);
     // Calculate Total untuk setiap row
-    $activeWorksheet->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('B' . $rowIndex . ':E' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
-    $activeWorksheet->getStyle('A' . $rowIndex . ':E' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
+    $tabel_3b->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $tabel_3b->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $tabel_3b->getStyle('B' . $rowIndex . ':E' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
+    $tabel_3b->getStyle('A' . $rowIndex . ':E' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
     $rowIndex++;
 }
 
@@ -64,24 +72,21 @@ $mahasiswa_ta      = '=SUM(E5:E' . $rowIndex . ')';
 
 
 // Set total row
-$activeWorksheet->setCellValue('A' . $rowIndex, 'Total');
-$activeWorksheet->mergeCells('A' . $rowIndex . ':B' . $rowIndex); // Merge cells A and B
-$activeWorksheet->setCellValue('C' . $rowIndex, $jumlah_dosen);
-$activeWorksheet->setCellValue('D' . $rowIndex, $mahasiswa);
-$activeWorksheet->setCellValue('E' . $rowIndex, $mahasiswa_ta);
-$activeWorksheet->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A2:A' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF'); 
-$activeWorksheet->getStyle('A' . $rowIndex . ':E' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
+$tabel_3b->setCellValue('A' . $rowIndex, 'Jumlah');
+$tabel_3b->mergeCells('A' . $rowIndex . ':B' . $rowIndex); // Merge cells A and B
+$tabel_3b->getStyle('A' . $rowIndex . ':B' . $rowIndex)->getFont()->setBold(true);
+$tabel_3b->setCellValue('C' . $rowIndex, $jumlah_dosen);
+$tabel_3b->setCellValue('D' . $rowIndex, $mahasiswa);
+$tabel_3b->setCellValue('E' . $rowIndex, $mahasiswa_ta);
+$tabel_3b->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3b->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3b->getStyle('A2:A' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3b->getStyle('C' . $rowIndex . ':E' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF'); 
+$tabel_3b->getStyle('A' . $rowIndex . ':E' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
 $rowIndex++;
 
-// Auto-size columns
-foreach (range('A', 'E') as $column) {
-    $activeWorksheet->getColumnDimension($column)->setAutoSize(true);
-}
 
-$writer = new Xlsx($spreadsheet);
+$writer = new Xlsx($tabel);
 
 // Set headers for download
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

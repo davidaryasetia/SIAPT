@@ -8,61 +8,72 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 // Heading Tabel
-$spreadsheet = new Spreadsheet();
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$activeWorksheet->setTitle('3a4');
-$activeWorksheet->getStyle('A3:H3')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A3:H3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A3:H3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A3:H3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A3:H3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getRowDimension(3)->setRowHeight(15);
-$activeWorksheet->mergeCells('A1:C1'); // Merge cells A1 and B1'
-$activeWorksheet->setCellValue('A1', 'Tabel 3.a.4) Dosen Tidak Tetap');
-$activeWorksheet->setCellValue('A3', 'No.');
-$activeWorksheet->setCellValue('B3', 'Pendidikan');
-$activeWorksheet->setCellValue('C3', 'Guru Besar');
-$activeWorksheet->setCellValue('D3', 'Lektor Kepala');
-$activeWorksheet->setCellValue('E3', 'Lektor');
-$activeWorksheet->setCellValue('F3', 'Asisten Ahli');
-$activeWorksheet->setCellValue('G3', 'Tenaga Pengajar');
-$activeWorksheet->setCellValue('H3', 'Jumlah');
+$tabel = new Spreadsheet();
+$tabel_3a4 = $tabel->getActiveSheet();
+$tabel_3a4->setTitle('3a4');
+$tabel_3a4->getStyle('A3:H3')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_3a4->getStyle('A3:H3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3a4->getStyle('A3:H3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3a4->getStyle('A3:H3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
+$tabel_3a4->getStyle('A3:H3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
+$tabel_3a4->getRowDimension(3)->setRowHeight(15);
+$tabel_3a4->mergeCells('A1:C1'); // Merge cells A1 and B1'
+$tabel_3a4->setCellValue('A1', 'Tabel 3.a.4) Dosen Tidak Tetap');
+$tabel_3a4->setCellValue('A3', 'No.');
+$tabel_3a4->setCellValue('B3', 'Pendidikan');
+$tabel_3a4->setCellValue('C3', 'Guru Besar');
+$tabel_3a4->setCellValue('D3', 'Lektor Kepala');
+$tabel_3a4->setCellValue('E3', 'Lektor');
+$tabel_3a4->setCellValue('F3', 'Asisten Ahli');
+$tabel_3a4->setCellValue('G3', 'Tenaga Pengajar');
+$tabel_3a4->setCellValue('H3', 'Jumlah');
 // End Heading Tabel
 
 // Heading No
-$activeWorksheet = $spreadsheet->getActiveSheet();
-$activeWorksheet->getStyle('A4:H4')->getFont()->setBold(true); // Apply bold font to header row
-$activeWorksheet->getStyle('A4:H4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A4:H4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('A4:H4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
-$activeWorksheet->getStyle('A4:H4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$activeWorksheet->getRowDimension(4)->setRowHeight(15);
-$activeWorksheet->setCellValue('A4', '1.');
-$activeWorksheet->setCellValue('B4', '2');
-$activeWorksheet->setCellValue('C4', '3');
-$activeWorksheet->setCellValue('D4', '4');
-$activeWorksheet->setCellValue('E4', '5');
-$activeWorksheet->setCellValue('F4', '6');
-$activeWorksheet->setCellValue('G4', '7');
-$activeWorksheet->setCellValue('H4', '8');
-
-
+$tabel_3a4 = $tabel->getActiveSheet();
+$tabel_3a4->getStyle('A4:H4')->getFont()->setBold(true); // Apply bold font to header row
+$tabel_3a4->getStyle('A4:H4')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3a4->getStyle('A4:H4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3a4->getStyle('A4:H4')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('D9D9D9'); // Set light blue background color for header row
+$tabel_3a4->getStyle('A4:H4')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
+$tabel_3a4->getRowDimension(4)->setRowHeight(15);
+$tabel_3a4->setCellValue('A4', '1.');
+$tabel_3a4->setCellValue('B4', '2');
+$tabel_3a4->setCellValue('C4', '3');
+$tabel_3a4->setCellValue('D4', '4');
+$tabel_3a4->setCellValue('E4', '5');
+$tabel_3a4->setCellValue('F4', '6');
+$tabel_3a4->setCellValue('G4', '7');
+$tabel_3a4->setCellValue('H4', '8');
 // End Heading Tabel
+
+
+// Set Autosize and widht height column and wrap text
+$tabel_3a4->getColumnDimension('A')->setAutoSize(true);
+$tabel_3a4->getColumnDimension('B')->setWidth(200, 'px');
+$tabel_3a4->getColumnDimension('C')->setWidth(100, 'px');
+$tabel_3a4->getColumnDimension('D')->setWidth(100, 'px');
+$tabel_3a4->getColumnDimension('E')->setWidth(100, 'px');
+$tabel_3a4->getColumnDimension('F')->setWidth(100, 'px');
+$tabel_3a4->getColumnDimension('G')->setWidth(110, 'px');
+$tabel_3a4->getColumnDimension('H')->setWidth(100, 'px');
+
+
 $rowIndex = 5; // Start row index for data
 foreach ($dosen_tidak_tetap as $row)  {
-    $activeWorksheet->setCellValue('A' . $rowIndex, $row['Nomor']);
-    $activeWorksheet->setCellValue('B' . $rowIndex, $row['Pendidikan']);
-    $activeWorksheet->setCellValue('C' . $rowIndex, $row['Guru Besar']);
-    $activeWorksheet->setCellValue('D' . $rowIndex, $row['Lektor Kepala']);
-    $activeWorksheet->setCellValue('E' . $rowIndex, $row['Lektor']);
-    $activeWorksheet->setCellValue('F' . $rowIndex, $row['Asisten Ahli']);
-    $activeWorksheet->setCellValue('G' . $rowIndex, $row['Tenaga Pengajar']);
+    $tabel_3a4->setCellValue('A' . $rowIndex, $row['Nomor']);
+    $tabel_3a4->setCellValue('B' . $rowIndex, $row['Pendidikan']);
+    $tabel_3a4->setCellValue('C' . $rowIndex, $row['Guru Besar']);
+    $tabel_3a4->setCellValue('D' . $rowIndex, $row['Lektor Kepala']);
+    $tabel_3a4->setCellValue('E' . $rowIndex, $row['Lektor']);
+    $tabel_3a4->setCellValue('F' . $rowIndex, $row['Asisten Ahli']);
+    $tabel_3a4->setCellValue('G' . $rowIndex, $row['Tenaga Pengajar']);
     // Calculate Total untuk setiap row
-    $activeWorksheet->setCellValue('H'. $rowIndex, '=C' .$rowIndex . '+D' .$rowIndex. '+E' .$rowIndex. '+F' .$rowIndex. '+G' .$rowIndex );
-    $activeWorksheet->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-    $activeWorksheet->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
-    $activeWorksheet->getStyle('A' . $rowIndex . ':H' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
+    $tabel_3a4->setCellValue('H'. $rowIndex, '=C' .$rowIndex . '+D' .$rowIndex. '+E' .$rowIndex. '+F' .$rowIndex. '+G' .$rowIndex );
+    $tabel_3a4->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $tabel_3a4->getStyle('A2:A' . $rowIndex )->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+    $tabel_3a4->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFF00'); 
+    $tabel_3a4->getStyle('A' . $rowIndex . ':H' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
     $rowIndex++;
 }
 
@@ -76,28 +87,24 @@ $jumlah =        '=SUM(H5:H' . $rowIndex . ')';
 
 
 // Set total row
-$activeWorksheet->setCellValue('A' . $rowIndex, 'Total');
-$activeWorksheet->mergeCells('A' . $rowIndex . ':B' . $rowIndex); // Merge cells A and B
-$activeWorksheet->setCellValue('C' . $rowIndex, $guru_besar);
-$activeWorksheet->setCellValue('D' . $rowIndex, $lektor_kepala);
-$activeWorksheet->setCellValue('E' . $rowIndex, $lektor);
-$activeWorksheet->setCellValue('F' . $rowIndex, $asisten_ahli);
-$activeWorksheet->setCellValue('G' . $rowIndex, $tenaga_pengajar);
-$activeWorksheet->setCellValue('H' . $rowIndex, $jumlah);
-$activeWorksheet->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
-$activeWorksheet->getStyle('C2:H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('A2:A' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-$activeWorksheet->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF'); 
-$activeWorksheet->getStyle('A' . $rowIndex . ':H' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
+$tabel_3a4->setCellValue('A' . $rowIndex, 'Jumlah');
+$tabel_3a4->mergeCells('A' . $rowIndex . ':B' . $rowIndex); // Merge cells A and B
+$tabel_3a4->getStyle('A' . $rowIndex . ':B' . $rowIndex)->getFont()->setBold(true);
+$tabel_3a4->setCellValue('C' . $rowIndex, $guru_besar);
+$tabel_3a4->setCellValue('D' . $rowIndex, $lektor_kepala);
+$tabel_3a4->setCellValue('E' . $rowIndex, $lektor);
+$tabel_3a4->setCellValue('F' . $rowIndex, $asisten_ahli);
+$tabel_3a4->setCellValue('G' . $rowIndex, $tenaga_pengajar);
+$tabel_3a4->setCellValue('H' . $rowIndex, $jumlah);
+$tabel_3a4->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3a4->getStyle('C' . $rowIndex . ':H' . $rowIndex)->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+$tabel_3a4->getStyle('C2:H' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3a4->getStyle('A2:A' . $rowIndex)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+$tabel_3a4->getStyle('B' . $rowIndex . ':G' . $rowIndex)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('FFFFFF'); 
+$tabel_3a4->getStyle('A' . $rowIndex . ':H' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
 $rowIndex++;
 
-// Auto-size columns
-foreach (range('A', 'H') as $column) {
-    $activeWorksheet->getColumnDimension($column)->setAutoSize(true);
-}
-
-$writer = new Xlsx($spreadsheet);
+$writer = new Xlsx($tabel);
 
 // Set headers for download
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

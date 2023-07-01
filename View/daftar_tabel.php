@@ -134,7 +134,7 @@
                                     <div class="d-flex flex-row align-items-center mb">
                                         <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
                                             Perguruan Tinggi
-                                            <a href="../Controller/export/tabel_2b.php" type="button"
+                                            <a href="../Controller/export/daftar_tabel_lkpt.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-file-export"></i>
                                                 Export Data

@@ -36,11 +36,11 @@ $presentase_3a4=number_format($presentase_3a4, 1);
      //    Keterangan Skoor
 $keterangan='txt';
 if($skor_3a4 == 4){
-   $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 3.a.2 Persentase Jumlah Dosen Yang Memiliki Jabatan Fungsional Minimal Lektor memenuhi target maksimum</span>';
+   $keterangan = '<span style="color:green;font-weight:bold">Skor Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Terhadap Jumlah Seluruh Dosen memenuhi target maksimum</span>';
    }else if($skor_3a4 < 4 && $skor_3a4 > 0){
-   $keterangan = '<span style="color:orange">Skor Tabel 3.a.2 Persentase Jumlah Dosen Yang Memiliki Jabatan Fungsional Minimal Lektor belum memenuhi target maksimal !!</span>';
+   $keterangan = '<span style="color:orange">Skor Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Terhadap Jumlah Seluruh Dosen belum memenuhi target maksimal !!</span>';
    }else {
-   $keterangan = '<span style="color:red">Skor Tabel 3.a.2 Persentase Jumlah Dosen Yang Memiliki Jabatan Fungsional Minimal Lektor 0 !!</span>';
+   $keterangan = '<span style="color:red">Skor Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Terhadap Jumlah Seluruh Dosen 0 !!</span>';
    }
 ?>
 
@@ -79,13 +79,13 @@ if($skor_3a4 == 4){
          var nilai_simulasi_keterangan;
          if (simulasi_skor_3a4 == 4) {
             nilai_simulasi_keterangan =
-               '<span style="color:green">Skoor Simulasi Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Telah Mencapai Hasil Maksimal (4)</span>';
+               '<span style="color:green">Skoor Simulasi Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Terhadap Jumlah Seluruh Dosen Telah Mencapai Hasil Maksimal (4)</span>';
          } else if (simulasi_skor_3a4 < 4 && simulasi_skor_3a4 > 0) {
             nilai_simulasi_keterangan =
-               '<span style="color:orange">Skoor Simulasi Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Belum mencapai hasil maksimal !!</span>';
+               '<span style="color:orange">Skoor Simulasi Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Terhadap Jumlah Seluruh Dosen Belum mencapai hasil maksimal !!</span>';
          } else {
             nilai_simulasi_keterangan =
-               '<span style="color:red">Skoor Simulasi Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap 0 !!</span>';
+               '<span style="color:red">Skoor Simulasi Tabel 3.a.4 Persentase Jumlah Dosen Tidak Tetap Terhadap Jumlah Seluruh Dosen 0 !!</span>';
          }
 
          // Modifikasi Text
