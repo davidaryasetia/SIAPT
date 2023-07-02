@@ -128,13 +128,13 @@
 
                     <!-- Total Skoor -->
                     <div class="row">
-                        <div class="col-md-12 grid-margin transparent">
+                        <div class="col-md-12 grid-margin transparent ">
                             <div class="row">
-                                <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="col-md-4 mb-4 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
                                             <p class="mb-4">
-                                                Nilai Laporan Kinerja
+                                                Nilai Laporan Kinerja Berdasarkan Tabel LKPT
                                             </p>
                                             <p class="fs-30 mb-2">
                                                 <?php
@@ -145,37 +145,22 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="col-md-4 mb-4 stretch-card transparent">
                                     <div class="card card-dark-blue">
                                         <div class="card-body">
-                                            <p class="mb-4">Nilai Laporan Evaluasi Diri</p>
-                                            <p class="fs-30 mb-2"><?php echo $skor_led ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 mb-4 stretch-card transparent">
-                                    <div class="card card-dark-blue">
-                                        <div class="card-body">
-                                            <p class="mb-4">Nilai Akreditasi</p>
-                                            <p class="fs-30 mb-2"><?php echo $nilai_akreditasi?></p>
+                                            <p class="mb-4">
+                                                Nilai Laporan Kinerja Berdasarkan Matriks IAPT 3.0
+                                            </p>
+                                            <p class="fs-30 mb-2">
+                                                <?php
+                                                echo $skor_lkpt
+                                                ?>
+                                            </p>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-4 stretch-card transparent">
-                                    <div class="card card-dark-blue">
-                                        <div class="card-body">
-                                            <p class="mb-4">Peringkat Akreditasi</p>
-                                            <p class="fs-30 mb-2">-</p>
-
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
-
-
                         </div>
                     </div>
                     <!-- Total Skoor -->

@@ -72,7 +72,7 @@ $tsSum = '=SUM(E5:E' . $rowIndex . ')';
 // Set total row
 $tabel_2b->setCellValue('A' . $rowIndex, 'Jumlah');
 $tabel_2b->mergeCells('A' . $rowIndex . ':B' . $rowIndex); // Merge cells A and B
-$tabel_2b->getStyle('A' . $rowIndex . ':B' . $rowIndex)->getFont()->setBold(true); // Merge cells A and B
+$tabel_2b->getStyle('A' . $rowIndex . ':B' . $rowIndex)->getFont()->setBold(true); 
 $tabel_2b->setCellValue('C' . $rowIndex, $ts2Sum);
 $tabel_2b->setCellValue('D' . $rowIndex, $ts1Sum);
 $tabel_2b->setCellValue('E' . $rowIndex, $tsSum);
@@ -85,8 +85,8 @@ $tabel_2b->getStyle('B' . $rowIndex . ':E' . $rowIndex)->getFill()->setFillType(
 $tabel_2b->getStyle('A' . $rowIndex . ':E' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
 $tabel_2b->getStyle('A' . $rowIndex . ':E' . $rowIndex)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); 
 $rowIndex++;
-$writer = new Xlsx($tabel);
 
+$writer = new Xlsx($tabel);
 // Set headers for download
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="Tabel 2b Mahasiswa Asing.xlsx"');

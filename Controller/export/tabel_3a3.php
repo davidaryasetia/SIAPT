@@ -16,7 +16,6 @@ $tabel_3a3->getStyle('A3:E3')->getAlignment()->setHorizontal(\PhpOffice\PhpSprea
 $tabel_3a3->getStyle('A3:E3')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
 $tabel_3a3->getStyle('A3:E3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('8DB4E2'); // Set light blue background color for header row
 $tabel_3a3->getStyle('A3:E3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN); // Apply thin borders to header row
-$tabel_3a3->getDefaultColumnDimension('D')->setWidth(5, 'cm');
 $tabel_3a3->getRowDimension(3)->setRowHeight(15);
 $tabel_3a3->mergeCells('A1:C1'); // Merge cells A1 and B1'
 $tabel_3a3->setCellValue('A1', 'Tabel 3.a.3 Sertifikasi Dosen');
@@ -33,7 +32,6 @@ $tabel_3a3->getColumnDimension('B')->setWidth(250, 'px');
 $tabel_3a3->getColumnDimension('C')->setWidth(130, 'px');
 $tabel_3a3->getColumnDimension('D')->setWidth(130, 'px');
 $tabel_3a3->getColumnDimension('E')->setWidth(130, 'px');
-
 
 // Heading No
 $tabel_3a3 = $tabel->getActiveSheet();

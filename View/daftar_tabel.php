@@ -26,25 +26,13 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+
 </head>
 
 <body>
     <?php
     include "../Controller/daftar_tabel.php";
-    include "../Controller/daftar_tabel.php";
-    include "../Controller/nilai_2b.php";
-    include "../Controller/nilai_2c.php";
-    include "../Controller/nilai_3a1.php";
-    include "../Controller/nilai_3a2.php";
-    include "../Controller/nilai_3a3.php";
-    include "../Controller/nilai_3a4.php";
-    include "../Controller/nilai_3b.php";
-    include "../Controller/nilai_3c1.php";
-    include "../Controller/nilai_3c2.php";
-    include "../Controller/nilai_3d.php";
-    include "../Controller/nilai_5b1.php";
-    include "../Controller/nilai_5b2.php";
-
+   
 ?>
     <div class="container-scroller">
 
@@ -125,17 +113,37 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
                     <!-- Tabel LKPT  -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
-                                    <div class="d-flex flex-row align-items-center mb">
-                                        <p class="card-title d-flex align-items-center">Daftar Tabel-Laporan Kinerja
-                                            Perguruan Tinggi
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <p class="card-title mr-3">Daftar Tabel-Laporan Kinerja
+                                            Perguruan Tinggi</p>
+                                        <div class="card-title">
+                                            <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Daftar Tabel <i class="fa-solid fa-chevron-down ml-2"></i>
+                                            </button>
+                                            <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenu"
+                                                id="dropdownMenuContent">
+                                                <div class="list-wrapper pt-2">
+                                                    <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
+                                                        class="dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1 active">
+                                                        Daftar Tabel
+                                                    </a>
+                                                    <?php foreach ($data_lkpt as $row) : ?>
+                                                    <a href="<?php echo $row['SHEET'] . '.php'; ?>" type="button"
+                                                        class="dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1">
+                                                        <?php echo $row['SHEET']; ?>
+                                                    </a>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+
                                             <a href="../Controller/export/daftar_tabel_lkpt.php" type="button"
-                                                class="btn btn-sm btn-primary btn-icon-text ml-2">
+                                                class=" btn btn-sm btn-primary">
                                                 <i class="fa-solid fa-file-export"></i>
                                                 Export Data
                                             </a>
@@ -145,12 +153,11 @@
                                                 Tambah Data
                                             </a> -->
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-primary ml-2"
-                                                data-toggle="modal" data-target="#exampleModal">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal">
                                                 <i class="fa-solid fa-info"></i> Keterangan Data
                                             </button>
                                             <!-- End Button Trigger -->
-
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -188,8 +195,7 @@
                                                 </div>
                                             </div>
                                             <!-- End Modal -->
-                                        </p>
-
+                                        </div>
 
                                     </div>
                                     <div class="row">

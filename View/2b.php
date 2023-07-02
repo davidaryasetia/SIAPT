@@ -121,13 +121,38 @@
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card ">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="card-title">Tabel 2.b Mahasiswa Asing
-                                            <a href="daftar_tabel.php" type="button"
-                                                class="btn btn-sm btn-primary btn-icon-text">
-                                                <i class="fa-solid fa-arrow-left"></i>
-                                                Daftar Tabel
-                                            </a>
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <p class="card-title mr-3">Tabel 2.b Mahasiswa Asing </p>
+                                        <div class="card-title">
+
+                                            <!-- Button Pagination -->
+                                            <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Daftar Tabel <i class="fa-solid fa-chevron-down ml-2"></i>
+                                            </button>
+                                            <div class="dropdown-menu mt-2 " aria-labelledby="dropdownMenu"
+                                                id="dropdownMenuContent">
+                                                <div class="pt-2 pb-0 d-flex justify-content-center">
+                                                    <div class="">
+                                                        <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
+                                                            class="dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1">
+                                                            Daftar Tabel
+                                                        </a>
+                                                        <?php foreach($data_lkpt as $row) : ?>
+                                                        <?php
+                                                        $isActive = ($row['SHEET'] === '2b');
+                                                        $btnClass = $isActive ? 'dropdown btn btn-sm btn-primary active ml-1 mt-1 mb-1' : 'dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1';
+                                                        ?>
+                                                        <a href="<?php echo $row['SHEET'] .'.php'; ?>" type="button"
+                                                            class="<?php echo $btnClass; ?>">
+                                                            <?php echo $row['SHEET'] ?>
+                                                        </a>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Button Pagination -->
+
                                             <a href="../Controller/export/tabel_2b.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text ml-2">
                                                 <i class="fa-solid fa-file-export"></i>
@@ -212,8 +237,8 @@
                                                 </div>
                                             </div>
                                             <!-- End Modal -->
+                                        </div>
 
-                                        </p>
 
                                     </div>
 
@@ -255,28 +280,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Start Pagination -->
-                                    <div class="container">
-                                        <div class="pagination-container">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary">
-                                                    Daftar Tabel
-                                                </a>
-                                                <?php foreach($data_lkpt as $row) : ?>
-                                                <?php
-                                                $isActive = ($row['SHEET'] === '2b');
-                                                $btnClass = $isActive ? 'btn btn-outline-primary active' : 'btn btn-outline-primary';
-                                                ?>
-                                                <a href="<?php echo $row['SHEET'] .'.php'; ?>" type="button"
-                                                    class="<?php echo $btnClass; ?>">
-                                                    <?php echo $row['SHEET'] ?>
-                                                </a>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Pagination -->
+
                                 </div>
                             </div>
                         </div>
