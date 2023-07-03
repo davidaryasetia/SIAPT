@@ -31,7 +31,6 @@
 </head>
 
 <body>
-
     <?php
     include "../Controller/nilai_beranda.php";
     ?>
@@ -168,16 +167,41 @@
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="card-title">Elemen & Indikator Akreditasi Berdasarkan Matriks LKPT
-                                        <a href="../Controller/export/resume_beranda.php" type="button"
-                                            class="btn btn-sm btn-primary btn-icon-text ml-2">
-                                            <i class="fa-solid fa-file-pdf"></i>
-                                            Export Data
-                                        </a>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="table-responsive">
-                                                    <?php
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <p class="card-title mr-3">Elemen & Indikator Akreditasi Berdasarkan Matriks
+                                            LKPT
+                                        </p>
+                                        <div class="card-title">
+                                            <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Daftar Tabel <i class="fa-solid fa-chevron-down ml-2"></i>
+                                            </button>
+                                            <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenu"
+                                                id="dropdownMenuContent">
+                                                <div class="list-wrapper pt-2">
+                                                    <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
+                                                        class="dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1 active">
+                                                        Daftar Tabel
+                                                    </a>
+                                                    <?php foreach ($data_lkpt as $row) : ?>
+                                                    <a href="<?php echo $row['SHEET'] . '.php'; ?>" type="button"
+                                                        class="dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1">
+                                                        <?php echo $row['SHEET']; ?>
+                                                    </a>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                            <a href="../Controller/export/resume_beranda.php" type="button"
+                                                class="btn btn-sm btn-primary btn-icon-text ml-2">
+                                                <i class="fa-solid fa-file-pdf"></i>
+                                                Export Data
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive">
+                                                <?php
                                                 echo '<table class="display expandable-table table-hover table-border" style="width:100%;">';
                                                         echo '<thead>';
                                                         echo' <tr>
@@ -200,7 +224,7 @@
 
                                                             if($skor == 4){
                                                                 echo '<td style="color:green; font-weight:bold">' .$skor. '</td>';
-                                                            } else if($skor < 4 && $skor>= 0){
+                                                            } else if($skor < 4 && $skor> 0){
                                                                 echo '<td style="color:orange; font-weight:bold">' .$skor. '</td>';
                                                             } else {
                                                                 echo '<td style="color:red; font-weight:bold">' .$skor. '</td>';
@@ -211,9 +235,9 @@
                                                     echo '</table>'
 
                                                     ?>
-                                                </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -227,7 +251,8 @@
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
                             <br />
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made With love by
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made With love
+                                by
                                 <a href="http://www.davidaryasetia.site/" target="_blank">davidaryasetia.site</a>
                                 <i class="ti-heart text-danger ml-1"></i></span>
                     </div>
