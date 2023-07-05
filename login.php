@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Beranda</title>
+    <title>Login</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
@@ -44,16 +44,22 @@
                             <h6 class="font-weight-light">Silahkan Login.</h6>
                             <form action="beranda.php" method="" class="pt-3">
                                 <div class="form-group">
+                                    <label for="nama">Email</label>
                                     <input type="email" name="email" class="form-control form-control-lg"
-                                        id="exampleInputEmail1" placeholder="Username" />
+                                        id="exampleInputEmail1" placeholder="Masukkan Alamat Email" />
                                 </div>
                                 <div class="form-group">
+                                    <label for="email">Password</label>
                                     <input type="password" name="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password" />
+                                        id="exampleInputPassword1" placeholder="Masukkan Password" />
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="View/beranda.php">login</a>
+                                        href="">login</a>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Belum Mempunyai Akun??
+                                    <a href="register.php" class="text-primary">Register</a>
                                 </div>
                             </form>
                         </div>

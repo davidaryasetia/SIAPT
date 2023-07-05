@@ -60,7 +60,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a href="pengaturan.php" class="dropdown-item">
+                            <a href="../../pengaturan.php" class="dropdown-item">
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
@@ -84,20 +84,20 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../beranda.php">
+                        <a class="nav-link" href="../../View/beranda.php">
                             <i class="fa-regular fa-house menu-icon"></i>
                             <span class="menu-title">Beranda</span>
                         </a>
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="../../daftar_tabel.php">
+                        <a class="nav-link" href="../../View/daftar_tabel.php">
                             <i class="fa-regular fa-table menu-icon"></i>
                             <span class="menu-title">Daftar Tabel</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../pengaturan.php">
+                        <a class="nav-link" href="../../View/pengaturan.php">
                             <i class="fa-regular fa-gear menu-icon"></i>
                             <span class="menu-title">Pengaturan</span>
                         </a>
@@ -219,7 +219,7 @@
                                                             Submit
                                                         </button>
                                                         <a href="../../View/daftar_tabel.php"
-                                                            class="btn btn-light">Cancel</a>
+                                                            class="btn btn-outline-dark">Cancel</a>
                                                     </form>
                                                 </div>
                                             </div>

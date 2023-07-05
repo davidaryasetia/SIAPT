@@ -63,7 +63,7 @@ include '../Controller/nilai_5b1.php';
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -257,7 +257,6 @@ include '../Controller/nilai_5b1.php';
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
                                                 echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
@@ -320,11 +319,6 @@ include '../Controller/nilai_5b1.php';
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
-
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

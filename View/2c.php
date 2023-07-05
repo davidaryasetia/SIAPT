@@ -301,12 +301,6 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
-    <!-- Start JS Script -->
-
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

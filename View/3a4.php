@@ -31,7 +31,7 @@
 <body>
     <?php
     include '../Controller/daftar_tabel.php';
-include '../Controller/nilai_3a4.php';
+    include '../Controller/nilai_3a4.php';
 ?>
 
     <div class="container-scroller">
@@ -64,7 +64,7 @@ include '../Controller/nilai_3a4.php';
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -305,8 +305,6 @@ include '../Controller/nilai_3a4.php';
                         </div>
                     </div>
                     <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
-
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -325,12 +323,6 @@ include '../Controller/nilai_3a4.php';
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
-    <!-- Start JS Script -->
-
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

@@ -78,20 +78,20 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../beranda.php">
+                        <a class="nav-link" href="../../View/beranda.php">
                             <i class="fa-regular fa-house menu-icon"></i>
                             <span class="menu-title">Beranda</span>
                         </a>
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="../../daftar_tabel.php">
+                        <a class="nav-link" href="../../View/daftar_tabel.php">
                             <i class="fa-regular fa-table menu-icon"></i>
                             <span class="menu-title">Daftar Tabel</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../pengaturan.php">
+                        <a class="nav-link" href="../../View/pengaturan.php">
                             <i class="fa-regular fa-gear menu-icon"></i>
                             <span class="menu-title">Pengaturan</span>
                         </a>
@@ -236,7 +236,8 @@
                                                         <button type="submit" class="btn btn-primary mr-2">
                                                             Submit
                                                         </button>
-                                                        <a href="../../View/3d.php" class="btn btn-light">Cancel</a>
+                                                        <a href="../../View/3d.php"
+                                                            class="btn btn-outline-dark">Cancel</a>
                                                     </form>
                                                 </div>
                                             </div>

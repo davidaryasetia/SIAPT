@@ -64,7 +64,7 @@ include '../Controller/nilai_3c2.php';
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -343,11 +343,6 @@ include '../Controller/nilai_3c2.php';
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
-
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

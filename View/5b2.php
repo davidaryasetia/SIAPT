@@ -62,7 +62,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -260,8 +260,10 @@
                                                                 <th>No.</th>
                                                                 <th>Nama Kegiatan</th>
                                                                 <th>Waktu Penyelenggaraan</th>
-                                                                <th>Tingkat</th>
-                                                                <th>Prestasi Yang Dicapai</th>    
+                                                                <th>Provinsi/Wilayah</th>
+                                                                <th>Nasional</th>
+                                                                <th>Internasional</th>
+                                                                <th>Prestasi Yang Dicapai</th>
                                                             </tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
@@ -270,42 +272,25 @@
                                                             echo '<td>' . $row['Nomor'] . '</td>';
                                                             echo '<td>' . $row['Nama Kegiatan'] . '</td>';
                                                             echo '<td>' . $row['Waktu Penyelenggaraan'] . '</td>';
-                                                            echo '<td>' . $row['Tingkat'] . '</td>';
+                                                            echo '<td>' . $row['Provinsi/Wilayah'] . '</td>';
+                                                            echo '<td>' . $row['Nasional'] . '</td>';
+                                                            echo '<td>' . $row['Internasional'] . '</td>';
                                                             echo '<td>' . $row['Prestasi Yang Dicapai'] . '</td>';
                                                             echo '</tr>';
                                                         }
+                                                        echo '<tr class="table-row">';
+                                                        echo '<td colspan="3">Total</td>';
+                                                        echo '<td>' .$prestasi_provinsi. '</td>';
+                                                        echo '<td>' .$prestasi_nasional. '</td>';
+                                                        echo '<td>' .$prestasi_internasional. '</td>';
+                                                        echo '<td></td>';
+                                                        echo '</tr>';
                                                        echo '</tbody>';
                                                     echo '</table>'
                                                     ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Start Pagination -->
-                                    <div class="container">
-                                        <div class="pagination-container">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary">
-                                                    Daftar Tabel
-                                                </a>
-                                                <?php
-                                                include '../Controller/daftar_tabel.php';
-                                                ?>
-                                                <?php
-                                                foreach($data_lkpt as $sheet) : ?>
-                                                <?php
-                                                $isActive = ($sheet['SHEET'] === '5b2');
-                                                $btnClass = $isActive ? 'btn btn-outline-primary active' : 'btn btn-outline-primary';
-                                                ?>
-                                                <a href="<?php echo $sheet['SHEET'] .'.php'; ?>" type="button"
-                                                    class="<?php echo $btnClass; ?>">
-                                                    <?php echo $sheet['SHEET'] ?>
-                                                </a>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Pagination -->
                                 </div>
                             </div>
                         </div>
@@ -329,11 +314,6 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
-
-    <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

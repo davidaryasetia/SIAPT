@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
         // Tabel Data 3.D Rekognisi Dosen 
         $query = 'SELECT NO, NAMA, BIDANG_KEAHLIAN, REKOGNISI, TINGKAT, TAHUN
                     FROM REKOGNISI_DOSEN
-                    ORDER BY NO';
+                    ORDER BY TAHUN ASC';
 
         $stid = oci_parse($con, $query);
         oci_execute($stid);

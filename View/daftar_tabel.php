@@ -261,37 +261,15 @@
                                                         }
                                                        echo '</tbody>';
                                                     echo '</table>';
-
-                                                  
                                                     ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Start Pagination -->
-                                    <!-- <div class="container">
-                                        <div class="pagination-container">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                    class="btn btn-outline-primary active">
-                                                    Daftar Tabel
-                                                </a>
-                                                <?php foreach ($data_lkpt as $row) : ?>
-                                                <a href="<?php echo $row['SHEET'] . '.php'; ?>" type="button"
-                                                    class="btn btn-outline-primary">
-                                                    <?php echo $row['SHEET']; ?>
-                                                </a>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <!-- End Pagination -->
-
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -310,10 +288,7 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-
-
     <!-- container-scroller -->
-    <script src="../themes/layout.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
