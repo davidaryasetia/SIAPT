@@ -16,13 +16,10 @@
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
-
     <!-- Font Awesome Icon -->
     <link href="includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
     <link href="includes/contents/assets/fontawesome/css/solid.css" rel="stylesheet">
-
-
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
@@ -42,7 +39,7 @@
                             </div>
                             <h4>Halo! Selamat Datang di Web SIAPT</h4>
                             <h6 class="font-weight-light">Silahkan Login.</h6>
-                            <form action="beranda.php" method="" class="pt-3">
+                            <form action="" method="POST" class="pt-3" onsubmit="login(event)">
                                 <div class="form-group">
                                     <label for="nama">Email</label>
                                     <input type="email" name="email" class="form-control form-control-lg"
@@ -54,8 +51,8 @@
                                         id="exampleInputPassword1" placeholder="Masukkan Password" />
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="">login</a>
+                                    <button
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">login</button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
                                     Belum Mempunyai Akun??
@@ -70,18 +67,21 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <!-- Script JS Login -->
+    <script src="Controller/script_fungsi/login.js"></script>
+    <!-- End Script JS Login -->
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="../../js/off-canvas.js"></script>
-    <script src="../../js/hoverable-collapse.js"></script>
-    <script src="../../js/template.js"></script>
-    <script src="../../js/settings.js"></script>
-    <script src="../../js/todolist.js"></script>
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
     <!-- endinject -->
 </body>
 

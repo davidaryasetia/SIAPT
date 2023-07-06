@@ -15,7 +15,23 @@ header('Content-Type: application/json');
 session_start();
 
 // Check request method
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    // Endpoint Get semua user 
+    $query = 'SELECT NAMA_LENGKAP, NIP, USER_ROLE, EMAIL, NO_TELEPON, FOTO
+    FROM USER_PROFILE';
+    $stid = oci_parse($con, $query);
+    oci_execute($stid);
+
+    $user_profile = array();
+    while ($row_user_profile = oci_fetch_array($stid, OCI_ASSOC)){
+        $user_profile[] = $row_user_profile;
+    }
+    http_response_code(200);
+    echo json_encode($user_profile);
+    oci_free_statement($stid);
+}
+
+else if($_SERVER['REQUEST_METHOD'] === 'POST'){
     // Check _method key untuk membedakan login dan register
     $method = isset($_POST['_method']) ? $_POST['_method'] : '';
 
@@ -97,7 +113,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             } else {
                 // Invalid Password
                 http_response_code(401);
-                echo json_encode(array('message' => 'Password Invalid'));
+                echo json_encode(array('message' => 'Invalid Password'));
             }
         } else {
             // Invalid Email
@@ -110,13 +126,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     session_destroy();
     http_response_code(200);
     echo json_encode(array('message' => 'Logout Sukses'));
-}
-}
-else {
+} else {
     // Ivalid request method 
     http_response_code(405);
     echo json_encode(array('message' => 'Request Method Tidak Diijinkan'));
 }
+}
+
 // Close Koneksi 
 oci_close($con);
 ?>

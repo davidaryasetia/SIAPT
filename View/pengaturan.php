@@ -1,6 +1,18 @@
+<?php
+session_start();
+
+// Check jika sesi tidak ada atau tidak valid
+if(!isset($_SESSION['EMAIL'])){
+    // Redirect ke halaman login
+    header('Location: ../login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,75 +38,7 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
-    <style>
-        .text-secondary {
-            color: #15395A !important;
-        }
 
-        @media screen and (min-width: 992px) {
-            .p-lg-7 {
-                padding: 4rem;
-            }
-        }
-
-        @media screen and (min-width: 768px) {
-            .p-md-6 {
-                padding: 3.5rem;
-            }
-        }
-
-        @media screen and (min-width: 576px) {
-            .p-sm-2-3 {
-                padding: 2.3rem;
-            }
-        }
-
-        .p-1-9 {
-            padding: 1.9rem;
-        }
-
-
-        @media screen and (min-width: 576px) {
-
-            .pe-sm-6,
-            .px-sm-6 {
-                padding-right: 3.5rem;
-            }
-        }
-
-        @media screen and (min-width: 576px) {
-
-            .ps-sm-6,
-            .px-sm-6 {
-                padding-left: 2rem;
-            }
-        }
-
-        .pe-1-9,
-        .px-1-9 {
-            padding-right: 1.9rem;
-        }
-
-        .ps-1-9,
-        .px-1-9 {
-            padding-left: 1.9rem;
-        }
-
-        .pb-1-9,
-        .py-1-9 {
-            padding-bottom: 1.9rem;
-        }
-
-        .pt-1-9,
-        .py-1-9 {
-            padding-top: 1.9rem;
-        }
-
-        .mb-1-9,
-        .my-1-9 {
-            margin-bottom: 1.9rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -117,7 +61,7 @@
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center">
                                 <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -127,7 +71,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="index.php" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -166,7 +110,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -204,8 +148,8 @@
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Nama Lengkap</h6>
                                                             </div>
-                                                            <div class="col-sm-8 text-secondary">:
-                                                                Tita Karlita
+                                                            <div class="col-sm-8 text-dark">:
+                                                                <?php echo $_SESSION['NAMA_LENGKAP']; ?>
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -213,8 +157,8 @@
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">NIP</h6>
                                                             </div>
-                                                            <div class="col-sm-8 text-secondary">:
-                                                                197910142002122002
+                                                            <div class="col-sm-8 text-dark">:
+                                                                <?php echo $_SESSION['NIP']; ?>
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -222,8 +166,8 @@
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">User Role</h6>
                                                             </div>
-                                                            <div class="col-sm-8 text-secondary">:
-                                                                Tim PJM
+                                                            <div class="col-sm-8 text-dark">:
+                                                                <?php echo $_SESSION['USER_ROLE']; ?>
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -231,8 +175,8 @@
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">Alamat Email</h6>
                                                             </div>
-                                                            <div class="col-sm-8 text-secondary">:
-                                                                tita@pens.ac.id
+                                                            <div class="col-sm-8 text-dark">:
+                                                                <?php echo $_SESSION['EMAIL']; ?>
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -240,13 +184,11 @@
                                                             <div class="col-sm-4">
                                                                 <h6 class="mb-0">No Telepon</h6>
                                                             </div>
-                                                            <div class="col-sm-8 text-secondary">:
-                                                                08977216643
+                                                            <div class="col-sm-8 text-dark">:
+                                                                <?php echo $_SESSION['NO_TELEPON']; ?>
                                                             </div>
                                                         </div>
                                                         <hr>
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,11 +196,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- JS untuk Proses fungsi Logout-->
+                            <script src="../Controller/script_fungsi/logout.js"></script>
+                            <!-- End js -->
 
-
-                            <!-- container-scroller -->
-                            <script src="../themes/layout.js"></script>
-                            <!-- plugins:js -->
                             <script src="../vendors/js/vendor.bundle.base.js"></script>
                             <!-- endinject -->
                             <!-- Plugin js for this page -->
@@ -278,8 +219,6 @@
                             <script src="../js/dashboard.js"></script>
                             <script src="../js/Chart.roundedBarCharts.js"></script>
                             <!-- End custom js for this page-->
-
-
 </body>
 
 </html>
