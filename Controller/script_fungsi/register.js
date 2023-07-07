@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   var form = document.querySelector("form");
-
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-
     var nama_lengkap = form.elements.nama_lengkap.value;
     var nip = form.elements.nip.value;
     var user_role = form.elements.user_role.value;
     var email = form.elements.email.value;
     var password = form.elements.password.value;
+    var konfirmasi_password = form.elements.konfirmasi_password.value;
     var no_telepon = form.elements.no_telepon.value;
-
     // Validasi email dan password jika kosong
     if (nama_lengkap.trim() === "") {
       alert("Lengkapi Nama Lengkap");
@@ -26,6 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     } else if (password.trim() === "") {
       alert("Lengkapi Passoword");
+      return;
+    } else if (konfirmasi_password.trim() === "") {
+      alert("Konfirmasi Password");
+      return;
+    } else if (password !== konfirmasi_password) {
+      alert("konfirmasi password tidak sesuai");
       return;
     } else if (no_telepon.trim() === "") {
       alert("Lengkapi nomor telepon");
@@ -55,13 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
             throw new Errow(data.message);
           });
         } else {
-          throw new Error("Registrasi Gagal");
+          throw new Error("Pengguna Sukses Ditambahkan");
         }
       })
       .then(function (data) {
-        // Jika login berhasil arahkan pengguna ke halaman login
-        alert("Registrasi Berhasil");
-        window.location.href = "login.php";
+        // Jika register berhasil arahkan ke page pengaturan.php
+        alert("Pengguna Sukses Ditambahkan");
+        window.location.href = "../../View/pengaturan.php";
       })
       .catch(function (error) {
         // Menangani kesalahan

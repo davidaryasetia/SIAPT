@@ -128,6 +128,10 @@ if(!isset($_SESSION['EMAIL'])){
                                     <div class="d-flex justify-content-between align-items-center">
                                         <h3 class="card-title mr-3">Pengaturan</h3>
                                         <div class="card-title">
+                                            <a href="../Form_Data/Tambah_Data/tambah_user.php"
+                                                class="btn btn-sm btn-outline-dark" type="button">
+                                                <i class="fa-solid fa-user-plus mr-2"></i>Tambah Anggota
+                                            </a>
                                             <a href="../Form_Data/Edit_Data/pengaturan.php"
                                                 class="btn btn-sm btn-outline-dark" type="button">
                                                 <i class="fa-solid fa-pen mr-2"></i>Edit Profile

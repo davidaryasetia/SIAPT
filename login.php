@@ -42,21 +42,18 @@
                             <form action="" method="POST" class="pt-3" onsubmit="login(event)">
                                 <div class="form-group">
                                     <label for="nama">Email</label>
-                                    <input type="email" name="email" class="form-control form-control-lg"
+                                    <input type="email" name="email" class="form-control text-dark form-control-lg"
                                         id="exampleInputEmail1" placeholder="Masukkan Alamat Email" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Password</label>
-                                    <input type="password" name="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Masukkan Password" />
+                                    <input type="password" name="password"
+                                        class="form-control text-dark form-control-lg" id="exampleInputPassword1"
+                                        placeholder="Masukkan Password" />
                                 </div>
                                 <div class="mt-3">
                                     <button
                                         class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">login</button>
-                                </div>
-                                <div class="text-center mt-4 font-weight-light">
-                                    Belum Mempunyai Akun??
-                                    <a href="register.php" class="text-primary">Register</a>
                                 </div>
                             </form>
                         </div>

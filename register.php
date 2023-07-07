@@ -71,6 +71,11 @@
                                         placeholder="Masukkan Password">
                                 </div>
                                 <div class="form-group">
+                                    <label for="password">Konfirmasi Password</label>
+                                    <input type="password" class="form-control form-control-lg" id=""
+                                        name="konfirmasi_password" placeholder="Masukkan Password">
+                                </div>
+                                <div class="form-group">
                                     <label for="password">Nomor Telepon</label>
                                     <input type="number" class="form-control form-control-lg" id="exampleInput"
                                         name="no_telepon" placeholder="Masukkan Nomor Telepon">
