@@ -1,10 +1,20 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // redirect ke halaman login 
+    header('Location: ../login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Tabel 2c</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -18,6 +28,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <link rel="stylesheet" type="text/css" href="../themes/layout.css">
+    <link rel="stylesheet" type="text/css" href="../themes/toltip.css">
     <!-- Font Awesome Icon -->
     <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
@@ -26,6 +37,8 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+    <!-- Link CSS Data tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" />
 </head>
 
 <body>
@@ -52,9 +65,9 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP'] ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -64,7 +77,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -103,7 +116,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -119,7 +132,9 @@
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <p class="card-title mr-3">Tabel 2.c Kredit Mata Kuliah </p>
+                                        <p class="card-title mr-3"><a href="daftar_tabel.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Tabel
+                                            2.c Kredit Mata Kuliah </p>
                                         <div class="card-title">
                                             <!-- Button Pagination -->
                                             <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
@@ -168,11 +183,59 @@
                                                         <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
                                                                 Nilai Tabel 2.c
+                                                                <!-- Toltip Content  -->
+                                                                <a id="button1" class="btn"
+                                                                    aria-describedby="tooltip1"><i
+                                                                        class="fa-solid fa-circle-info text-info"
+                                                                        style="font-size:24px;"></i>
+                                                                </a>
+                                                                <div id="tooltip1" role="tooltip1">
+                                                                    <p class="mr-3 font_weight">Rumus Tabel
+                                                                        2.c Bobot Kredit Mata Kuliah
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li><span class="font_weight">
+                                                                                Persentase jumlah kredit
+                                                                                mata kuliah
+                                                                                praktikum/praktik/pkl
+                                                                                :</span>
+                                                                            <span style="display:block">
+                                                                                (jumlah kredit
+                                                                                mata kuliah
+                                                                                praktikum praktik pkl / Jumlah kredit
+                                                                                seluruh mata kuliah) x 100%
+                                                                            </span>
+                                                                        </li>
+                                                                        <hr>
+                                                                        <li><span class="font_weight">
+                                                                                Skor Tabel 2.c Bobot Kredit
+                                                                                Matakuliah:</span>
+                                                                            <span style="display:block;">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        Jika 50% ≤ Presentase ≤ 70% :
+                                                                                        skor (4)
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        Jika Presentase ≤ 50% : skor (8
+                                                                                        x (Presentase))
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        Jika Presentase > 70% : skor
+                                                                                        ((40 - (40 x Presentase)) / 3)
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </span>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div id="arrow1" data-popper-arrow></div>
+                                                                </div>
+                                                                <!-- End Toltip -->
                                                             </h3>
 
                                                             <?php
                                                            echo '<div class="skor">';
-                                                           echo '<p> Jumlah Kredit Matakuliah Praktikum/praktik/praktik kerja lapangan: '. $total_kredit_praktik .'</p>';
+                                                           echo '<p> Jumlah Kredit Matakuliah Praktikum/praktik/pkl: '. $total_kredit_praktik .'</p>';
                                                            echo '<p>Jumlah Kredit Seluruh Matakuliah: ' .$total_seluruh_kredit.'</p>';
                                                            echo '<p>Presentase Jumlah Kredit Matakuliah (%) :' .$presentase_2c.'%</p>';
                                                            echo '<p>Skor Tabel :'.$skor_2c.'</p>';
@@ -212,7 +275,7 @@
                                                             <?php
                                                             echo '<div class="skor">';
                                                             echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 2.c</h4>';
-                                                            echo '<p>Jumlah Kredit Matakuliah Praktikum/praktik/praktik kerja lapangan : <span id="praktik">' .$total_kredit_praktik. '</span></p>';
+                                                            echo '<p>Jumlah Kredit Matakuliah Praktikum/praktik/pkl: <span id="praktik">' .$total_kredit_praktik. '</span></p>';
                                                             echo '<p>Jumlah Kredit Seluruh Matakuliah (%): <span id="sks">' .$total_seluruh_kredit. '</span></p>';
                                                             echo '<p>Presentase Jumlah Kredit Matakuliah (%) : <span id="presentase_2c">' .$presentase_2c. '</span>%</p>';
                                                             echo '<p>Skor Tabel : <span id="skor_2c">' .$skor_2c. '</span></p>';
@@ -229,13 +292,12 @@
                                             </div>
                                             <!-- End Modal -->
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
+                                                echo '<table id="table" class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
@@ -261,16 +323,18 @@
                                                             echo '<td>' .$sum_total. '</td>';
                                                             echo '</tr>';                       
                                                         }
-                                                        // Tambah Row Data untuk Kolom Teori, Praktikum, Praktik, PKL
-                                                        echo '<tr class="table-row">';
-                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
-                                                        echo '<td>' .$total_teori.'</td>';
-                                                        echo '<td>'. $total_praktikum .'</td>';
-                                                        echo '<td>'. $total_praktik .'</td>';
-                                                        echo '<td>'. $total_pkl .'</td>';
-                                                        echo '<td>'. $total_kolom .'</td>';
-                                                        echo '<tr>';
                                                        echo '</tbody>';
+                                                       // Tambah Row Data untuk Kolom Teori, Praktikum, Praktik, PKL
+                                                       echo '<tfoot class="table-row">';
+                                                       echo '<tr>';
+                                                       echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                       echo '<td>' .$total_teori.'</td>';
+                                                       echo '<td>'. $total_praktikum .'</td>';
+                                                       echo '<td>'. $total_praktik .'</td>';
+                                                       echo '<td>'. $total_pkl .'</td>';
+                                                       echo '<td>'. $total_kolom .'</td>';
+                                                       echo '</tr>';
+                                                       echo '</tfoot>';
                                                     echo '</table>';
                                                    
                                                     ?>
@@ -301,6 +365,31 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <!-- Script untuk Layout Tabel -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                "pageLength": 10,
+                "lengthMenu": [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ], // Mengganti nama -1 menjadi All
+                "scrollY": "350px",
+                "scrollCollapse": true
+            });
+        });
+    </script>
+
+    <!-- Script Untuk Fungsi Tootip -->
+    <script src="../Controller/script_fungsi/toltip.js"></script>
+
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../Controller/script_fungsi/logout_view.js"></script>
+
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

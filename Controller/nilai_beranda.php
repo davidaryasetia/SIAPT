@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman login
+    header('Location: ../login.php');
+    exit();
+}
 ?>
 
 <?php
@@ -24,7 +30,7 @@ $data = json_decode($response, true);
 
 // Hitung Total Skor Laporan Kinerja Berdasarkan Excell LKPT
 $skor_null=0;
-$skor_lkpt=0;
+$skor_iapt=0;
 
 /** $skor_tabel_lkpt
  * 19 $skor_2b
@@ -41,7 +47,7 @@ $skor_lkpt=0;
  * 49 $skor_5b2
  */
 // Hitung Skor LKPT Berdasarkan Tabel LKPT
-$skor_lkpt = $skor_2b 
+$skor_iapt = $skor_2b 
             + $skor_2c
             + $skor_3a1
             + $skor_3a2
@@ -55,6 +61,7 @@ $skor_lkpt = $skor_2b
             + $skor_5b2
             ;
 
+// Store Array Untuk Matrik IAPT 3.0
 $skorArray = [
     $skor_null, // 8 -> 1.a
     $skor_null, // 8 -> 1.a
@@ -97,7 +104,63 @@ $skorArray = [
     $skor_null, // 60 ->5.h  
 ];
 
-// Store Variable Skor To Array To Throw in ../Controller/export/resume_beranda.php
+
+// Deklarasi Skor 
+$skor_maksimal = 4;
+$skor_minimal = 2;
+
+// Store Skor untuk array Grafik Radar
+$skor_array_radar = [
+  $skor_2b, 
+  $skor_2c, 
+  $skor_3a1, 
+  $skor_3a2, 
+  $skor_3a3, 
+  $skor_3a4, 
+  $skor_null, // => Nilai skoor 3b belum diolah 
+  $skor_3c1,   
+  $skor_3c2, 
+  $skor_3d, 
+  $skor_5b1, 
+  $skor_5b2,
+];
+// Mendeklarasikan kemabali nama baru $skor_radar_array ke skor radar
+$skor_radar = $skor_array_radar; // Jumlah elemen dalam $skorArray
+
+
+// Store Array untuk Memilih Tabel LKPT Untuk Diolah ke dalam tabel grafik radar dan tabel
+$data_pilihan = [7,8,9,10,11,12,13,14,15,16,21,22];
+
+// Start Logic Pembuatan Grafik Radar
+// Membuat Array untuk menampung data
+$data_grafik = [];  
+
+// Menampung data pilihan data tabel lkpt untuk dikirim ke grafik_radar.js ke json
+foreach ($data_lkpt as $index => $row){
+    if (in_array ($row['NO'], $data_pilihan)){
+        $row['SKOR'] = array_shift ($skor_radar);
+        $data_grafik[] = [
+            'judul' => $row['JUDUL'], 
+            'skor' => $row['SKOR'], 
+        ];
+        // Pengetesan ke 1 Output Di dalam sini
+        // echo  $row['JUDUL'] .' : '. $row['SKOR'] ;
+    }
+}
+
+
+// Pengetesan ke 2 output untuk cetak ke array
+// var_dump($data_grafik);
+
+// Conver Data array ke json untuk dikirm
+$encode_data_grafik = json_encode($data_grafik);
+// echo $encode_data_grafik;
+
+$file_path = '../Controller/script_fungsi/data_grafik.json';
+file_put_contents($file_path, $encode_data_grafik);
+
+
+// Store Variable Skor ke array untuk dilempar di  in ../Controller/export/resume_beranda.php
 $_SESSION['skor'] = array(
     '2b' => $skor_2b, 
     '2c' => $skor_2c, 
@@ -110,8 +173,7 @@ $_SESSION['skor'] = array(
     '3d' => $skor_3d, 
     '5b1' => $skor_5b1, 
     '5b2' => $skor_5b2,
-    'null' => $skor_null,  
+    'null' => $skor_null,
+    'iapt' => $skor_iapt,
 );
-
-
 ?>

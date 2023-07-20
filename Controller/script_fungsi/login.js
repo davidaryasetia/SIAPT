@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then(function (data) {
         // Jika login berhasil arahkan pengguna ke halaman
-        window.location.href = "View/pengaturan.php";
+        window.location.href = "View/beranda.php";
       })
       .catch(function (error) {
         // Menangani Kesalahan

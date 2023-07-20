@@ -1,10 +1,19 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // redirect ke halaman login 
+    header("Location: ../login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Tabel 3a1</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -18,6 +27,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <link rel="stylesheet" type="text/css" href="../themes/layout.css">
+    <link rel="stylesheet" type="text/css" href="../themes/toltip.css">
     <!-- Font Awesome Icon -->
     <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
@@ -26,6 +36,11 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+    <!-- Link CSS Data tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" />
+    <!-- Link CSS Data tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" />
+
 </head>
 
 <body>
@@ -53,8 +68,8 @@
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                                <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP'] ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -64,7 +79,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -103,7 +118,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -119,7 +134,9 @@
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <p class="card-title mr-3">Tabel 3.a.1 Kecukupan Dosen Perguruan Tinggi </p>
+                                        <p class="card-title mr-3"><a href="daftar_tabel.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Tabel
+                                            3.a.1 Kecukupan Dosen Perguruan Tinggi </p>
                                         <div class="card-title">
                                             <!-- Button Pagination -->
                                             <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
@@ -169,8 +186,53 @@
                                                         <div class="modal-body">
                                                             <h3 class="modal-title" id="exampleModalLabel">
                                                                 Keterangan Nilai Tabel 3a1
-                                                            </h3>
-                                                            <?php
+                                                                <!-- Toltip Content  -->
+                                                                <a id="button1" class="btn"
+                                                                    aria-describedby="tooltip1"><i
+                                                                        class="fa-solid fa-circle-info text-info"
+                                                                        style="font-size:24px;"></i>
+                                                                </a>
+                                                                <div id="tooltip1" role="tooltip1">
+                                                                    <p class="mr-3 font_weight">Rumus Tabel
+                                                                        3.a.1 LKPT
+                                                                        Kecukupan Dosen
+                                                                        Perguruan Tinggi
+                                                                    </p>
+
+                                                                    <ul>
+                                                                        <li><span class="font_weight">
+                                                                                Rasio jumlah dosen tetap terhadap jumlah
+                                                                                program studi</span>
+                                                                            <span style="display:block">
+                                                                                Jumlah dosen tetap
+                                                                                / Jumlah program studi
+                                                                            </span>
+                                                                        </li>
+                                                                        <hr>
+                                                                        <li><span class="font_weight">
+                                                                                Skor Tabel 3.a.1 LKPT
+                                                                                Kecukupan Dosen
+                                                                                Perguruan Tinggi:</span>
+                                                                            <span style="display:block;">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        Jika Rasio Dosen Tetap >= 10 :
+                                                                                        skor (4)
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        Jika 5 <= Rasio Dosen Tetap < 10
+                                                                                            : skor ((2 x Rasio Dosen
+                                                                                            Tetap) / 5) </li> <li>
+                                                                                            Jika Rasio Dosen Tetap < 10
+                                                                                                : skor (0) </li> </ul>
+                                                                                                </span> </li> </ul> <div
+                                                                                                id="arrow1"
+                                                                                                data-popper-arrow>
+                                                                </div>
+                                                        </div>
+                                                        <!-- End Toltip -->
+                                                        </h3>
+                                                        <?php
                                                            echo '<div class="skor">';
                                                            echo '<p>Jumlah Dosen Tetap: '. $total_dosen_tetap .'</p>';
                                                            echo '<p>Jumlah Program Studi: '. $total_prodi .'</p>';
@@ -179,31 +241,31 @@
                                                            echo '<p>Keterangan: <br>'. $keterangan .'</p>';
                                                            echo '</div>';
                                                            ?>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <hr>
-                                                            <h3 class="modal-title " style="font-weight:bolder"
-                                                                id="exampleModalLabel">
-                                                                Simulasi Nilai Tabel 3a1
-                                                            </h3>
-                                                            <form class="forms-sample" id="form-container">
-                                                                <div class="form-group">
-                                                                    <label for="total_dosen_tetap">Total Dosen
-                                                                        Tetap</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="value_dosen_tetap" name="total_dosen_tetap"
-                                                                        placeholder="Masukkan Jumlah Kredit Mata Kuliah Praktik"
-                                                                        value="<?php echo $total_dosen_tetap; ?>" />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="">Total Prodi</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="value_total_prodi" name="total_prodi"
-                                                                        placeholder="Masukkan Total Prodi"
-                                                                        value="<?php echo $total_prodi; ?>" />
-                                                                </div>
-                                                            </form>
-                                                            <?php
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <hr>
+                                                        <h3 class="modal-title " style="font-weight:bolder"
+                                                            id="exampleModalLabel">
+                                                            Simulasi Nilai Tabel 3a1
+                                                        </h3>
+                                                        <form class="forms-sample" id="form-container">
+                                                            <div class="form-group">
+                                                                <label for="total_dosen_tetap">Total Dosen
+                                                                    Tetap</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="value_dosen_tetap" name="total_dosen_tetap"
+                                                                    placeholder="Masukkan Jumlah Kredit Mata Kuliah Praktik"
+                                                                    value="<?php echo $total_dosen_tetap; ?>" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Total Prodi</label>
+                                                                <input type="number" class="form-control"
+                                                                    id="value_total_prodi" name="total_prodi"
+                                                                    placeholder="Masukkan Total Prodi"
+                                                                    value="<?php echo $total_prodi; ?>" />
+                                                            </div>
+                                                        </form>
+                                                        <?php
                                                             echo '<div class="skor">';
                                                             echo '<h4 style="font-weight:bold">Keterangan Simulasi Skor Tabel 3.a.1</h4>';
                                                             echo '<p>Total Dosen Tetap : <span id="dosen_tetap">' .$total_dosen_tetap. '</span></p>';
@@ -213,21 +275,21 @@
                                                             echo '<p>Keterangan:<br> <span id="simulasi_keterangan">' .$keterangan. '</span></p>';
                                                             echo '</div>';
                                                             ?>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Close</button>
-                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="table-responsive">
-                                                <?php
-                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-responsive">
+                                            <?php
+                                                echo '<table id="table" class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
@@ -251,44 +313,71 @@
                                                             echo '<td>' . $sum_jumlah . '</td>';
                                                             echo '</tr>';
                                                         }
-                                                        // Tambah Row Data
-                                                        echo '<tr class="table-row">';
-                                                        echo '<td colspan="2"><p class="total">Total</p></td>';
-                                                        echo '<td>'. $doktor .'</td>';
-                                                        echo '<td>'. $magister . '</td>';
-                                                        echo '<td>'. $profesi .'</td>';
-                                                        echo '<td>'. $jumlah . '</td>';
-                                                        echo '</tr>';
                                                        echo '</tbody>';
+                                                       // Tambah Row Data
+                                                       echo '<tfoot class="table-row">';
+                                                       echo '<tr>';
+                                                       echo '<td colspan="2"><p class="total">Total</p></td>';
+                                                       echo '<td>'. $doktor .'</td>';
+                                                       echo '<td>'. $magister . '</td>';
+                                                       echo '<td>'. $profesi .'</td>';
+                                                       echo '<td>'. $jumlah . '</td>';
+                                                       echo '</tr>';
+                                                       echo '</tfoot>';
                                                     echo '</table>';
                                                     ?>
-                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.a.1 kecukupan dosen perguruan tinggi -->
                 </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
-                            <br />
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made With love by
-                                <a href="http://www.davidaryasetia.site/" target="_blank">davidaryasetia.site</a>
-                                <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                </footer>
-                <!-- partial -->
+                <!-- Tabel 3.a.1 kecukupan dosen perguruan tinggi -->
             </div>
-            <!-- main-panel ends -->
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+                        <br />
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made With love by
+                            <a href="http://www.davidaryasetia.site/" target="_blank">davidaryasetia.site</a>
+                            <i class="ti-heart text-danger ml-1"></i></span>
+                </div>
+            </footer>
+            <!-- partial -->
         </div>
-        <!-- page-body-wrapper ends -->
+        <!-- main-panel ends -->
     </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+    <!-- Script untuk Layout Tabel -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                "pageLength": 10,
+                "lengthMenu": [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ], // Mengganti nama -1 menjadi All
+                "scrollY": "350px",
+                "scrollCollapse": true
+            });
+        });
+    </script>
+
+    <!-- Script Untuk Fungsi Tootip -->
+    <script src="../Controller/script_fungsi/toltip.js"></script>
+
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../Controller/script_fungsi/logout_view.js"></script>
+
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

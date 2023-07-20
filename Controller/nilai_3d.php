@@ -8,6 +8,7 @@
  $rekognisi_dosen = json_decode($response_rekognisi_dosen, true);
  $jumlah_rekognisi=json_decode($response_jumlah_rekognisi, true);
 
+ $total_rekognisi_dosen=0;
  foreach ($jumlah_rekognisi as $data_rekognisi) {
      $total_rekognisi_dosen = $data_rekognisi['Jumlah Rekognisi'];
  }   
@@ -22,7 +23,8 @@
  $rata_prestasi_dosen=0;
  $skor_3d=0;
  $rata_prestasi_dosen = ($total_rekognisi_dosen/$total_dosen_tetap);
- $rata_prestasi_dosen = number_format($rata_prestasi_dosen,1);
+ $rata_prestasi_dosen = number_format($rata_prestasi_dosen, 2);
+
 
  // Hitung Skor Tabel 3.d Rekognisi Dosen
  if($rata_prestasi_dosen >= 0.25){
@@ -30,7 +32,7 @@
  }else if($rata_prestasi_dosen<0.25 && $rata_prestasi_dosen>0 ){
      $skor_3d= 2+(8 * $rata_prestasi_dosen);
  } else {
-     $skor < 2;
+     $skor_3d < 2;
  }
 
  $keterangan='txt';

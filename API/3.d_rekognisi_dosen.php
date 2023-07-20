@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
         // Tabel Data 3.D Rekognisi Dosen 
         $query = 'SELECT NO, NAMA, BIDANG_KEAHLIAN, REKOGNISI, TINGKAT, TAHUN
                     FROM REKOGNISI_DOSEN
-                    ORDER BY TAHUN ASC';
+                    ORDER BY TAHUN, NO ASC';
 
         $stid = oci_parse($con, $query);
         oci_execute($stid);
@@ -95,8 +95,8 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
         if($success){
             // Response sukse
             http_response_code(200);
-            header('Location:https://project.mis.pens.ac.id/mis143/View/3d.php');
-            // echo json_encode(array('Pesan' => 'Data Berhasil di edit'));
+            echo json_encode(array('Pesan' => 'Data Berhasil di edit'));
+            // header('Location:https://project.mis.pens.ac.id/mis143/View/3d.php');
         }else{
             // Response error
             http_response_code(500);
@@ -123,7 +123,7 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
 
         if ($success) {
             // Response Sukses
-            // http_response_code(200);
+            http_response_code(200);
             header('Location: https://project.mis.pens.ac.id/mis143/View/3d.php');
         } else {
             // Error Response
@@ -134,15 +134,12 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
 
         // Jika method POST
     } else {
-        // Get data dari request body
-        $data = json_decode(file_get_contents("php://input"), true);
-
         // Extract value dari data
-        $nama = $data['nama'];
-        $bidang_keahlian = $data['bidang_keahlian'];
-        $rekognisi = $data['rekognisi'];
-        $tingkat = $data['tingkat'];
-        $tahun = $data['tahun'];
+        $nama = $_POST['nama'];
+        $bidang_keahlian = $_POST['bidang_keahlian'];
+        $rekognisi = $_POST['rekognisi'];
+        $tingkat = $_POST['tingkat'];
+        $tahun = $_POST['tahun'];
 
          // Check jika variable NO sudah ada
          $queryCheck = 'SELECT COUNT(*) FROM REKOGNISI_DOSEN WHERE NO = :no';
@@ -171,7 +168,6 @@ if($_SERVER['REQUEST_METHOD']==='GET'){
                         VALUES(:no, :nama, :bidang_keahlian, :rekognisi, :tingkat, :tahun)';
 
                         $stid = oci_parse($con, $query);
-
                         // Bind value to statement 
                         oci_bind_by_name($stid, ":no", $no);
                         oci_bind_by_name($stid, ":nama", $nama);

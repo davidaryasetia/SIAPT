@@ -1,10 +1,20 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['USER_ROLE']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman login 
+    header('Location: ../login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Tabel 3a3</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -18,6 +28,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <link rel="stylesheet" type="text/css" href="../themes/layout.css">
+    <link rel="stylesheet" type="text/css" href="../themes/toltip.css">
     <!-- Font Awesome Icon -->
     <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
@@ -26,13 +37,15 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+    <!-- Link CSS Data tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" />
 </head>
 
 <body>
     <?php
          include '../Controller/daftar_tabel.php';
         include '../Controller/nilai_3a3.php';
-?>
+    ?>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -51,8 +64,8 @@
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                                <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -62,7 +75,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -101,7 +114,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -117,7 +130,9 @@
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <p class="card-title mr-3">Tabel 3.a.3 Sertifikasi Dosen </p>
+                                        <p class="card-title mr-3"><a href="daftar_tabel.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Tabel
+                                            3.a.3 Sertifikasi Dosen </p>
                                         <div class="card-title">
                                             <!-- Button Pagination -->
                                             <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
@@ -167,6 +182,53 @@
                                                             <h3 class="modal-title" id="exampleModalLabel">Keterangan
                                                                 Nilai
                                                                 Tabel 3.a.3
+                                                                <!-- Toltip Content  -->
+                                                                <a id="button1" class="btn"
+                                                                    aria-describedby="tooltip1"><i
+                                                                        class="fa-solid fa-circle-info text-info"
+                                                                        style="font-size:24px;"></i>
+                                                                </a>
+                                                                <div id="tooltip1" role="tooltip1">
+                                                                    <p class="mr-3 font_weight">Rumus Tabel
+                                                                        3.a.3 LKPT
+                                                                        Sertifikasi Dosen
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li><span class="font_weight">
+                                                                                Persentase jumlah dosen
+                                                                                yang memiliki sertifikat
+                                                                                :</span>
+                                                                            <span style="display:block">
+                                                                                (Jumlah dosen tetap bersertifikasi /
+                                                                                Jumlah dosen tetap) x 100%
+                                                                            </span>
+                                                                        </li>
+                                                                        <hr>
+                                                                        <li><span class="font_weight">
+                                                                                Skor Tabel 3.a.3 LKPT
+                                                                                Sertifikasi Dosen:</span>
+                                                                            <span style="display:block;">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        Jika Presentase > 50% : skor
+                                                                                        (4)
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        Jika Presentase ≤ 50% : skor ( 1
+                                                                                        + (6 x Presentase) )
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        Jika Tidak ada Skor kurang
+                                                                                        dari 1
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </span>
+
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div id="arrow1" data-popper-arrow></div>
+                                                                </div>
+                                                                <!-- End Toltip -->
                                                             </h3>
                                                             <?php
                                                             echo '<div class="skor">';
@@ -229,7 +291,7 @@
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
+                                                echo '<table id="table" class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
@@ -251,15 +313,17 @@
                                                             echo '<td>' .$total. '</td>';
                                                             echo '</tr>';
                                                         }
-                                                           // Tambah Row Data
-                                                           echo '<tr class="table-row">'; 
-                                                           echo '<td colspan="2"><p class="total">Total</p>';
-                                                           echo '<td>' .$total_dosen. '</td>';
-                                                           echo '<td>' .$total_dosen_bersertifikasi. '</td>';
-                                                           echo '<td>' .$total_baris. '</td>';
-                                                           echo '</td>';
-                                                           echo '<tr>'; 
                                                        echo '</tbody>';
+                                                        // Tambah Row Data
+                                                        echo '<tfoot class="table-row">'; 
+                                                        echo '<tr>'; 
+                                                        echo '<td colspan="2"><p class="total">Total</p>';
+                                                        echo '<td>' .$total_dosen. '</td>';
+                                                        echo '<td>' .$total_dosen_bersertifikasi. '</td>';
+                                                        echo '<td>' .$total_baris. '</td>';
+                                                        echo '</td>';
+                                                        echo '</tr>'; 
+                                                        echo '<tfoot>'; 
                                                     echo '</table>';
                                                     ?>
                                             </div>
@@ -289,6 +353,28 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <!-- Script untuk Layout Tabel -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                "pageLength": 10,
+                "lengthMenu": [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ], // Mengganti nama -1 menjadi All
+                "scrollY": "350px",
+                "scrollCollapse": true
+            });
+        });
+    </script>
+    <!-- Script Untuk Fungsi Tootip -->
+    <script src="../Controller/script_fungsi/toltip.js"></script>
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../Controller/script_fungsi/logout_view.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

@@ -1,10 +1,36 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman login 
+    header('Location: ../../login.php');
+    exit();
+}
+?>
+
+<?php
+$no = $_GET['no'];
+
+// Fetch API berdasarkan nomor
+$response_tabel = file_get_contents('https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php?no=' .$no);
+$tabel = json_decode($response_tabel, true);
+
+// Mengambil value
+if ($tabel){
+    $judul = $tabel['JUDUL'];
+    $sheet = $tabel['SHEET'];
+    $status = $tabel['STATUS'];
+    $sumber = $tabel['SUMBER'];
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Edit LKPT</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
@@ -13,11 +39,10 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="../../../js/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" type="text/css" href="../../themes\styling.css">
     <!-- Font Awesome Icon -->
     <link href="../../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="../../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
@@ -46,9 +71,9 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="p-1" src="../../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -58,7 +83,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -83,7 +108,6 @@
                             <span class="menu-title">Beranda</span>
                         </a>
                     </li>
-
                     <li class="nav-item active">
                         <a class="nav-link" href="../../View/daftar_tabel.php">
                             <i class="fa-regular fa-table menu-icon"></i>
@@ -97,7 +121,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -111,42 +135,26 @@
                         <div class="col-md-12  grid-margin stretch-card ">
                             <div class="card ">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-center">
-                                        <p class="card-title">Edit Data - Laporan Kinerja Perguruan Tinggi
+                                    <div class="d-flex justify-content-start">
+                                        <h3 class="card-title mr-3"><a href="../../View/daftar_tabel.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Daftar
+                                            Tabel
+                                            -
+                                            Edit Tabel Laporan Kinerja</h3>
                                     </div>
                                     <div class="row">
-
-                                        <!-- Start Fetch API Endpoint -->
-                                        <?php
-                                        $no = $_GET['no'];
-                                        // Fetch data berdasarkan nomor menggunakan API 
-                                        $api_url = 'https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php?no=' . $no;
-                                        $data = file_get_contents($api_url);
-                                        $record = json_decode($data, true);
-                                        // var_dump($record);
-
-                                        // Memastikan data berhasil diambil sebelum menampilkan formulir
-                                        if ($record) {
-                                            $judul = $record['JUDUL'];
-                                            $sheet = $record['SHEET'];
-                                            $status = $record['STATUS'];
-                                            $sumber = $record['SUMBER'];
-                                        }
-                                        ?>
                                         <!-- End API Endpoint -->
                                         <!-- End Fetch API Endpoint Update Data -->
                                         <div class="col-md-12 grid-margin stretch-card">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <form class="forms-sample" method="POST"
-                                                        action="https://project.mis.pens.ac.id/mis143/API/TABEL_LKPT.php">
-                                                        <input type="hidden" name="_method" value="PUT">
-                                                        <input type="hidden" name="no" value="<?php echo $_GET['no']?>">
+                                                    <form class="forms-sample" method="POST" action=""
+                                                        onsubmit="(event)">
                                                         <div class="form-group">
                                                             <label for="judul">Nomor
                                                                 Tabel</label>
-                                                            <input type="" class="form-control" id="judul" name="judul"
-                                                                placeholder="Judul Tabel" value="<?php echo $no; ?>"
+                                                            <input type="number" class="form-control" id="no" name="no"
+                                                                placeholder="Nomor" value="<?php echo $no ?>"
                                                                 readonly />
                                                         </div>
                                                         <div class="form-group">
@@ -167,7 +175,7 @@
                                                             <div class="form-row">
                                                                 <div class="form-group col-6">
                                                                     <label for="status">Kategori Data</label>
-                                                                    <select class="form-control" id="status"
+                                                                    <select class="form-control text-dark" id="status"
                                                                         name="status">
                                                                         <option value="">Pilih Kategori Data</option>
                                                                         <option value="Data Lengkap"
@@ -183,9 +191,9 @@
                                                                         </option>
                                                                     </select>
                                                                 </div>
-                                                                <div class="form-group col-6">
+                                                                <div class="form-group col-6 text-dark">
                                                                     <label for="sumber">Sumber Data</label>
-                                                                    <select class="form-control" id="sumber"
+                                                                    <select class="form-control text-dark" id="sumber"
                                                                         name="sumber">
                                                                         <option value="">Pilih Sumber Data</option>
                                                                         <option value="Data DB MIS"
@@ -208,14 +216,11 @@
                                             </div>
                                         </div>
                                         <!-- End Form -->
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -235,7 +240,11 @@
         <!-- page-body-wrapper ends -->
     </div>
 
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../../Controller/script_fungsi/logout_FormData.js"></script>
 
+    <!-- JS untuk Fetch Proses fungsi Edit Data-->
+    <script src="../../Controller/script_fungsi/edit_daftar_tabel.js"></script>
     <!-- plugins:js -->
     <script src="../../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

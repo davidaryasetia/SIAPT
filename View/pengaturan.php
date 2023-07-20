@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// Check jika sesi tidak ada atau tidak valid
-if(!isset($_SESSION['EMAIL'])){
-    // Redirect ke halaman login
-    header('Location: ../login.php');
+// Check jika sesi tidak ada
+if(!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman login 
+    header ('Location: ../login.php');
     exit();
 }
 ?>
@@ -16,7 +16,7 @@ if(!isset($_SESSION['EMAIL'])){
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Pengaturan</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -60,7 +60,7 @@ if(!isset($_SESSION['EMAIL'])){
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
                             <div class="d-flex align-items-center justify-content-center">
-                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
+                                <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
                                 <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
@@ -128,11 +128,11 @@ if(!isset($_SESSION['EMAIL'])){
                                     <div class="d-flex justify-content-between align-items-center">
                                         <h3 class="card-title mr-3">Pengaturan</h3>
                                         <div class="card-title">
-                                            <a href="../Form_Data/Tambah_Data/tambah_user.php"
-                                                class="btn btn-sm btn-outline-dark" type="button">
-                                                <i class="fa-solid fa-user-plus mr-2"></i>Tambah Anggota
+                                            <a href="daftar_pengguna.php" class="btn btn-sm btn-outline-dark"
+                                                type="button">
+                                                <i class="fa-solid fa-users mr-2"></i>Daftar Pengguna
                                             </a>
-                                            <a href="../Form_Data/Edit_Data/pengaturan.php"
+                                            <a href="../Form_Data/Edit_Data/edit_profile.php"
                                                 class="btn btn-sm btn-outline-dark" type="button">
                                                 <i class="fa-solid fa-pen mr-2"></i>Edit Profile
                                             </a>
@@ -144,7 +144,7 @@ if(!isset($_SESSION['EMAIL'])){
                                             <div class="card card-style1 border-0">
                                                 <div class="row align-items-center">
                                                     <div class="col-lg-3 mb-4 mb-lg-0 d-flex justify-content-center">
-                                                        <img src="../includes/contents/Image/Bu_Tita_1.png"
+                                                        <img src="../includes/contents/user_profile/default.svg"
                                                             class="rounded" alt="..." width="200">
                                                     </div>
                                                     <div class="col-lg-9 px-xl-10 mt-4">
@@ -201,8 +201,7 @@ if(!isset($_SESSION['EMAIL'])){
                                 </div>
                             </div>
                             <!-- JS untuk Proses fungsi Logout-->
-                            <script src="../Controller/script_fungsi/logout.js"></script>
-                            <!-- End js -->
+                            <script src="../Controller/script_fungsi/logout_view.js"></script>
 
                             <script src="../vendors/js/vendor.bundle.base.js"></script>
                             <!-- endinject -->

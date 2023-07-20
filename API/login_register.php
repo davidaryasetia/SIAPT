@@ -16,9 +16,35 @@ session_start();
 
 // Check request method
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    
+    // Mengecek jika nomor parameter disediakan oleh GET requess
+    if (isset($_GET['nomor'])){
+        $nomor = $_GET['nomor'];
+
+        // API endpoint 1 
+        $query = 'SELECT NOMOR, NAMA_LENGKAP, NIP, USER_ROLE, EMAIL, NO_TELEPON, FOTO
+        FROM USER_PROFILE
+        WHERE NOMOR = :nomor';
+        $stid = oci_parse($con, $query);
+        oci_bind_by_name($stid, ":nomor", $nomor);
+        oci_execute($stid);
+        
+        $data = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS);
+
+        oci_free_statement($stid);
+        if($data !== false){
+            http_response_code(200);
+            echo json_encode($data);
+        } else {
+            http_response_code(404);
+            echo json_encode(array('Pesan' => 'Data Tidak Ditemukan'));
+        }
+
+    } else {
     // Endpoint Get semua user 
-    $query = 'SELECT NAMA_LENGKAP, NIP, USER_ROLE, EMAIL, NO_TELEPON, FOTO
-    FROM USER_PROFILE';
+    $query = 'SELECT NOMOR,NAMA_LENGKAP, NIP, USER_ROLE, EMAIL, NO_TELEPON, FOTO
+    FROM USER_PROFILE
+    ORDER BY 1';
     $stid = oci_parse($con, $query);
     oci_execute($stid);
 
@@ -29,6 +55,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
     http_response_code(200);
     echo json_encode($user_profile);
     oci_free_statement($stid);
+    }
 }
 
 else if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -101,6 +128,7 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST'){
             // Check Password
             if(password_verify($password, $data['PASSWORD'])){
                 // Set session data
+                $_SESSION['NOMOR'] = $data['NOMOR'];
                 $_SESSION['NAMA_LENGKAP'] = $data['NAMA_LENGKAP'];
                 $_SESSION['NIP'] = $data['NIP'];
                 $_SESSION['USER_ROLE'] = $data['USER_ROLE'];
@@ -120,8 +148,122 @@ else if($_SERVER['REQUEST_METHOD'] === 'POST'){
             http_response_code(401);
             echo json_encode(array('message' => 'Invalid Email'));
         }
-        oci_free_statement($stidCheckEmail); 
-} else if ($method === 'logout'){
+        oci_free_statement($stidCheckEmail);
+    }
+    // Endpoint Edit Profile (PUT), berdasarkan $_SESSION == USER
+    else if ($method === 'put_session'){
+        $nomor = $_SESSION['NOMOR'];
+        $nama_lengkap = $_POST['nama_lengkap'];
+        $nip = $_POST['nip'];
+        $email = $_POST['email'];
+        $no_telepon = $_POST['no_telepon'];    
+
+        // Update user ke database  
+        $query = 'UPDATE USER_PROFILE
+                SET NAMA_LENGKAP=:nama_lengkap, NIP=:nip, EMAIL=:email,NO_TELEPON=:no_telepon
+                WHERE NOMOR=:nomor';
+        $stid = oci_parse($con, $query);
+        oci_bind_by_name($stid, ":nomor", $nomor);
+        oci_bind_by_name($stid, ":nama_lengkap", $nama_lengkap);
+        oci_bind_by_name($stid, ":nip", $nip);
+        oci_bind_by_name($stid, ":email", $email);
+        oci_bind_by_name($stid, ":no_telepon", $no_telepon);
+        $success = oci_execute($stid);
+
+        if($success){
+            // Edit Profile berdasarkan session_user jika sukses
+            // Ambil Data Terbaru dari database
+            $query = 'SELECT *
+                        FROM USER_PROFILE 
+                        WHERE NOMOR=:nomor';
+            $stid = oci_parse($con, $query);
+            oci_bind_by_name($stid, ":nomor", $nomor);
+            oci_execute($stid);
+
+            // Mengambil hasil query 
+            $data = oci_fetch_assoc($stid);
+
+            // Mengupdate $_SESSION dengan data terbaru 
+            $_SESSION['NAMA_LENGKAP'] = $data['NAMA_LENGKAP'];
+            $_SESSION['NIP'] = $data['NIP'];
+            $_SESSION['EMAIL'] = $data['EMAIL'];
+            $_SESSION['NO_TELEPON'] = $data['NO_TELEPON'];
+
+            http_response_code(200);
+            echo json_encode(array('message' => 'Edit Profile Sukses'));
+            // echo json_encode($data);
+        } else {
+            // Edit Profile berdasarkan session_user gagal
+            http_response_code(500);
+            echo json_encode(array('message' => 'Edit profile Gagal'));
+        }
+        oci_free_statement($stid);
+    }
+    // Endpopint Edit Pengguna PUT untuk $_SESSION['USER_ROLE'] === 'Tim PJM'
+    else if ($method === 'put'){
+        // request put
+        $nomor = $_POST['nomor'];
+        $nama_lengkap = $_POST['nama_lengkap'];
+        $nip = $_POST['nip'];
+        $user_role = $_POST['user_role'];
+        $email = $_POST['email'];
+        $no_telepon = $_POST['no_telepon'];
+
+        // Update Profile pengguna lain 
+        $query = 'UPDATE USER_PROFILE
+                SET NAMA_LENGKAP= :nama_lengkap, NIP= :nip, USER_ROLE= :user_role, EMAIL= :email, NO_TELEPON= :no_telepon
+                WHERE NOMOR= :nomor';
+
+        $stid = oci_parse($con, $query);
+        oci_bind_by_name($stid, ":nomor", $nomor);
+        oci_bind_by_name($stid, ":nama_lengkap", $nama_lengkap);
+        oci_bind_by_name($stid, ":nip", $nip);
+        oci_bind_by_name($stid, ":user_role", $user_role);
+        oci_bind_by_name($stid, ":email", $email);
+        oci_bind_by_name($stid, ":no_telepon", $no_telepon);
+        
+        // Eksekusi statement dan check result 
+        $success = oci_execute($stid);
+        if ($success){
+            // response sukses 
+            http_response_code(200);
+            echo json_encode(array('Pesan' => 'Data Pengguna Berhasil Di Update'));
+        } else {
+            // Response Error
+            http_response_code(500);
+            echo json_encode(array('Pesan' => 'Data Gagal Diperbarui'));
+        }
+        oci_free_statement($stid);
+    }
+    // Endpoint Delete
+    else if ($method === 'delete'){
+    // Delete Request
+    $nomor = $_POST['nomor'];
+
+    // Delete Statement
+    $query = 'DELETE FROM USER_PROFILE
+    WHERE NOMOR=:nomor';
+    $stid = oci_parse($con, $query);
+
+    // Bind Value 
+    oci_bind_by_name($stid, ":nomor", $nomor);
+
+    // Eksekusi Delete Statement dan check result 
+    $success = oci_execute($stid);
+
+    if($success){
+    // Response sukses
+    http_response_code(200);
+    header('Location: https://project.mis.pens.ac.id/mis143/View/daftar_pengguna.php');
+    // echo json_encode(array('message'=>'Delete User Pengguna Sukses'));
+    } else {
+        // Delete Gagal
+        http_response_code(401);
+        echo json_encode(array('message' => 'Delete Pengguna Gagal'));
+    }
+    oci_free_statement($stid);
+
+}else if ($method === 'logout'){
     // Hancurkan Session 
     session_destroy();
     http_response_code(200);

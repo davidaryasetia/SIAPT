@@ -1,10 +1,21 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman login
+    header('Location: ../login.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Tabel 3c1</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -31,7 +42,7 @@
 <body>
     <?php
     include '../Controller/daftar_tabel.php';
-include '../Controller/nilai_3c1.php';
+    include '../Controller/nilai_3c1.php';
 ?>
     <div class="container-scroller">
 
@@ -51,9 +62,9 @@ include '../Controller/nilai_3c1.php';
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -63,7 +74,7 @@ include '../Controller/nilai_3c1.php';
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -102,7 +113,7 @@ include '../Controller/nilai_3c1.php';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -118,7 +129,9 @@ include '../Controller/nilai_3c1.php';
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <p class="card-title mr-3">Tabel 3.c.1 Produktivitas Penelitian Dosen</p>
+                                        <p class="card-title mr-3"><a href="daftar_tabel.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Tabel
+                                            3.c.1 Produktivitas Penelitian Dosen</p>
                                         <div class="card-title">
                                             <!-- Button Pagination -->
                                             <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
@@ -344,6 +357,8 @@ include '../Controller/nilai_3c1.php';
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../Controller/script_fungsi/logout_view.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

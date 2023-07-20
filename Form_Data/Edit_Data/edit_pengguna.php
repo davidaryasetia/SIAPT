@@ -1,10 +1,38 @@
+<?php
+session_start();
+if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman login
+    header('Location: ../../login.php');
+    exit();
+}
+
+?>
+
+
+<?php
+// Fetch API 
+$nomor = $_GET['nomor'];
+// Fetch API berdasarkan nomor
+$response_pengguna = file_get_contents('https://project.mis.pens.ac.id/mis143/API/login_register.php?nomor=' .$nomor);
+$pengguna = json_decode($response_pengguna, true);
+
+// Mengambil nilai 
+if ($pengguna){
+    $nama_lengkap = $pengguna['NAMA_LENGKAP'];
+    $nip = $pengguna['NIP'];
+    $user_role = $pengguna['USER_ROLE'];
+    $email = $pengguna['EMAIL'];
+    $no_telepon = $pengguna['NO_TELEPON'];
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Edit Pengguna</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
@@ -26,79 +54,7 @@
     <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../../includes/contents/Image/logo_svg.svg" />
-    <style>
-        .text-secondary {
-            color: #15395A !important;
-        }
 
-        .form-group {
-            margin-bottom: 1rem !important;
-        }
-
-        @media screen and (min-width: 992px) {
-            .p-lg-7 {
-                padding: 4rem;
-            }
-        }
-
-        @media screen and (min-width: 768px) {
-            .p-md-6 {
-                padding: 3.5rem;
-            }
-        }
-
-        @media screen and (min-width: 576px) {
-            .p-sm-2-3 {
-                padding: 2.3rem;
-            }
-        }
-
-        .p-1-9 {
-            padding: 1.9rem;
-        }
-
-
-        @media screen and (min-width: 576px) {
-
-            .pe-sm-6,
-            .px-sm-6 {
-                padding-right: 3.5rem;
-            }
-        }
-
-        @media screen and (min-width: 576px) {
-
-            .ps-sm-6,
-            .px-sm-6 {
-                padding-left: 2rem;
-            }
-        }
-
-        .pe-1-9,
-        .px-1-9 {
-            padding-right: 1.9rem;
-        }
-
-        .ps-1-9,
-        .px-1-9 {
-            padding-left: 1.9rem;
-        }
-
-        .pb-1-9,
-        .py-1-9 {
-            padding-bottom: 1.9rem;
-        }
-
-        .pt-1-9,
-        .py-1-9 {
-            padding-top: 1.9rem;
-        }
-
-        .mb-1-9,
-        .my-1-9 {
-            margin-bottom: 1.9rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -119,19 +75,19 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="p-1" src="../../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a href="../../view/pengaturan.php" class="dropdown-item">
+                            <a href="../../View/pengaturan.php" class="dropdown-item">
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="index.php" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -170,7 +126,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -187,10 +143,10 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center">
 
-                                        <h3 class="card-title mr-3"><a href="../../View/pengaturan.php"><i
+                                        <h3 class="card-title mr-3"><a href="../../View/daftar_pengguna.php"><i
                                                     class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Pengaturan
                                             -
-                                            Edit Profile Data</h3>
+                                            Edit Data Pengguna</h3>
                                     </div>
 
                                     <div class="row">
@@ -198,56 +154,87 @@
                                             <div class="card card-style1 border-0">
                                                 <div class="row align-items-center">
                                                     <div class="col-lg-3 mb-4 mb-lg-0 d-flex justify-content-center">
-                                                        <img src="../../includes/contents/Image/Bu_Tita_1.png"
+                                                        <img src="../../includes/contents/user_profile/default.svg"
                                                             class="rounded" alt="..." width="200">
                                                     </div>
                                                     <div class="col-lg-9 px-xl-10 mt-2">
-                                                        <form class="forms-sample">
+                                                        <form class="forms-sample" method="POST" action=""
+                                                            onsubmit="edit(event)">
+                                                            <input type="hidden" name="nomor"
+                                                                value="<?php echo $_GET['nomor']?>">
                                                             <div class="form-group row">
                                                                 <label for="exampleInputUsername2"
-                                                                    class="col-sm-2 col-form-label">Nama Lengkap</label>
+                                                                    class="col-sm-3 col-form-label">Nama Lengkap</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control" name="nama"
-                                                                        id="exampleInputUsername2"
-                                                                        placeholder="Masukkan Nama Lengkap" />
+                                                                    <input type="text" class="form-control"
+                                                                        name="nama_lengkap" id="exampleInputUsername2"
+                                                                        placeholder="Masukkan Nama Lengkap"
+                                                                        value="<?php echo $nama_lengkap; ?>" />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="exampleInputUsername2"
-                                                                    class="col-sm-2 col-form-label">NIP</label>
+                                                                    class="col-sm-3 col-form-label">NIP</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control" name="nip"
                                                                         id="exampleInputUsername2"
-                                                                        placeholder="Masukkan NIP" />
+                                                                        placeholder="Masukkan NIP"
+                                                                        value="<?php echo $nip; ?>" />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="exampleInputUsername2"
-                                                                    class="col-sm-2 col-form-label">User Role</label>
+                                                                    class="col-sm-3 col-form-label">User Role</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control" name="role"
-                                                                        id="exampleInputUsername2"
-                                                                        placeholder="User Role" readonly />
+                                                                    <select class="form-control text-dark" id=""
+                                                                        name="user_role">
+                                                                        <option>Pilih User Role</option>
+                                                                        <option value="Tim PJM"
+                                                                            <?php if($user_role === 'Tim PJM') echo 'selected'; ?>>
+                                                                            Tim PJM
+                                                                        </option>
+                                                                        <option value="Tim Akreditasi"
+                                                                            <?php if($user_role === 'Tim Akreditasi') echo 'selected'; ?>>
+                                                                            Tim Akreditasi
+                                                                        </option>
+                                                                        <option value="Kaprodi"
+                                                                            <?php if($user_role === 'Kaprodi') echo 'selected';?>>
+                                                                            Kaprodi</option>
+                                                                        <option value="Wadir"
+                                                                            <?php if($user_role === 'Wadir') echo 'selected'; ?>>
+                                                                            Wadir</option>
+                                                                        <option value="Reviewer Internal"
+                                                                            <?php if($user_role === 'Reviewer Internal') echo 'selected'; ?>>
+                                                                            Reviewer
+                                                                            Internal
+                                                                        </option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="exampleInputUsername2"
-                                                                    class="col-sm-2 col-form-label">Alamat Email</label>
+                                                                    class="col-sm-3 col-form-label">Alamat Email</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control" name="email"
                                                                         id="exampleInputUsername2"
-                                                                        placeholder="Masukkan Alamat Email" />
+                                                                        placeholder="Masukkan Alamat Email"
+                                                                        value="<?php echo $email; ?>" />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="exampleInputUsername2"
-                                                                    class="col-sm-2 col-form-label">No Telepon</label>
+                                                                    class="col-sm-3 col-form-label">No Telepon</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
-                                                                        id="exampleInputUsername2" name="telepon"
-                                                                        placeholder="Masukkan Nomor Telepon" />
+                                                                        id="exampleInputUsername2" name="no_telepon"
+                                                                        placeholder="Masukkan Nomor Telepon"
+                                                                        value="<?php echo $no_telepon ?>" />
                                                                 </div>
                                                             </div>
+                                                            <a href="../../View/daftar_pengguna.php" type="submit"
+                                                                class="btn btn-outline-dark  mr-2">
+                                                                Cancel
+                                                            </a>
                                                             <button type="submit" class="btn btn-primary mr-2">
                                                                 Submit
                                                             </button>
@@ -259,10 +246,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- JS untuk Proses fungsi Logout-->
+                                <script src="../../Controller/script_fungsi/logout_FormData.js"></script>
 
-
-                                <!-- container-scroller -->
-                                <script src="../../themes/layout.js"></script>
+                                <!-- JS untuk Fetch Proses fungsi Edit Data-->
+                                <script src="../../Controller/script_fungsi/edit_pengguna.js"></script>
+                                <!-- End js -->
                                 <!-- plugins:js -->
                                 <script src="../../vendors/js/vendor.bundle.base.js"></script>
                                 <!-- endinject -->

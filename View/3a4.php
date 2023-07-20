@@ -1,10 +1,20 @@
+<?php
+session_start();
+
+if (!isset ($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // redirect ke login 
+    header ('Location: ../login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Tabel 3a4</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -26,6 +36,9 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+    <!-- Link CSS Data tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" />
+
 </head>
 
 <body>
@@ -52,9 +65,9 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -64,7 +77,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -103,7 +116,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -119,7 +132,9 @@
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <p class="card-title mr-3">Tabel 3.a.4 Dosen Tidak Tetap </p>
+                                        <p class="card-title mr-3"><a href="daftar_tabel.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Tabel
+                                            3.a.4 Dosen Tidak Tetap </p>
                                         <div class="card-title">
                                             <!-- Button Pagination -->
                                             <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
@@ -182,7 +197,9 @@
 
                                                         <div class="modal-body">
                                                             <hr>
-                                                            <h3 class="modal-title" id="exampleModalLabel">Simulasi
+                                                            <h3 class="modal-title" id="exampleModalLabel"><a
+                                                                    href="daftar_tabel.php"><i
+                                                                        class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Simulasi
                                                                 Keterangan Nilai 3.a.4
                                                             </h3>
                                                             <form class="forms-sample" id="form-container">
@@ -229,7 +246,7 @@
                                             <div class="table-responsive">
                                                 <?php
 
-                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
+                                                echo '<table id="table" class="display expandable-table table-hover table-border" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
@@ -256,34 +273,36 @@
                                                             echo '<td>'. $dosen_tidak_tetap . '</td>';
                                                             echo '</tr>';
                                                         }
-
-                                                        // Start Dummy Kolom
-                                                         echo '<tr>';
-                                                        
-                                                            echo '<td>' . $kolom_2 . '</td>';
-                                                            echo '<td>' . $nama_2 . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
+                                                       echo '</tbody>';
+                                                       echo '<tbody>';
+                                                       // Start Dummy Kolom
+                                                       echo '<tr>';
+                                                       echo '<td>' . $kolom_2 . '</td>';
+                                                       echo '<td>' . $nama_2 . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '</tr>';
+                                                       '</tbody>';
+                                                       echo '<tbody>';
+                                                       // Start Dummy Kolom
+                                                       echo '<tr>';
+                                                       echo '<td>' . $kolom_2 . '</td>';
+                                                       echo '<td>' . $nama_2 . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '<td>' . $null . '</td>';
+                                                       echo '</tr>';
+                                                       '</tbody>';
+                                                        // Tambah Row Data
+                                                        echo '<tfoot class="table-row">';
                                                         echo '<tr>';
-                                                         echo '<tr>';
-                                                         $kolom_3=3; $nama_3="Profesi";
-                                                            echo '<td>' . $kolom_3 . '</td>';
-                                                            echo '<td>' . $nama_3 . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                            echo '<td>' . $null . '</td>';
-                                                        echo '<tr>';
-                                                        // End Dummy Kolom
-
-                                                         // Tambah Row Data
-                                                        echo '<tr class="table-row">';
                                                         echo '<td colspan="2"><p class="total">Total</p></td>';
                                                         echo '<td>'.$row['Guru Besar'].'</td>';
                                                         echo '<td>'.$row['Lektor Kepala'].'</td>';
@@ -292,10 +311,8 @@
                                                         echo '<td>'.$row['Tenaga Pengajar'].'</td>';
                                                         echo '<td>'.$dosen_tidak_tetap.'</td>';                                       
                                                         echo '</tr>';
-                                                       echo '</tbody>';
+                                                        echo '</tfoot>';
                                                     echo '</table>';
-                                                    
-                                                   
                                                     ?>
                                             </div>
                                         </div>
@@ -323,6 +340,25 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <!-- Script untuk Layout Tabel -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                "pageLength": 10,
+                "lengthMenu": [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ], // Mengganti nama -1 menjadi All
+                "scrollY": "350px",
+                "scrollCollapse": true
+            });
+        });
+    </script>
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../Controller/script_fungsi/logout_view.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

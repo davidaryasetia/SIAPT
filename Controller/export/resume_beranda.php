@@ -34,6 +34,23 @@ th{
 .no, .sheet, .skor{
     text-align: center;
 }
+.sheet{
+    color: blue;
+}
+.total {
+    align-items: left !important;
+    text-align: left !important;
+    justify-content: center !important;
+    font-weight: bold;
+    height : 50px !important;
+    font-size: 18px;
+  }
+  .table-row {
+    background: gainsboro;
+    font-weight: bold;
+    align-items: left;
+    justify-content: center;
+  }
 </style>
 </head>
 <body>
@@ -68,7 +85,7 @@ $skor_3d = $skor['3d'];
 $skor_5b1 = $skor['5b1'];
 $skor_5b2 = $skor['5b2'];
 $skor_null = $skor['null'];
- 
+$skor_iapt = $skor['iapt']; 
 // Make Variabel Data to containt value 
 $skorArray = [
     $skor_null, // 8 -> 1.a
@@ -110,6 +127,7 @@ $skorArray = [
     $skor_null, // 58 -> 5.f
     $skor_null, // 59 -> 5.g
     $skor_null, // 60 ->5.h  
+
 ];
 
 $skorCount = count($skorArray);
@@ -132,6 +150,13 @@ foreach ($data as $index => $row){
     }
     $html .= '</tr>';
 }
+
+
+// Baris Tambahan untuk menghitung Total Skoor
+$html .= '<tr class="table-row">';
+$html .= '<td class="total" colspan="4">Total Skoor Matriks IAPT 3.0 Berdasarkan Tabel LKPT</td>';
+$html .= '<td>' . $skor_iapt . '</td>'; // Menggunakan variabel indeks di luar looping
+$html .= '</tr>';
 
 $html .= '
 </tbody>

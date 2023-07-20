@@ -1,10 +1,12 @@
 <?php
 session_start();
+?>
 
-if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
-    // Redirect ke halaman login
+<!-- Check jika sesi tidak ada atau  tidak valid -->
+<?php
+if(!isset($_SESSION['EMAIL'])){
+    // Redirect ke halaman ogin
     header('Location: ../login.php');
-    exit();
 }
 ?>
 
@@ -14,7 +16,7 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tabel 3b</title>
+    <title>Daftar Pengguna</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -27,7 +29,6 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" type="text/css" href="../themes/layout.css">
     <!-- Font Awesome Icon -->
     <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
@@ -36,21 +37,23 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+    <link rel="stylesheet" type="text/css" href="../themes/layout.css">
+    <!-- Link CSS Data tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" />
 </head>
 
 <body>
     <?php
-     include '../Controller/daftar_tabel.php';
-     include '../Controller/nilai_3b.php';
+     $response_data_pengguna = file_get_contents('https://project.mis.pens.ac.id/mis143/API/login_register.php');
+     $data_pengguna = json_decode($response_data_pengguna, true);
     ?>
     <div class="container-scroller">
-
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a href="beranda.php" class="navbar-brand brand-logo mr-5" href="index.html">
+                <a class="navbar-brand brand-logo mr-5" href="index.html">
                     <img src="../includes/contents/Image/logo_svg.svg" class="mr-2 w-25 h-25" alt="logo" /></a>
-                <a href="beranda.php" class="navbar-brand brand-logo-mini" href="index.html">
+                <a class="navbar-brand brand-logo-mini" href="index.html">
                     <img src="../includes/contents/Image/logo_svg.svg" class="w-20 h-20" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -61,19 +64,19 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
+                            <div class="d-flex align-items-center justify-content-center">
                                 <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
-                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP']; ?></p>
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP'] ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a href="pengaturan.php" class="dropdown-item">
+                            <a href="../View/pengaturan.php" class="dropdown-item">
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a id="logout_sidebar" href="" class="dropdown-item">
+                            <a id="logout_sidebar" href="login.php" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -93,20 +96,20 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="beranda.php">
+                        <a class="nav-link" href="../View/beranda.php">
                             <i class="fa-regular fa-house menu-icon"></i>
                             <span class="menu-title">Beranda</span>
                         </a>
                     </li>
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="daftar_tabel.php">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../View/daftar_tabel.php">
                             <i class="fa-regular fa-table menu-icon"></i>
                             <span class="menu-title">Daftar Tabel</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pengaturan.php">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../View/pengaturan.php">
                             <i class="fa-regular fa-gear menu-icon"></i>
                             <span class="menu-title">Pengaturan</span>
                         </a>
@@ -122,89 +125,89 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <!-- Tabel 3.b Rasio Dosen Terhadap Mahasiswa -->
-                    <div class="row">
-                        <div class="col-md-12 grid-margin stretch-card">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12  grid-margin stretch-card ">
                             <div class="card ">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <p class="card-title mr-3"><a href="daftar_tabel.php"><i
-                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Tabel
-                                            3.b Rasio Dosen Terhadap Mahasiswa</p>
+                                        <h3 class="card-title mr-3"><a href="../View/pengaturan.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Pengaturan
+                                            -
+                                            Daftar Pengguna</h3>
                                         <div class="card-title">
-                                            <!-- Button Pagination -->
-                                            <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Daftar Tabel <i class="fa-solid fa-chevron-down ml-2"></i>
-                                            </button>
-                                            <div class="dropdown-menu mt-2 " aria-labelledby="dropdownMenu"
-                                                id="dropdownMenuContent">
-                                                <div class="pt-2 pb-0 d-flex justify-content-center">
-                                                    <div class="">
-                                                        <a href="daftar_tabel.php" type="button" href="daftar_tabel.php"
-                                                            class="dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1">
-                                                            Daftar Tabel
-                                                        </a>
-                                                        <?php foreach($data_lkpt as $row) : ?>
-                                                        <?php
-                                                        $isActive = ($row['SHEET'] === '3b');
-                                                        $btnClass = $isActive ? 'dropdown btn btn-sm btn-primary active ml-1 mt-1 mb-1' : 'dropdown btn btn-sm btn-outline-primary ml-1 mt-1 mb-1';
-                                                        ?>
-                                                        <a href="<?php echo $row['SHEET'] .'.php'; ?>" type="button"
-                                                            class="<?php echo $btnClass; ?>">
-                                                            <?php echo $row['SHEET'] ?>
-                                                        </a>
-                                                        <?php endforeach; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Button Pagination -->
-                                            <a href="../Controller/export/tabel_3b.php" type="button"
-                                                class="btn btn-sm btn-primary ">
-                                                <i class="fa-solid fa-file-export"></i>
-                                                Export Tabel
-                                            </a>
+                                            <!-- Jika $_SESSION['USER_ROLE'] Tambah Pengguna-->
+                                            <?php 
+                                            if (isset ($_SESSION['USER_ROLE']) && $_SESSION['USER_ROLE'] === 'Tim PJM'){
+                                            echo '<a href="../Form_Data/Tambah_Data/tambah_user.php"
+                                                class="btn btn-sm btn-outline-dark" type="button">
+                                                <i class="fa-solid fa-user-plus mr-2"></i>Tambah Anggota</a>';
+                                            }
+                                            ?>
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
-                                                echo '<table class="table display expandable-table table-hover table-border" style="width:100%">';
+                                                echo '<table id="table" class="display expandable-table table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
-                                                                <th>Nomor </th>
-                                                                <th>Departemen</th>
-                                                                <th>Jumlah Dosen</th>
-                                                                <th>Mahasiswa Angkatan 20</th>
-                                                                <th>Jumlah Mahasiswa TA</th>    
-                                                            </tr>';
+                                                                <th>No. </th>
+                                                                <th>Nama Dosen</th>
+                                                                <th>Bidang Keahlian</th>
+                                                                <th>Rekognisi</th>
+                                                                <th>Tingkat</th>
+                                                                <th>Tahun Perolehan</th>';
+
+                                                                // Set User Role untuk Edit Tim PJM dan Tim Akreditasi
+                                                                if(isset($_SESSION['USER_ROLE']) && ($_SESSION['USER_ROLE'] === 'Tim PJM') || ($_SESSION['USER_ROLE'] === 'Tim Akreditasi')){
+                                                                    echo 
+                                                                    '<th>Edit</th>
+                                                                    <th>Hapus</th>';
+                                                                }
+                                                            '</tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
-                                                        foreach ($data as $row) {
+                                                        foreach ($data_pengguna as $row) {
                                                             echo '<tr>';
                                                             echo '<td>' . $row['NOMOR'] . '</td>';
-                                                            echo '<td>' . $row['DEPARTEMEN'] . '</td>';
-                                                            echo '<td>' . $row['Jumlah Dosen'] . '</td>';
-                                                            echo '<td>' . $row['Mahasiswa Angkatan 2020'] . '</td>';
-                                                            echo '<td>' . $row['Jumlah Mahasiswa TA'] . '</td>';
+                                                            echo '<td>' . $row['NAMA_LENGKAP'] . '</td>';
+                                                            echo '<td>' . $row['NIP'] . '</td>';
+                                                            echo '<td>' . $row['USER_ROLE'] . '</td>';
+                                                            echo '<td>' . $row['EMAIL'] . '</td>';
+                                                            echo '<td>' . $row['NO_TELEPON'] . '</td>';
+                                                            if((isset($_SESSION['USER_ROLE']) && $_SESSION['USER_ROLE'] === 'Tim PJM') && (isset($row['EMAIL']) && $row['EMAIL'] !== $_SESSION['EMAIL']) ){
+                                                                // Edit Data Pengguna untuk $_SESSION['USER_ROLE'] === 'Tim PJM' dan berdasarkan nama_lengkap
+                                                                echo '<td>';
+                                                                echo '<a href="https://project.mis.pens.ac.id/mis143/Form_Data/Edit_Data/edit_pengguna.php?nomor=' . $row['NOMOR'] . '" class="btn-icon">';
+                                                                echo '<i class="fa-solid fa-pencil"></i>';
+                                                                echo '</a>';
+                                                                echo '</td>'; 
+
+                                                                // Hapus Data Pengguna untuk $_SESSION['USER_ROLE'] === 'Tim PJM'
+                                                                echo '<td>';
+                                                                echo '<form id="deletePengguna" method="POST" action="https://project.mis.pens.ac.id/mis143/API/login_register.php">';
+                                                                echo '<input type="hidden" name="_method" value="delete">';
+                                                                echo '<input type="hidden" name="nomor" value="' . $row['NOMOR'] . '">';
+                                                                echo '<button type="submit" class="delete_button" onclick="return hapus()">';
+                                                                echo '<i class="fa-solid fa-trash"></i>';
+                                                                echo '</button>';
+                                                                echo '</form>';
+                                                                echo '</td>';
+                                                            }
                                                             echo '</tr>';
                                                         }
                                                        echo '</tbody>';
-                                                    echo '</table>'
+                                                    echo '</table>';
                                                     ?>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Tabel 3.b Rasio Dosen Terhadap Mahasiswa-->
-
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -212,8 +215,7 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
                             <br />
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made With love
-                                by
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made With love by
                                 <a href="http://www.davidaryasetia.site/" target="_blank">davidaryasetia.site</a>
                                 <i class="ti-heart text-danger ml-1"></i></span>
                     </div>
@@ -224,6 +226,17 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <script>
+        function hapus() {
+            var confirmation = confirm("Anda Yakin ingin menghapus data pengguna?");
+            if (confirmation) {
+                document.getElementById("deletePengguna").submit();
+            }
+            return false;
+        }
+    </script>
+    <!-- Script untuk Layout Tabel -->
+
     <!-- JS untuk Proses fungsi Logout-->
     <script src="../Controller/script_fungsi/logout_view.js"></script>
     <!-- plugins:js -->
@@ -246,6 +259,7 @@ if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
     <script src="../js/dashboard.js"></script>
     <script src="../js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+
 </body>
 
 </html>

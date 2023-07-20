@@ -1,10 +1,21 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman Login
+    header('Location: ../login.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Tabel 3d</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../vendors/feather/feather.css">
     <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
@@ -18,6 +29,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <link rel="stylesheet" type="text/css" href="../themes/layout.css">
+    <link rel="stylesheet" type="text/css" href="../themes/toltip.css">
     <!-- Font Awesome Icon -->
     <link href="../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
@@ -26,12 +38,14 @@
     <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../includes/contents/Image/logo_svg.svg" />
+    <!-- Link CSS Data tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" />
 </head>
 
 <body>
     <?php
     include '../Controller/daftar_tabel.php';
-include '../Controller/nilai_3d.php';
+    include '../Controller/nilai_3d.php';
 ?>
 
     <div class="container-scroller">
@@ -52,9 +66,9 @@ include '../Controller/nilai_3d.php';
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="p-1" src="../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP'] ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -64,7 +78,7 @@ include '../Controller/nilai_3d.php';
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -103,7 +117,7 @@ include '../Controller/nilai_3d.php';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -113,7 +127,6 @@ include '../Controller/nilai_3d.php';
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
                     <!-- Tabel LKPT  -->
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
@@ -121,7 +134,9 @@ include '../Controller/nilai_3d.php';
                                 <div class="card-body">
                                     <div
                                         class="d-flex justify-content-betweend-flex justify-content-start align-items-center">
-                                        <p class="card-title mr-3">Tabel 3.d Rekognisi Dosen </p>
+                                        <p class="card-title mr-3"><a href="daftar_tabel.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Tabel
+                                            3.d Rekognisi Dosen </p>
                                         <div class="card-title">
                                             <!-- Button Pagination -->
                                             <button class="btn btn-sm btn-primary" type="button" id="dropdownMenu"
@@ -150,11 +165,15 @@ include '../Controller/nilai_3d.php';
                                                 </div>
                                             </div>
                                             <!-- End Button Pagination -->
-                                            <a href="../Form_Data/Tambah_Data\3d_rekognisi.php" type="button"
+                                            <?php if (isset ($_SESSION['USER_ROLE']) && ($_SESSION['USER_ROLE'] === 'Tim PJM') || ($_SESSION['USER_ROLE'] === 'Tim Akreditasi')){
+                                                echo '
+                                                <a href="../Form_Data/Tambah_Data/3d_rekognisi.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
                                                 <i class="fa-solid fa-plus"></i>
                                                 Tambah Data
-                                            </a>
+                                                </a>';
+                                            } ?>
+
                                             <a href="../Controller/export/tabel_3d.php" type="button"
                                                 class="btn btn-sm btn-primary btn-icon-text">
                                                 <i class="fa-solid fa-file-export"></i>
@@ -174,12 +193,85 @@ include '../Controller/nilai_3d.php';
                                                             <h3 class="modal-title " style="font-weight:bolder"
                                                                 id="exampleModalLabel">
                                                                 Keterangan Nilai Tabel 3.d
+                                                                <!-- Toltip Content  -->
+                                                                <a id="button1" class="btn"
+                                                                    aria-describedby="tooltip1"><i
+                                                                        class="fa-solid fa-circle-info text-info"
+                                                                        style="font-size:24px;"></i>
+                                                                </a>
+                                                                <div id="tooltip1" role="tooltip1">
+                                                                    <p class="mr-3 font_weight">Rumus Tabel
+                                                                        3.d LKPT
+                                                                        Rekognisi Dosen
+                                                                    </p>
+                                                                    <ul>
+                                                                        <li><span class="font_weight">
+                                                                                Rata-rata jumlah
+                                                                                prestasi,
+                                                                                kinerja dosen terhadap dosen tetap
+                                                                                :</span>
+                                                                            <span style="display:block">
+                                                                                (Jumlah prestasi,kinerja
+                                                                                dosen / Jumlah dosen tetap)
+                                                                            </span>
+                                                                        </li>
+                                                                        <hr>
+                                                                        <li><span class="font_weight">
+                                                                                Skor Tabel 3.d LKPT
+                                                                                Rekognisi Dosen:</span>
+                                                                            <span style="display:block;">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        Jika rata-rata pengakuan >= 0.25
+                                                                                        : skor
+                                                                                        (4)
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        Jika rata-rata pengakuan <= 0.25
+                                                                                            : skor (2 + (8 x RRD)) </li>
+                                                                                            <li>
+                                                                                            Jika Tidak ada Skor kurang
+                                                                                            dari 2
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </span>
+                                                                        </li>
+                                                                        <hr>
+                                                                        <li>
+                                                                            <span class="font_weight">Pencapaian
+                                                                                prestasi dosen dalam bentuk
+                                                                                seperti:</span>
+                                                                            <ul>
+                                                                                <li> menjadi visiting professor di
+                                                                                    perguruan tinggi nasional/
+                                                                                    internasional</li>
+                                                                                <li>menjadi keynote speaker /invited
+                                                                                    speaker pada pertemuan ilmiah
+                                                                                    tingkat nasional/ internasional.
+                                                                                </li>
+                                                                                <li>menjadi staf ahli di lembaga tingkat
+                                                                                    nasional/ internasional.</li>
+                                                                                <li>menjadi editor atau mitra bestari
+                                                                                    pada jurnal nasional terakreditasi/
+                                                                                    jurnal internasional bereputasi.
+                                                                                </li>
+                                                                                <li>mendapat penghargaan atas prestasi
+                                                                                    dan kinerja di tingkat nasional/
+                                                                                    internasional.
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div id="arrow1" data-popper-arrow></div>
+                                                                </div>
+                                                                <!-- End Toltip -->
                                                             </h3>
                                                             <?php
                                                             echo '<div class="skor">';
                                                             echo '<p>Jumlah prestasi atau kinerja dosen dalam 3 tahun terakhir : '. $total_rekognisi_dosen .'</p>';
                                                             echo '<p>Jumlah Dosen Tetap : ' . $total_dosen_tetap.'</p>';
-                                                            echo '<p>Rata-rata pengakuan/prestasi kinerja dosen : ' .$rata_prestasi_dosen .' </p>';
+                                                            echo '<p>Rata-rata pengakuan/prestasi kinerja dosen : ' . $rata_prestasi_dosen .' </p>';
+
                                                             echo '<p>Skor Tabel 3.d Rekognisi Dosen: '. $skor_3d.'</p>';
                                                             echo '<p>Keterangan :<br>'. $keterangan.'</p>';
                                                             echo '</div>';
@@ -211,7 +303,6 @@ include '../Controller/nilai_3d.php';
                                                                         placeholder="Masukkan Jumlah Dosen Tetap"
                                                                         value="<?php echo $total_dosen_tetap; ?>" />
                                                                 </div>
-
                                                             </form>
                                                             <?php
                                                             echo '<div class="skor">';
@@ -224,8 +315,6 @@ include '../Controller/nilai_3d.php';
                                                             echo '</div>';
                                                            ?>
                                                         </div>
-
-
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>
@@ -235,17 +324,12 @@ include '../Controller/nilai_3d.php';
                                             </div>
                                             <!-- End Modal -->
                                         </div>
-
-
-
-
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive">
                                                 <?php
-                                               
-                                                echo '<table class="display expandable-table table-hover table-border" style="width:100%">';
+                                                echo '<table id="table" class="display expandable-table table-border table-hover" style="width:100%">';
                                                         echo '<thead>';
                                                            echo' <tr>
                                                                 <th>No. </th>
@@ -253,10 +337,15 @@ include '../Controller/nilai_3d.php';
                                                                 <th>Bidang Keahlian</th>
                                                                 <th>Rekognisi</th>
                                                                 <th>Tingkat</th>
-                                                                <th>Tahun Perolehan(YYYY)</th>
-                                                                <th>Edit</th>
-                                                                <th>Hapus</th>
-                                                            </tr>';
+                                                                <th>Tahun Perolehan</th>';
+
+                                                                // Set User Role untuk Edit Tim PJM dan Tim Akreditasi
+                                                                if(isset($_SESSION['USER_ROLE']) && ($_SESSION['USER_ROLE'] === 'Tim PJM') || ($_SESSION['USER_ROLE'] === 'Tim Akreditasi')){
+                                                                    echo 
+                                                                    '<th>Edit</th>
+                                                                    <th>Hapus</th>';
+                                                                }
+                                                            '</tr>';
                                                         echo '</thead>';
                                                         echo '<tbody>';
                                                         foreach ($rekognisi_dosen as $row) {
@@ -267,30 +356,31 @@ include '../Controller/nilai_3d.php';
                                                             echo '<td>' . $row['REKOGNISI'] . '</td>';
                                                             echo '<td>' . $row['TINGKAT'] . '</td>';
                                                             echo '<td>' . $row['TAHUN'] . '</td>';
-                                                            // Edit Data
-                                                            echo '<td>';
-                                                            echo '<a href="https://project.mis.pens.ac.id/mis143/Form_Data/Edit_Data/3d_rekognisi_dosen.php?no=' . $row['NO'] . '" class="btn-icon">';
-                                                            echo '<i class="fa-solid fa-pencil"></i>';
-                                                            echo '</a>';
-                                                            echo '</td>';   
-                                                            // End Edit
-                                                           // Hapus Data
-                                                           echo '<td>';
-                                                            echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/3.d_rekognisi_dosen.php">';
-                                                            echo '<input type="hidden" name="_method" value="DELETE">';
-                                                            echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
-                                                            echo '<button type="submit" class="btn-icon" onclick="return confirmAndRedirect(\'Apakah anda ingin delete tabel ini?\')">';
-                                                            echo '<i class="fa-solid fa-trash"></i>';
-                                                            echo '</button>';
-                                                            echo '</form>';
-                                                            echo '</td>';
+
+                                                            // Set User Role Untuk Tim PJM dan Tim Akreditasi
+                                                            if(isset($_SESSION['USER_ROLE']) && ($_SESSION['USER_ROLE'] === 'Tim PJM') || ($_SESSION['USER_ROLE'] === 'Tim Akreditasi')){
+                                                                 // Edit Data
+                                                                echo '<td>';
+                                                                echo '<a href="https://project.mis.pens.ac.id/mis143/Form_Data/Edit_Data/3d_rekognisi_dosen.php?no=' . $row['NO'] . '" class="btn-icon">';
+                                                                echo '<i class="fa-solid fa-pencil"></i>';
+                                                                echo '</a>';
+                                                                echo '</td>';   
+                                                                
                                                             // Hapus Data
+                                                                echo '<td>';
+                                                                echo '<form method="POST" action="https://project.mis.pens.ac.id/mis143/API/3.d_rekognisi_dosen.php">';
+                                                                echo '<input id="delete_3d" type="hidden" name="_method" value="DELETE">';
+                                                                echo '<input type="hidden" name="no" value="' . $row['NO'] . '">';
+                                                                echo '<button type="submit"  class="delete_button" onclick="return hapus()">';
+                                                                echo '<i class="fa-solid fa-trash"></i>';
+                                                                echo '</button>';
+                                                                echo '</form>';
+                                                                echo '</td>';
+                                                            }
                                                             echo '</tr>';
                                                         }
                                                        echo '</tbody>';
                                                     echo '</table>';
-
-                                                   
                                                     ?>
                                             </div>
                                         </div>
@@ -301,7 +391,6 @@ include '../Controller/nilai_3d.php';
                         </div>
                     </div>
                     <!-- Tabel 3.a.4 Dosen Tidak Tetap-->
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -321,25 +410,40 @@ include '../Controller/nilai_3d.php';
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
+    <!-- Script untuk Hapus Data -->
     <script>
-        function confirmAndRedirect(message, redirectUrl) {
-            if (confirm(message)) {
-                window.location.href = redirectUrl;
-                return true;
+        function hapus() {
+            var confirmation = confirm("Anda Yakin Ingin Menghapus Data Tabel 3.d Rekognisi Dosen ?");
+            if (confirmation) {
+                document.getElementById("delete_3d").submit();
             }
             return false;
         }
-
-        // Access the redirect URL from the JSON response
-        var response = < ? php echo json_encode(array('Redirect' =>
-            'https://project.mis.pens.ac.id/mis143/daftar_tabel.php')); ? > ;
-        var redirectUrl = response.Redirect;
-
-        // Perform redirection if the redirect URL is provided
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
     </script>
+
+    <!-- Script untuk Layout Tabel -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                "pageLength": 5,
+                "lengthMenu": [
+                    [5, 10, 25, 50, 100, -1],
+                    [5, 10, 25, 50, 100, "All"]
+                ], // Mengganti nama -1 menjadi All
+                "scrollY": "400px",
+                "scrollCollapse": true
+            });
+        });
+    </script>
+    <!-- Script Untuk Fungsi Tootip -->
+    <script src="../Controller/script_fungsi/toltip.js"></script>
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../Controller/script_fungsi/logout_view.js"></script>
     <!-- plugins:js -->
     <script src="../vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

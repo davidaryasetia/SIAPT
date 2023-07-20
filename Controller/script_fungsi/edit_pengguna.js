@@ -2,51 +2,45 @@ document.addEventListener("DOMContentLoaded", function () {
   var form = document.querySelector("form");
   form.addEventListener("submit", function (event) {
     event.preventDefault();
+    var nomor = form.elements.nomor.value;
     var nama_lengkap = form.elements.nama_lengkap.value;
     var nip = form.elements.nip.value;
     var user_role = form.elements.user_role.value;
     var email = form.elements.email.value;
-    var password = form.elements.password.value;
-    var konfirmasi_password = form.elements.konfirmasi_password.value;
     var no_telepon = form.elements.no_telepon.value;
-    // Validasi email dan password jika kosong
-    if (nama_lengkap.trim() === "") {
-      alert("Lengkapi Nama Lengkap");
+
+    // Validasi input form pengguna
+    if (nomor.trim() === "") {
+      alert("Nomor Pengguna Tidak Tersedia");
+      return;
+    } else if (nama_lengkap.trim() === "") {
+      alert("Lengkapi Nama Lengkap Pengguna");
       return;
     } else if (nip.trim() === "") {
       alert("Lengkapi NIP");
       return;
     } else if (user_role.trim() === "") {
-      alert("Lengkapi user role");
+      alert("Lengkapi User Role");
       return;
     } else if (email.trim() === "") {
-      alert("Lengkapi Email");
-      return;
-    } else if (password.trim() === "") {
-      alert("Lengkapi Passoword");
-      return;
-    } else if (konfirmasi_password.trim() === "") {
-      alert("Konfirmasi Password");
-      return;
-    } else if (password !== konfirmasi_password) {
-      alert("konfirmasi password tidak sesuai");
+      alert("Lengkapi Email Pengguna");
       return;
     } else if (no_telepon.trim() === "") {
-      alert("Lengkapi nomor telepon");
+      alert("Lengkapi Nomor Telepon");
       return;
     }
 
-    // Membuat Objek Form Data
+    // Membuat objek form data
     var formData = new FormData();
+    formData.append("nomor", nomor);
     formData.append("nama_lengkap", nama_lengkap);
     formData.append("nip", nip);
     formData.append("user_role", user_role);
     formData.append("email", email);
-    formData.append("password", password);
     formData.append("no_telepon", no_telepon);
-    formData.append("_method", "register");
+    formData.append("_method", "put");
 
-    // Kirim Data Login ke server dengan fetch API
+    // Kirim Data edit penggunak ke endpoint API
     fetch("https://project.mis.pens.ac.id/mis143/API/login_register.php", {
       method: "POST",
       body: formData,
@@ -56,15 +50,15 @@ document.addEventListener("DOMContentLoaded", function () {
           return response.json();
         } else if (response.status === 500) {
           return response.json().then(function (data) {
-            throw new Errow(data.message);
+            throw new Error(data.message);
           });
         } else {
-          throw new Error("Pengguna Sukses Ditambahkan");
+          throw new Error("Edit Data Pengguna Sukses");
         }
       })
       .then(function (data) {
-        // Jika register berhasil arahkan ke page pengaturan.php
-        alert("Pengguna Sukses Ditambahkan");
+        // Edit data pengguna jika sukses dan mengarahkn ke ../View/daftar_pengguna.php
+        alert("Edit Data Pengguna Sukses");
         window.location.href = "../../View/daftar_pengguna.php";
       })
       .catch(function (error) {

@@ -27,61 +27,59 @@ $timeout = 1000;
 $imagePath = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
-    $file = $_FILES['fileToUpload'];
-    $localFilePath = $file['tmp_name'];
-    $fileName = $file['name'];
+$file = $_FILES['fileToUpload'];
+$localFilePath = $file['tmp_name'];
+$fileName = $file['name'];
 
-    try {
-        // Connect to the SFTP server
-        $sftp = new SFTP($host, $port);
+try {
+// Connect to the SFTP server
+$sftp = new SFTP($host, $port);
 
-        // Set the timeout (in seconds)
-        $sftp->setTimeout($timeout);
+// Set the timeout (in seconds)
+$sftp->setTimeout($timeout);
 
-        if (!$sftp->login($username, $password)) {
-            throw new Exception('Login failed');
-        }
-
-        // Generate a unique filename on the remote server
-        $remoteFileName = uniqid() . '_' . $fileName;
-
-        // Upload the file
-        $remoteFilePath = $remoteDestinationPath . $remoteFileName;
-        if (!$sftp->put($remoteFilePath, $localFilePath, SFTP::SOURCE_LOCAL_FILE)) {
-            throw new Exception('File upload failed');
-        }
-
-        // Insert the file information into the database
-        $conn = oci_connect($db_user, $db_pass, $db_host);
-        $sql = "INSERT INTO image (filename) VALUES (:filename)";
-        $stmt = oci_parse($conn, $sql);
-        oci_bind_by_name($stmt, ':filename', $remoteFileName);
-        oci_execute($stmt);
-
-        // Set the image path for display
-        $imagePath = $folderURL . $remoteFileName;
-
-        echo 'File uploaded successfully and saved to the database!';
-    } catch (Exception $e) {
-        echo 'Error: ' . $e->getMessage();
-        print_r($sftp->getSFTPErrors());
-    }
+if (!$sftp->login($username, $password)) {
+throw new Exception('Login failed');
 }
 
-// Retrieve the image path from the database for display
-try {
-    $conn = oci_connect($db_user, $db_pass, $db_host);
-    $sql = "SELECT filename FROM (SELECT filename FROM image ORDER BY id DESC) WHERE ROWNUM = 1";
-    $stmt = oci_parse($conn, $sql);
-    oci_execute($stmt);
-    $result = oci_fetch_assoc($stmt);
+// Upload the file with the original filename
+$remoteFilePath = $remoteDestinationPath . $fileName;
+if (!$sftp->put($remoteFilePath, $localFilePath, SFTP::SOURCE_LOCAL_FILE)) {
+throw new Exception('File upload failed');
+}
 
-    if ($result) {
-        $imageFileName = $result['FILENAME'];
-        $imagePath = $folderURL . $imageFileName;
-    }
+// Insert the file information into the database
+$conn = oci_connect($db_user, $db_pass, $db_host);
+$sql = "INSERT INTO image (filename) VALUES (:filename)";
+$stmt = oci_parse($conn, $sql);
+oci_bind_by_name($stmt, ':filename', $fileName);
+oci_execute($stmt);
+
+// Set the image path for display
+$imagePath = $folderURL . $fileName;
+
+echo 'File uploaded successfully and saved to the database!';
 } catch (Exception $e) {
-    echo 'Error: ' . $e->getMessage();
+echo 'Error: ' . $e->getMessage();
+print_r($sftp->getSFTPErrors());
+}
+}
+
+// Retrieve the image paths from the database for display
+$imagePaths = array();
+
+try {
+$conn = oci_connect($db_user, $db_pass, $db_host);
+$sql = "SELECT filename FROM image ORDER BY id DESC";
+$stmt = oci_parse($conn, $sql);
+oci_execute($stmt);
+
+while ($row = oci_fetch_assoc($stmt)) {
+$imageFileName = $row['FILENAME'];
+$imagePaths[] = $folderURL . $imageFileName;
+}
+} catch (Exception $e) {
+echo 'Error: ' . $e->getMessage();
 }
 ?>
 

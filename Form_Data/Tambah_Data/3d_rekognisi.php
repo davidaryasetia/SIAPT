@@ -1,10 +1,20 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['EMAIL']) && !isset($_SESSION['NOMOR'])){
+    // Redirect ke halaman ../../
+    header('Location: ../../login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Daftar Tabel</title>
+    <title>Tambah 3d</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
@@ -13,11 +23,10 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="../../../js/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" type="text/css" href="../../themes\styling.css">
     <!-- Font Awesome Icon -->
     <link href="../../includes/contents/assets/fontawesome/css/fontawesome.css" rel="stylesheet">
     <link href="../../includes/contents/assets/fontawesome/css/brands.css" rel="stylesheet">
@@ -26,16 +35,6 @@
     <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
     <!-- Logo Tab -->
     <link rel="shortcut icon" href="../../includes/contents/Image/logo_svg.svg" />
-    <script>
-        function redirectToRekognisiDosen() {
-            window.location.href =
-                "https://project.mis.pens.ac.id/mis143/View/3d.php";
-        }
-    </script>
-
-
-
-
 </head>
 
 <body>
@@ -56,9 +55,9 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle d-flex flex-row align-align-items-center justify-content-center"
                             href="#" data-toggle="dropdown" id="profileDropdown">
-                            <div class="d-flex align-items-center justify-content-center    ">
-                                <img class="p-1" src="../../includes/contents/Image/Bu_Tita.png" alt="profile" />
-                                <p class="p-1 mb-0">Hi! Tita Karlita</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="p-1" src="../../includes/contents/user_profile/default.svg" alt="profile" />
+                                <p class="p-1 mb-0">Hi! <?php echo $_SESSION['NAMA_LENGKAP'] ?></p>
                                 <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
                         </a>
@@ -68,7 +67,7 @@
                                 <i class="fa-regular fa-gear text-primary"></i>
                                 Pengaturan
                             </a>
-                            <a href="login.php" class="dropdown-item">
+                            <a id="logout_navbar" href="" class="dropdown-item">
                                 <i class="fa-regular fa-arrow-right-from-bracket text-primary"></i>
                                 Keluar
                             </a>
@@ -107,7 +106,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a id="logout_sidebar" class="nav-link" href="">
                             <i class="fa-regular fa-arrow-right-from-bracket menu-icon"></i>
                             <span class="menu-title">Keluar</span>
                         </a>
@@ -121,95 +120,41 @@
                         <div class="col-md-12  grid-margin stretch-card ">
                             <div class="card ">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-center">
-                                        <p class="card-title">Tambah Data - 3.d Rekognisi Dosen
+                                    <div class="d-flex justify-content-start">
+                                        <h3 class="card-title mr-3"><a href="../../View/3d.php"><i
+                                                    class="fa-solid fa-arrow-left mr-4 btn-outline-dark"></i></a>Daftar
+                                            Tabel
+                                            -
+                                            Tambah Data Tabel 3d Rekognisi Dosen</h3>
                                     </div>
                                     <div class="row">
-                                        <!-- Start Fech API Endpoint -->
-                                        <!-- Start Fech API Endpoint -->
-                                        <?php
-                                        // Jika formulir dikirim maka submit
-                                        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                                            // mengambil nilai dari input form
-                                            $nama = $_POST['nama'];
-                                            $bidang_keahlian = $_POST['bidang_keahlian'];
-                                            $rekognisi = $_POST['rekognisi'];
-                                            $tingkat = $_POST['tingkat'];
-                                            $tahun = $_POST['tahun'];
-
-                                            // Data yang akan dikirimkan dalam format array
-                                            $data = array(
-                                                'nama' => $nama, 
-                                                'bidang_keahlian' => $bidang_keahlian, 
-                                                'rekognisi' => $rekognisi, 
-                                                'tingkat' => $tingkat, 
-                                                'tahun' => $tahun
-                                            );
-
-                                            // Mengubah data menjadi string json
-                                            $json_data = json_encode($data);
-
-                                            // Mengirimkan data ke endpoint API menggunakan fungsi file_get_contents()
-                                            $url = 'https://project.mis.pens.ac.id/mis143/API/3.d_rekognisi_dosen.php';
-                                            $options = array(
-                                                'http' => array(
-                                                    'method' => 'POST', 
-                                                    'header' => 'Content-Type: application/json', 
-                                                    'content' => $json_data
-                                                )
-                                                );
-                                                $context = stream_context_create($options);
-
-                                                // Variabel Respons untuk menampung logic response data
-                                                $response = file_get_contents($url, false, $context);
-
-                                                 // Memeriksa response dari API
-                                            if ($response !== false) {
-                                                $responseData = json_decode($response, true);
-                                                if (isset($responseData['Pesan'])) {
-                                                    // Menampilkan pesan sukses
-                                                    echo '<script>alert("Sukses: ' . $responseData['Pesan'] . '"); redirectToRekognisiDosen();</script>';
-                                                } else {
-                                                    // Tampilkan pop up error jika respon API tidak valid
-                                                    echo '<script>alert("Gagal: Respon API tidak valid");</script>';
-                                                }
-                                            } else {
-                                                // Tampilkan pop up error jika tidak dapat terhubung ke API 
-                                                echo '<script>alert("Gagal: Tidak dapat terhubung ke API");</script>';
-                                            }               
-                                        }
-                                        ?>
-                                        <!-- End Fetch API Endpoint -->
-                                        <!-- End Fetch API Endpoint -->
-
-
-                                        <!-- Start Form -->
                                         <div class="col-md-12 grid-margin stretch-card">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <form class="forms-sample" method="POST" action="">
+                                                    <form class="forms-sample" method="POST" action=""
+                                                        onsubmit="(event)">
                                                         <div class="form-group">
                                                             <label for="nama">Nama Dosen</label>
                                                             <input type="text" class="form-control" id="nama"
-                                                                name="nama" placeholder="Nama Dosen" />
+                                                                name="nama" placeholder="Masukkan Nama Dosen....." />
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="bidang">Bidang Keahlian</label>
                                                             <input type="text" class="form-control" id="bidang_keahlian"
-                                                                name="bidang_keahlian" placeholder="Bidang Keahlian" />
+                                                                name="bidang_keahlian"
+                                                                placeholder="Masukkan Bidang Keahlian..." />
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group text-dark">
                                                             <label for="rekognisi">Rekognisi</label>
                                                             <textarea type="text"
                                                                 class="form-control centered-placeholder" id="rekognisi"
                                                                 name="rekognisi"
-                                                                placeholder="Rekognisi Dosen"></textarea>
+                                                                placeholder="Masukkan Rekognisi Dosen...."></textarea>
                                                         </div>
-
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
                                                                 <label for="tingkat">Tingkat</label>
-                                                                <select class="form-control" id="tingkat"
+                                                                <select class="form-control text-dark" id="tingkat"
                                                                     name="tingkat">
                                                                     <option value="">Pilih Tingkat</option>
                                                                     <option value="Wilayah">Wilayah</option>
@@ -219,7 +164,8 @@
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label for="tahun">Tahun Perolehan (YYYY)</label>
-                                                                <select class="form-control" id="tahun" name="tahun">
+                                                                <select class="form-control text-dark" id="tahun"
+                                                                    name="tahun">
                                                                     <option value="">Pilih Tahun</option>
                                                                     <option value="2023">2023</option>
                                                                     <option value="2022">2022</option>
@@ -246,14 +192,11 @@
                                             </div>
                                         </div>
                                         <!-- End Form -->
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -273,6 +216,11 @@
         <!-- page-body-wrapper ends -->
     </div>
 
+    <!-- JS untuk Proses fungsi Logout-->
+    <script src="../../Controller/script_fungsi/logout_FormData.js"></script>
+
+    <!-- JS untuk Fetch Proses fungsi Edit Data-->
+    <script src="../../Controller/script_fungsi/tambah_3d.js"></script>
 
     <!-- plugins:js -->
     <script src="../../vendors/js/vendor.bundle.base.js"></script>
