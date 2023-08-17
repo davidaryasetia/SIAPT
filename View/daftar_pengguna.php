@@ -155,10 +155,10 @@ if(!isset($_SESSION['EMAIL'])){
                                                            echo' <tr>
                                                                 <th>No. </th>
                                                                 <th>Nama Dosen</th>
-                                                                <th>Bidang Keahlian</th>
-                                                                <th>Rekognisi</th>
-                                                                <th>Tingkat</th>
-                                                                <th>Tahun Perolehan</th>';
+                                                                <th>NIP</th>
+                                                                <th>User Role</th>
+                                                                <th>Email</th>
+                                                                <th>Nomor Telepon</th>';
 
                                                                 // Set User Role untuk Edit Tim PJM dan Tim Akreditasi
                                                                 if(isset($_SESSION['USER_ROLE']) && ($_SESSION['USER_ROLE'] === 'Tim PJM') || ($_SESSION['USER_ROLE'] === 'Tim Akreditasi')){
